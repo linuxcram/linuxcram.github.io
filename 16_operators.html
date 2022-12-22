@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 16_operators</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[16_operators]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="16_operators">16_operators</p></b>
+<b>Bash scripting operators</b>
+<br>
+Operators are used in Bash scripts to determine whether a condition is true or false.
+<br>
+Upon on their result different action can be executed.
+<br>
+<br>
+<b>Arithmetic Comparison Operators</b>
+<br>
+-lt &nbsp;&nbsp;&nbsp;&nbsp; &lt;
+<br>
+-gt &nbsp;&nbsp;&nbsp;&nbsp; &gt;
+<br>
+-le &nbsp;&nbsp;&nbsp;&nbsp; &lt;=
+<br>
+-ge &nbsp;&nbsp;&nbsp;&nbsp; &gt;=
+<br>
+-eq &nbsp;&nbsp;&nbsp;&nbsp; ==
+<br>
+-ne &nbsp;&nbsp;&nbsp;&nbsp; !=
+<br>
+<br>
+eg. script compare.sh
+<br>
+#!/bin/bash
+<br>
+# define values
+<br>
+num1=10
+<br>
+num2=20
+<br>
+# conditional statement
+<br>
+if [ $num1 -eq $num2 ]; then
+<br>
+  echo "The two values are equal"
+<br>
+else 
+<br>
+  echo "The two values are NOT equal"
+<br>
+fi
+<br>
+<br>
+# make executable
+chmod u+x compare.sh
+<br>
+# execute
+./compare.sh
+<br>
+<br>
+<b>String Comparison Operators</b>
+<br>
+= &nbsp;&nbsp;&nbsp;&nbsp; equal
+<br>
+!= &nbsp;&nbsp;&nbsp;&nbsp; not equal
+<br>
+&lt; &nbsp;&nbsp;&nbsp;&nbsp; less than
+<br>
+&gt; &nbsp;&nbsp;&nbsp;&nbsp; greater than
+<br>
+-n s1 &nbsp;&nbsp;&nbsp;&nbsp; string s1 is not empty
+<br>
+-z s1 &nbsp;&nbsp;&nbsp;&nbsp; string s1 is empty
+<br>
+<br>
+eg. script comparestrings.sh
+<br>
+#!/bin/bash
+<br>
+# define first string
+<br>
+string1="Hello"
+<br>
+# define second string
+<br>
+string2="World"
+<br>
+# perform conditional check and  print corresponding result
+<br>
+if [ $string1 = $string2 ]; then
+<br>
+  echo "The two strings are equal"
+<br>
+else
+<br>
+  echo "The two strings are NOT equal"
+<br>
+fi
+<br>
+<br>
+# make executable
+chmod u+x comparestrings.sh
+# execute
+./comparestrings.sh
+<br>
+<br>
+# output
+<br>
+The two strings are NOT equal
+<br>
+<br>
+<b>File Testing Operators</b>
+<br>
+-e filename &nbsp;&nbsp;&nbsp;&nbsp; Check for file existence
+<br>
+-f filename &nbsp;&nbsp;&nbsp;&nbsp; Check for regular file existence not a directory
+<br>
+-r filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is a readable
+<br>
+-s filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is nonzero size
+<br>
+-w filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is writable
+<br>
+-x filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is executable
+<br>
+<br>
+eg. script checkfile.sh
+<br>
+#!/bin/bash
+<br>
+# define file using ./ to indicate that the file is located in the current directory where the script is run
+<br>
+file="./text1.txt"
+<br>
+# if condition that check if the file exist and it's not a directory, then display the corresponding result
+<br>
+if [ -e $file ]; then
+<br>
+  echo "The file $file exists"
+<br>
+else 
+<br>
+  echo "The file $file does not exists"
+<br>
+fi
+<br>
+<br>
+# make executable
+<br>
+chmod u+x checkfile.sh
+<br>
+# execute
+<br>
+./checkfile.sh
+<br>
+<br>
+# output
+<br>
+The file ./text1.txt exists
+<br>
+<br>
+The echo command accepts text strings between double quotes as argument, and can also read variables values.
+<br>
+Variables are recognized by the $ char at the beginning of their name.
+<br>
+<br>
+<b>Boolean Operators</b>
+<br>
+Boolean operators are used to test if two or more conditions are true or false.
+<br>
+<br>
+Operators / function
+<br>
+&amp;&amp; and
+<br>
+|| or
+<br>
+! not equal to
+<br>
+<br>
+eg.
+<br>
+if [ 3 -ge 1 ] &amp;&amp; [ "a" = "a" ]; then echo "yes"; else echo "no"; fi
+<br>
+if [ 3 -eq 1 ] || [ "a" = "a" ]; then echo "yes"; else echo "no"; fi
+<br>
+if [ 3 -le 1 ] || [ "a" = "b" ]; then echo "yes"; else echo "no"; fi
+<br>
+<br>
+if [ 1 -eq 1 ] &amp;&amp; [ "a" = "a" ] || [ "b" = "c" ]; then echo "yes"; else echo "no"; fi
+<br>
+if [ 1 -eq 1 ] &amp;&amp; [ "a" = "a" ] &amp;&amp; [ "b" = "c" ]; then echo "yes"; else echo "no"; fi
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/15_scripts.html">[15_scripts]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/17_bestpractices.html">[17_bestpractices]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
