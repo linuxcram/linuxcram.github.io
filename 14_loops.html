@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 14_loops</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[14_loops]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="14_loops">14_loops</p></b>
+<b>Common loops in programming languages</b>
+<br>
+The loop constructs are common programming building blocks that allow us to repeat the execution of a section of code through an iteration.
+<br>
+<br>
+The three main types of iteration constructs in bash are the count-controlled loops (or definite iteration), the condition-controlled loops (or indefinite iteration), the infinite loops.
+<br>
+<br>
+The count-controlled loop repeats the execution of a section of code for a certain number of times. The counting can be upward or downward with varying step size. This loop generally uses a for loop construct.
+<br>
+<br>
+The condition-controlled loop repeats the execution of a section of code until a condition is met. The condition may be tested at the beginning, or the end of the loop. This loop generally uses a while loop construct.
+<br>
+<br>
+The infinite loop repeats the execution of a section of code forever or until an exception arises. This loop often uses a while true loop construct and is sometimes called an endless loop or a forever loop.
+<br>
+<br>
+<br>
+<br>
+<b>BASH LOOPS</b>
+<br>
+<br>
+<b>For Loop</b>
+<br>
+<br>
+for i in {1..3}; do echo $i; done
+<br>
+# or
+<br>
+for i in 1 2 3; do echo $i; done
+<br>
+<br>
+i is an arbitrary name of the variable which will be assigned the values defined in the specified range
+{1..3} or 1 2 3 represents the range of value that will be assigned to i by the "for" cycle, the echo command will use the value assigned to i as argument for each cycle of the for loop
+<br>
+<br>
+<b>Count-controlled For Loop (counter)</b>
+<br>
+<br>
+for ((x=0 ; x&lt;5 ; x++)); do echo $x; done
+<br>
+<br>
+x is an arbitrary name of the variable that the for cycle will use to assign the values in the range
+the range is represented numerically starting from 0, using the incremental function x++ that will increase its value by 1 unit
+<br>
+<br>
+x&lt;5 represents the limit condition that will interrupt the for cycle, until this condition is true the incremental function will be applied, and echo will get the value of x as argument, when the condition x=5 is reached the cycle is terminated
+<br>
+<br>
+<b>While Loop</b>
+<br>
+<br>
+x=1; while (( x &lt;= 5 )); do echo $((x++)); done
+<br>
+<br>
+x is the arbitrary name of the variable
+the incremental funtion will be applied until the condition is reached, that means that x is incremented by 1 unit while its value satisfy the condition x &lt;= 5, and its value is printed on screen by echo, when the limit value is reached with x=6 the cycle is terminated
+<br>
+<br>
+<b>Until Loop</b>
+<br>
+<br>
+x=3; until (( x &lt;= 0 )); do echo $((x--)); done
+<br>
+<br>
+x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x<=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
+<br>
+<br>
+<br>
+<br>
+<b>Warning</b>
+<br>
+Bad scripts may contain endless loops resulting in infinite operations!
+<br>
+Hopefully they could be terminated with ctrl+c 
+<br>
+Endless loops examples - commented out because not meant to be never used!
+<br>
+# for (( ; ; )); do echo "infinite loop"; done
+<br>
+# while : ; do echo "infinite loop"; done
+<br>
+# while true : ; do echo "infinite loop"; done
+<br>
+# until false; do echo "infinite loop"; done
+<br>
+<br>
+<b>Conditional Statements</b>
+<br>
+<br>
+<b>If</b>
+<br>
+<br>
+The if statement is a conditional expression, that evaluates the result of the command based on the exit status.
+<br>
+<br>
+If the command completes successfully, the condition is true and the exit status is 0
+<br>
+<br>
+If the statement produces an error, the condition is false and the exit status is any number between 1 and 255
+<br>
+<br>
+<b>If syntax</b>
+<br>
+The single bracket represent a test command following the standard POSIX utility available for all shells.
+<br>
+<br>
+if [ <condition> ]
+<br>
+then
+<br>
+  <commands>
+<br>
+fi
+<br>
+<br>
+The double-bracket syntax in bash scripts is the best option if portability is not necessary,
+<br>
+double-brackets are superior to single-brackets and include adcanced options.
+<br>
+<br>
+if [[ <condition> ]]
+<br>
+then
+<br>
+  <commands>
+<br>
+fi
+<br>
+<br>
+The if else statement includes the definition of different actions based on the output of the condition. 
+<br>
+<br>
+if [ <condition> ]
+<br>
+then
+<br>
+  <commands>
+<br>
+else
+<br>
+  <commands>
+<br>
+fi
+<br>
+<br>
+The elif clause combined with the if else statement performs multiple conditional checks with different results.
+<br>
+<br>
+if [ <condition> ]
+<br>
+then
+<br>
+  <commands>
+<br>
+elif [ <condition> ]
+<br>
+then
+<br>
+  <commands>
+<br>
+else
+<br>
+  <commands>
+<br>
+fi
+<br>
+<br>
+Nested if statements perform a first if check of a condition that if satisfied passes to a the next check.
+<br>
+<br>
+if [ <condition> ]
+<br>
+then
+<br>
+    if [ <condition> ]
+<br>
+    then
+<br>
+        <commands>
+<br>
+    fi
+<br>
+fi
+<br>
+<br>
+<b>Case</b>
+<br>
+<br>
+The bash case statement can simplify complex conditionals when we have multiple different choices.
+<br>
+The case statement can be used to replace nested if statements to produce bash scripts more readable and easier to maintain.
+<br>
+<br>
+Syntax:
+<br>
+case EXPRESSION in
+<br>
+  PATTERN1)
+<br>
+    statement
+<br>
+    ;;
+<br>
+  PATTERN2)
+<br>
+    statement
+<br>
+    ;;
+<br>
+  PATTERN3)
+<br>
+    statement
+<br>
+    ;;
+<br>
+  *)
+<br>
+    statement
+<br>
+    ;;
+<br>
+esac
+<br>
+<br>
+<br>
+<b>Example</b>
+<br>
+checkday.sh
+<br>
+<br>
+#!/bin/bash
+<br>
+# define current weekday
+<br>
+day=$(date +"%a")
+<br>
+# case statement to check if today is a weekday or a weekend day and print the corresponding result
+<br>
+case $day in 
+<br>
+  Mon | Tue | Wed | Thu | Fri)
+<br>
+    echo "Today is a weekday"
+<br>
+    ;;
+<br>
+  Sat | Sun) 
+<br>
+    echo "Today is weekend"
+<br>
+    ;;
+<br>
+  *)
+<br>
+    echo "Error: current day is not defined"
+<br>
+    ;; 
+<br>
+esac
+<br>
+<br>
+# We set executable permissions for the current user
+<br>
+chmod u+x checkday.sh
+<br>
+# run the script, note that when a script is run it is required the prefix ./ to declare its location, if the script is not located in "bin" directories that the system uses for binaries (such as /usr/local/bin , /usr/bin , etc)
+<br>
+./checkday.sh 
+<br>
+# the output of the script, run on a weekday, is:
+<br>
+Today is a weekday
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/13_samplecode.html">[13_samplecode]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/15_scripts.html">[15_scripts]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
