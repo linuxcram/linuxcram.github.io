@@ -64,13 +64,10 @@ The condition-controlled loop repeats the execution of a section of code until a
 The infinite loop repeats the execution of a section of code forever or until an exception arises. This loop often uses a while true loop construct and is sometimes called an endless loop or a forever loop.
 <br>
 <br>
-<br>
-<br>
 <b>BASH LOOPS</b>
 <br>
 <br>
 <b>For Loop</b>
-<br>
 <br>
 for i in {1..3}; do echo $i; done
 <br>
@@ -85,7 +82,6 @@ i is an arbitrary name of the variable which will be assigned the values defined
 <br>
 <b>Count-controlled For Loop (counter)</b>
 <br>
-<br>
 for ((x=0 ; x&lt;5 ; x++)); do echo $x; done
 <br>
 <br>
@@ -98,7 +94,6 @@ x&lt;5 represents the limit condition that will interrupt the for cycle, until t
 <br>
 <b>While Loop</b>
 <br>
-<br>
 x=1; while (( x &lt;= 5 )); do echo $((x++)); done
 <br>
 <br>
@@ -108,13 +103,10 @@ the incremental funtion will be applied until the condition is reached, that mea
 <br>
 <b>Until Loop</b>
 <br>
-<br>
 x=3; until (( x &lt;= 0 )); do echo $((x--)); done
 <br>
 <br>
 x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x<=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
-<br>
-<br>
 <br>
 <br>
 <b>Warning</b>
@@ -139,7 +131,6 @@ Endless loops examples - commented out because not meant to be never used!
 <br>
 <b>If</b>
 <br>
-<br>
 The if statement is a conditional expression, that evaluates the result of the command based on the exit status.
 <br>
 <br>
@@ -152,7 +143,6 @@ If the statement produces an error, the condition is false and the exit status i
 <b>If syntax</b>
 <br>
 The single bracket represent a test command following the standard POSIX utility available for all shells.
-<br>
 <br>
 if [ <condition> ]
 <br>
@@ -167,7 +157,6 @@ The double-bracket syntax in bash scripts is the best option if portability is n
 <br>
 double-brackets are superior to single-brackets and include adcanced options.
 <br>
-<br>
 if [[ <condition> ]]
 <br>
 then
@@ -178,7 +167,6 @@ fi
 <br>
 <br>
 The if else statement includes the definition of different actions based on the output of the condition. 
-<br>
 <br>
 if [ <condition> ]
 <br>
@@ -194,7 +182,6 @@ fi
 <br>
 <br>
 The elif clause combined with the if else statement performs multiple conditional checks with different results.
-<br>
 <br>
 if [ <condition> ]
 <br>
@@ -217,7 +204,6 @@ fi
 <br>
 Nested if statements perform a first if check of a condition that if satisfied passes to a the next check.
 <br>
-<br>
 if [ <condition> ]
 <br>
 then
@@ -234,7 +220,6 @@ fi
 <br>
 <br>
 <b>Case</b>
-<br>
 <br>
 The bash case statement can simplify complex conditionals when we have multiple different choices.
 <br>
@@ -273,7 +258,7 @@ esac
 <br>
 <br>
 <br>
-<b>Example</b>
+<b><i>Example</i></b>
 <br>
 checkday.sh
 <br>
@@ -309,13 +294,15 @@ case $day in
 esac
 <br>
 <br>
-# We set executable permissions for the current user
+# set executable permissions for the current user
 <br>
 chmod u+x checkday.sh
+<br>
 <br>
 # run the script, note that when a script is run it is required the prefix ./ to declare its location, if the script is not located in "bin" directories that the system uses for binaries (such as /usr/local/bin , /usr/bin , etc)
 <br>
 ./checkday.sh 
+<br>
 <br>
 # the output of the script, run on a weekday, is:
 <br>
