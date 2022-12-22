@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #cccccc;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 17_bestpractice</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[17_bestpractice]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="17_bestpractice">17_bestpractice</p></b>
+<b>Bash scripting best practice</b>
+<br>
+Linux system administrators best practice includes the automation of tasks.
+<br>
+Automation represents a solution to be more effective and efficient, that transforms the time to manage repetitive, frustrating, and error prone activities, into time to focus on improvements, upgrades and evolution.
+<br>
+A well implemented automation multiply the effort result.
+<br>
+<br>
+When scripting, sometimes can be necessary to execute single specific commands due to limitations caused by arguments and options that don't fit with wildcards or loop cycles.
+<br>
+<br>
+<b>Comments</b>
+Comments make scripts better and understandable.
+<br>
+The use of Comments is one of the most important best practice for Bash scripting, as well for other programming languages.
+<br>
+Comments provide a precious help for us and others to understand which kind of operations are performed within our scripts.
+<br>
+<br>
+Try to imagine a script 1000 lines long without comments, wouldn't it be more intelligible with comments?
+<br>
+<br>
+<b>Comments are defined using the # character</b>
+<br>
+eg.
+<br>
+# This is a comment that will not produce any output in a script
+<br>
+<br>
+# This line is a comment, it's simply ignored by the Bash command interpreter
+<br>
+<br>
+<b>Exit on specific conditions</b>
+<br>
+Exit on script failures
+<br>
+set -o errexit
+<br>
+# or
+<br>
+set -e
+<br>
+<br>
+<b>Exit on undeclared variable detected</b>
+<br>
+set - o nounset
+<br>
+# or
+<br>
+set -u
+<br>
+<br>
+<b>Use Double Quotes to Reference Variables</b>
+Using double quotes helps to prevent word splitting if there are whitespaces, and unnecessary globbing, providing wildcars recognizing and expanding.
+<br>
+<br>
+eg. script distros.sh
+<br>
+<br>
+#!/bin/bash
+<br>
+# exit on command fail
+<br>
+set -o errexit 
+<br>
+# exit on use of unset variable
+<br>
+set -o nounset
+<br>
+echo "Distros names without double quotes:" 
+<br>
+names="Redhat CentOS Debian Ubuntu"
+<br>
+for name in $names; do
+<br>
+  echo $name
+<br>
+done
+<br>
+echo "Distros names with double quotes:" 
+<br>
+for name in "$names"; do
+<br>
+  echo "$name"
+<br>
+done
+<br>
+exit 0
+<br>
+<br>
+[student@linux ~]$ chmod u+x distros.sh
+<br>
+[student@linux ~]$ ./distros.sh
+<br>
+<br>
+# outuput
+<br>
+Distros names without double quotes:
+<br>
+Redhat
+<br>
+CentOS
+<br>
+Debian
+<br>
+Ubuntu
+<br>
+Distros names with double quotes:
+<br>
+Redhat CentOS Debian Ubuntu
+<br>
+<br>
+<b>Functions</b>
+<br>
+The longer the script, the more functions will help us to make it more readable and reusable.
+<br>
+This rule helps system administrators to maintain scripts updated, efficient, and to avoid writing list of commands from scratch every time.
+<br>
+<br>
+Unless the script is very short, the best practice consists in grouping commands within functions.
+<br>
+Examples of syntax to use functions:
+<br>
+<br>
+function check_value(){
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command1;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command2;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command3;
+<br>
+}
+<br>
+<br>
+# or
+<br>
+check_value(){
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command1;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command2;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;command3;
+<br>
+}
+<br>
+<br>
+<b>Functions can be used also in one liners:</b>
+<br>
+check_value(){ command1; command2; }
+<br>
+<br>
+<b>Examples</b>
+<br>
+The command date displays on screen the current date in the standard Linux format
+<br>
+date 
+<br>
+Mon Dec 12 11:34:15 AM CET 2022
+<br>
+<br>
+We want to get the current date, to extract only the YEAR field, then compare it with values, and finally display a text based on the result.
+<br>
+We can use several commands combined together in "pipelines", commands separated by | where the output of a command is sent as input to the next command.
+<br>
+<br>
+# extract the year value from the current date
+<br>
+<br>
+# using cut command in many flavors
+<br>
+date | cut -c 28-31
+<br>
+2022
+<br>
+<br>
+date | cut -d " " -f7
+<br>
+2022
+<br>
+<br>
+date |  cut -d ' ' -f 7-
+<br>
+2022
+<br>
+# using awk
+<br>
+date | awk '{print $7}'
+<br>
+2022
+<br>
+<br>
+date | awk '{print $NF}'
+<br>
+2022
+<br>
+<br>
+# using grep
+<br>
+date | grep -o '[^ ]*$'
+<br>
+2022
+<br>
+<br>
+# let's combine bash + perl
+<br>
+date | perl -nE'say $1 if /(\S+)$/'
+<br>
+2022
+<br>
+<br>
+# perl - one block of lines to copy and paste
+cat << EOF > test.pl
+<br>
+#!/usr/bin/perl
+<br>
+use POSIX qw(strftime);
+<br>
+\$year = strftime "%Y", localtime;
+<br>
+printf("%02d\n", \$year);
+<br>
+EOF
+<br>
+chmod u+x test.pl; \
+<br>
+perl test.pl; \
+<br>
+rm test.pl;
+<br>
+<br>
+# python3 (default on RHEL9 / AlmaLinux9)
+python3 -c "import datetime; \
+<br>
+d1 = datetime.datetime.now(); \
+<br>
+print(d1.year);";
+<br>
+2022
+<br>
+# or
+<br>
+python3 -c "import datetime; \
+<br>
+d1 = datetime.datetime.now(); \
+<br>
+print(d1.strftime('%Y'));";
+<br>
+2022
+<br>
+<br>
+<i>As we see, if we know 99 ways to do something with Bash, it's possible that there is a 100th way, maybe faster, cleaner and understandable, to obtain the desired result.
+</i>
+<br>
+<br>
+Let's get back to the mentioned example goal, we want to extract only the YEAR field from the current date, compare it with values and display a text based on the result.
+<br>
+<br>
+We can use several commands, let's assume we use date and cut to get the year from the current date:
+date | cut -d " " -f7
+<br>
+2022
+<br>
+<br>
+eg. one-liner that compares the previous command result using the if statement in a function
+<br>
+<br>
+check_year(){ if [[ $(date | cut -d " " -f7) = "2022" ]]; then echo "Year is 2022"; else echo "Year is not 2022"; fi; };check_year
+<br>
+Year is 2022
+<br>
+<br>
+Despite one-liner are widely used, they are sometimes tricky to use, moreover scripts provide a clearer view.
+<br>
+eg. if statement - script checkyearif.sh
+<br>
+#!/bin/bash
+<br>
+# exit on command fail
+<br>
+set -e
+<br>
+# exit on use of unset variable
+<br>
+set -u
+<br>
+check_year(){
+<br>
+  if [[ $(date | cut -d " " -f7) = "2022" ]]
+<br>
+    then echo "Year is 2022"
+<br>
+  else
+<br>
+    echo "Year is not 2022"
+<br>
+  fi
+}
+<br>
+check_year
+<br>
+<br>
+chmod u+x checkyearif.sh
+<br>
+./checkyearif.sh 
+<br>
+Year is 2022
+<br>
+<br>
+eg. case statement in one-liner
+<br>
+datenow=$(date | cut -d " " -f7); check_year(){ case $datenow in 2022)  echo "Year is 2022";; 2023) echo "Year is 2023";; esac;}; check_year;
+<br>
+<br>
+eg. case statement in a Bash script - checkyearcase.sh
+<br>
+#!/bin/bash
+<br>
+# exit on command fail
+<br>
+set -e
+<br>
+# exit on use of unset variable
+<br>
+set -u
+<br>
+datenow=$(date | cut -d " " -f7)
+<br>
+check_year(){
+<br>
+  case $datenow in 2022)  echo "Year is 2022";;
+<br>
+  2023) echo "Year is 2023";;
+<br>
+  esac
+<br>
+}
+<br>
+check_year
+<br>
+<br>
+chmod u+x checkyearcase.sh
+<br>
+./checkyearcase.sh 
+<br>
+Year is 2022
+<br>
+<br>
+<h3>Best practice and recommendations</h3>
+<br>
+<b>Use = instead of == for String Comparisons</b>
+<br>
+Note that == is a synonym for = it's preferred the use of a single = for string comparisons.
+<br>
+<br>
+eg. script checkdistro.sh
+<br>
+#!/bin/bash
+<br>
+# exit on command fail
+<br>
+set -e
+<br>
+# exit on use of unset variable
+<br>
+set -u
+<br>
+distro1="ubuntu"
+<br>
+distro2="debian"
+<br>
+if [ "$distro1" = "$distro2" ]
+<br>
+then
+<br>
+echo "$distro1" is equal to "$distro2"
+<br>
+else
+<br>
+echo "$distro1" is not equal to "$distro2"
+<br>
+fi
+<br>
+<br>
+chmod u+x checkdistro.sh
+<br>
+./checkdistro.sh 
+<br>
+ubuntu is not equal to debian
+<br>
+<br>
+<b>Use $(command) instead of legacy backquotes/grave accents/backticks in `command` substitution.</b>
+<br>
+Command substitution replaces a command with its output, it's recommended to use $(command) that nests properly, unlike backquotes `command`.
+<br>
+<br>
+# avoid # user=`echo “$UID”`; echo $user
+<br>
+# adopt # user=$(echo “$UID”); echo $user
+<br>
+<br>
+# avoid # echo "`date +"%Y%m%d_%H%M%S"`"
+<br>
+# adopt # echo $(date +"%Y%m%d_%H%M%S")
+<br>
+<br>
+<b>Use read-only to declare static variables</b>
+<br>
+A static variable keeps its value unaltered altered once defined in a script.
+<br>
+<br>
+readonly passwd_file=”/etc/passwd”
+<br>
+readonly group_file=”/etc/group”
+<br>
+<br>
+<b>Use Uppercase Names for ENVIRONMENT Variables and lowercase for custom variables</b>
+<br>
+All variables defined in the bash enviromnent are named with uppercase letters.
+<br>
+The best practice consists in using lowercase letters to name the custom variables in order to avoid variable name conflicts.
+<br>
+<br>
+eg. script logdate.sh
+<br>
+#!/bin/bash
+<br>
+# exit on command fail
+<br>
+set -e
+<br>
+# exit on use of unset variable
+<br>
+set -u
+<br>
+# Use lowercase to define custom variables and use uppercase for environment variables
+<br>
+test_logfile="$HOME/test_$(date +"%Y%m%d").log"
+<br>
+# check if the logfile exists
+<br>
+if ! [ -f "$test_logfile" ]
+<br>
+# If the file of today does not exist, it is created and the output of the commands is appended to it
+<br>
+# A message is displayed to confirm that the task is completed without errors
+<br>
+then
+<br>
+  echo "---" >> $test_logfile
+<br>
+  date >> $test_logfile
+<br>
+  echo "---" >> $test_logfile
+<br>
+  echo "Today's logfile has been created and successfully written."
+<br>
+  exit 0
+<br>
+# If the file already exists, display a message and exit with error code 1, without performing any further action
+<br>
+else
+<br>
+  echo "Today's logfile already exists. Exiting."
+<br>
+  exit 1
+<br>
+fi
+<br>
+<br>
+chmod u+x logdate.sh
+<br>
+./logdate.sh 
+<br>
+First run result:
+<br>
+./logdate.sh ; echo $?
+<br>
+Today's logfile has been created and successfully written.
+<br>
+0
+<br>
+<br>
+[student@linux ~]$ cat ~/test_20221212.log
+<br>
+---
+<br>
+Mon Dec 12 04:55:44 PM CET 2022
+<br>
+---
+<br>
+<br>
+Next run result:
+<br>
+[student@linux ~]$ ./logdate.sh ; echo $?
+<br>
+Today's logfile already exists. Exiting.
+<br>
+1
+<br>
+<br>
+<b>Declare files and paths as variables to make clearer scripts and simplify their maintenance</b>
+<br>
+<br>
+eg. script info.sh
+<br>
+#!/bin/bash
+<br>
+set -o errexit 
+<br>
+set -o nounset
+<br>
+# define logfile named with the timestamp
+<br>
+logfile="./info_$(date +%Y-%m-%d_%H-%M-%S).log"
+<br>
+# write information in the logfile, sequentially appending the command outputs in the given order
+<br>
+echo -e "host:" $(hostname) >> $logfile
+<br>
+echo -e "user:" $(whoami) >> $logfile
+<br>
+echo -e "date:" $(date) >> $logfile
+<br>
+<br>
+chmod u+x info.sh
+<br>
+./info.sh 
+<br>
+<br>
+cat info_2022-12-13_15-00-54.log 
+<br>
+host: linux
+<br>
+user: student
+<br>
+date: Tue Dec 13 03:00:54 PM CET 2022
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/16_operators.html">[16_operators]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/18_debug.html">[18_debug]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
