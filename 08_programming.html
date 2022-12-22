@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 08_programming</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[08_programming]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="08_programming">08_programming</p></b>
+<br>
+<b>BASH scripting ...and programming?</b>
+<br>
+What is a programming language?
+<br>
+Which kind of programs usually feature commands, syntax, variables, arrays, loops, iterations, sockets, regular expression matching, I/O management?
+<br>
+Programming languages do that.
+<br>
+Bash does that too.
+<br>
+<br>
+Bash is a shell and command language, it's the default shell for most Linux distributions.
+<br>
+Created for the GNU Project as a free software replacement for the Bourne shell, first released in 1989, Bash was one of the first programs Linus Torvalds ported to Linux, alongside GCC.
+<br>
+With programming languages, a user can type command programs in an interactive session of an interpreter.
+<br>
+Programs can also be executed in a batch process without human interaction, where the commands execution is chained together.
+<br>
+A scripting language can run commands through an interpreter without compiling.
+<br>
+A program consist of one or more instructions (statements) that perform a specific task.
+<br>
+The Linux command line aka Bash, is used to run commands with arguments, that function as command line parameters to specify the input data for the command.
+<br>
+Within the command script, the passed parameters are accessible using positional parameters.
+<br>
+These range from $0 to $9, where $0 refers to the name of the command itself, $1 to $9 are the first through to the ninth parameter, depending on how many parameters are passed.
+<br>
+<br>
+<b>Example "have a nice day"</b>
+<br>
+[student@linux ~]$ set have a nice day; echo "$0"; echo -n "$1 $2 $3 $4"; echo ""
+<br>
+bash
+<br>
+have a nice day
+<br>
+<br>
+#Explanation
+<br>
+$0 = bash since we are writing in the shell, there is not a script name otherwise its name will be assigned
+<br>
+$1 = have
+<br>
+$2 = a
+<br>
+$3 = nice
+<br>
+$4 = day
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/07_manpages.html">[07_manpages]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/09_basics.html">[09_basics]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
