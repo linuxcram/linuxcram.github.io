@@ -132,11 +132,11 @@ The algorithm breaks down the data of the file into small-sized parts and create
 <br>
 <br>
 Examples of commands to calculate files checksum (hash digest)
-<br>
+<br><br>
 - MS Windows SHA256 checkum generation - CMD
 <br>
 C:\> certUtil -hashfile C:\file.iso SHA256
-<br>
+<br><br>
 - Linux SHA256 checkum generation - Bash
 <br>
 sha256sum file.iso
@@ -165,16 +165,16 @@ wget https://almalinux.mirror.garr.it/9/isos/x86_64/AlmaLinux-9.1-x86_64-minimal
 wget https://almalinux.mirror.garr.it/9/isos/x86_64/CHECKSUM
 <br>
 3) verify if the checksum of the downloaded file matches the one declared by the publisher in the CHECKSUM file
-<br>
+<br><br>
 # The command "sha256sum AlmaLinux-9.1-x86_64-minimal.iso" calculates the checksum of the file with SHA256 Algorithm, when a command is used within $() its output is encapsulated and can be prodided to another command
 <br>
 grep $(sha256sum AlmaLinux-9.1-x86_64-minimal.iso) CHECKSUM 
-<br>
-The output of the command confirms that the value is found in the CHECKSUM file*
+<br><br>
+The output of the command confirms that the value is found in the CHECKSUM file:
 <br>
 CHECKSUM:SHA256 (AlmaLinux-9.1-x86_64-minimal.iso) = 3eebd50aabe93b9cbea3937dcf5e1d893e397a36de128ae60a8d46ff048fa0d6
-<br>
-If there are no results, it means that the calculated checksum value is not found in the CHECKSUM file, this can mean that the downloaded file is corrupted, incomplete or altered.
+<br><br>
+If there is no output, it means that the calculated checksum value is not found in the CHECKSUM file, this can mean that the downloaded file is corrupted, incomplete or altered, or there's something wrong in the command.
 <br>
 <br>
 <hr>
