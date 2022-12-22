@@ -80,6 +80,7 @@ echo -e "line6\nline7\nline8\nline9\nline10" > text2.txt
 <br>
 <br>
 <b>Cat</b>
+<br>
 The command cat executes concatenation of text, it's versatile and useful to merge contents together, this means that cat accepts multiple arguments.
 <br>
 Cat concatenates files and print on the standard output - With no FILE, or when FILE is -, read standard input (try typing cat and enter, stdin is displayed on stdout, ctrl+c to exit).
@@ -133,6 +134,7 @@ cat -n text.txt text2.txt
 <br>
 <br>
 <b>More</b>
+<br>
 More is a command that displays the content of the files given as argument.
 <br>
 The contents of the files are shown one screen at a time for large files.
@@ -372,6 +374,26 @@ Vim includes commands that work as macros, to perform text editing with speed an
 Vim represents one of the most used text editor in the Linux command line, it must be mastered to become Linux experts.
 <br>
 Luckily the shell builtin command "vimtutor" provides a ... vim tutorial to learn it quickly!
+<br>
+<br>
+Basic Vim Commands and Description
+<br>i --- insert mode
+<br>Esc --- command mode
+<br>x (or DEL) --- delete a character
+<br>X --- delete a character in backspace mode
+<br>u --- undo changes
+<br>CTRL + r --- redo changes
+<br>yy --- copy (yank) current line
+<br>dd --- delete current line
+<br>p --- paste the clipboard/buffer content (if the last action is copy line, the line will be pasted)
+<br>/ --- followed by a string search for the string, use n and N to cycle matches
+<br>[[ --- or gg move to the beginning of the current file
+<br>]] --- or G move to the end of the current file
+<br>:%s/old_string/new_string/gci --- search old_string and replace it with new_string for all matching occurences, require confirm
+<br>ESC + :w --- save file
+<br>ESC + :wq or ESC + ZZ --- save file and quit Vim
+<br>ESC + :wq! or ESC + :x --- force save and quit Vim
+<br>ESC + :q! force --- quit Vim discarding all changes
 <br>
 <br>
 More commands:
