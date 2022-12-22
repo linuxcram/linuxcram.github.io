@@ -121,13 +121,21 @@ Using the && operator, every step will be executed only if the previous one does
 <br>
 <br>
 cat << EOF > script.sh
+<br>
 #!/bin/bash
+<br>
 echo \$SHELL
+<br>
 ls text*.txt
+<br>
 date
+<br>
 EOF
+<br>
 chmod +x script.sh && \
+<br>
 ./script.sh && \
+<br>
 rm ./script.sh
 <br>
 <br>
