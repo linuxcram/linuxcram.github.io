@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 09_basics</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[09_basics]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="09_basics">09_basics</p></b>
+<b<>BASH Scripting basics</b>
+<br>
+<br>
+<b>Shebang</b>
+<br>
+The shebang is the character sequence #! at the beginning of a script, aka sharp-exclamation, sha-bang, hashbang, pound-bang, hash-pling.
+<br>
+syntax #!interpreter [optional-arg]
+<br>
+<br>
+The shebang is required to be placed in the first line of a bash script, it's meant to specify the interpreter to be used for the script.
+In Linux we will find and use the shebang that execute the file using the Bash shell intepreter 
+<br>
+#!/bin/bash
+<br>
+<br>
+#!/usr/bin/env bash  is an alternative shebang that finds and use the bash executable path from the user environment variable, in this case it is the same of #!/bin/bash but on some systems it may be different
+<br>
+[student@linux ~]$ env | grep SHELL
+SHELL=/bin/bash
+<br>
+<br>
+No extension is required for Bash Script File when you specify Hash Bang #!/bin/bash as the first line of code, but it's best practice to provide the extension to script files so that they are easily recognizaable.
+<br>
+eg. script.sh  script.bash
+<br>
+There is no functional difference between these extension because the interpreter is defined by the shebang in the first line of each script that will be   #!/bin/bash
+<br>
+<br>
+<b>Assign executable permission to the script<b/>
+<br>
+Linux recognize the file types reading their header's code, relying on the file content
+<br>
+Applications can detect and use specific files extensions (.list, .repo, .gz, .tar), humans too use extensions to recognize the file types with ease.
+<br>
+It's common use to name text files .txt , scripts .sh or .bash , logfiles .log and so on.
+<br>
+Script files require executable permissions to be run, the command to obtain this is chmod.
+<br>
+eg.
+<br>
+chmod u+x script.sh  script.bash
+<br>
+chmod 755 script.sh
+<br>
+chmod 775 script.bash
+<br>
+<br>
+Notes about Linux permissions
+<br>
+Linux adopts the octal permission system to set permissions of files and directories, based on binary values from 000 (---) to 777 (rwx):
+<br>
+Octal permissions are defined in 3 blocks:
+<br>
+- the user that is owner of the file/directory
+<br>
+- the group that is owner of the file/directory
+<br>
+- all other users
+<br>
+<br>
+A file with 777 permissions will let all users read, write and execute it, 
+to check the permissions of files and directories, we can use ls -l of the desired path, to display the long listing format of the contents, including the owner and the group of the owner:
+<br>
+[student@linux ~]$ ls -l
+<br>
+-rw-rw-r--. 1 student student 28445 Dec  6 10:29 centos
+<br>
+-rwxrw-r--. 1 student student    99 Dec 12 12:58 script.sh
+<br>
+<br>
+The three octets are:
+<br>
+User(owner) - UserGroup(owner) - Other users
+<br>
+rwx         - rwx              - rwx
+<br>
+<br>
+Octal permissions representation in binary, base10 and text:
+<br>
+binary  base10  text
+111     7       rwx
+110     6       rw-
+101     5       r-x
+100     4       r--
+011     3       -rx
+010     2       -w-
+001     1       --x
+000     0       ---
+<br>
+<br>
+A file to be executable must have permissions "x" for the user or group that will require to run it.
+If I am planning to run a file with my user, it's enough to apply the relative permission
+chmod u+x since my user is owner of this file.
+<br>
+-rwxrw-r--. 1 student student    99 Dec 12 12:58 script.sh
+<br>
+The absolute command for the same permissions is chmod 764 script.sh
+<br>
+<br>
+If other users must be enabled to run the script, chmod o+x will be used to set executable permissions to all users
+<br>
+-rwxrw-r-x. 1 student student    99 Dec 12 12:58 script.sh
+<br>
+The absolute command for the same permissions is chmod 765 script.sh
+<br>
+<br>
+If the chmod command is used to add permissions with + operator, without specifying u,g or o the permission is assigned to all three octets (User,Group,Owner)
+<br>
+chmod +x checkyearif.sh
+<br>
+-rwxrwxr-x. 1 student student   222 Dec 12 15:43 checkyearif.sh
+<br>
+<br>
+The inverted behavior is obtaine using the - sign, that removes permissions, if present for the contents
+<br>
+chmod -x checkyearif.sh
+<br>
+-rw-rw-r--. 1 student student   222 Dec 12 15:43 checkyearif.sh
+<br>
+<br>
+The same permissions of a file can be applied to another using the specific option provided by chmod
+<br>
+chmod --reference=checkyearcase.sh checkyearif.sh
+<br>
+This will assign the same permissions of the reference file to the destination file
+<br>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/08_programming.html">[08_programming]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/10_streams.html">[10_streams]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
