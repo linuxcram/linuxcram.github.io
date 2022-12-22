@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #cccccc;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 18_debug</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[18_debug]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="18_debug">18_debug</p></b>
+<b>Bash scripts debug</b>
+<br>
+Long scripts may be difficult to be analized to find errors, so it's important to know how to debug scripts.
+<br>
+<br>
+Verbose mode: Bash runs the script and displays all the lines as they are processed by the interpreter 
+<br>
+bash -v script.sh
+<br>
+<br>
+Syntax checking mode
+<br>
+Bash checks the syntax of the script with the -n (noexec) option, silently returning to the command prompt means that no syntax errors were encountered.
+<br>
+bash -n script.sh
+<br>
+<br>
+Verbose mode + syntax checking mode
+<br>
+The two methods are combined.
+<br>
+bash -vn script.sh
+<br>
+<br>
+Debug mode
+<br>
+Known as debug mode, this method displays every command run by a script and their results.
+<br>
+bash -x script.sh
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/17_bestpractice.html">[17_bestpractice]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/">[HOME]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
