@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 13_samplecode</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[13_samplecode]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="13_samplecode">13_samplecode</p></b>
+<b>Script creation without manually editing text files</b>
+<br>Creation of a script, first manually and then with one text block "copy and paste".
+<br>
+We want to create a script file "script.sh" (more information about scripts in the next sections).
+<br>
+The script should run the two commands that are required in the script, then the script will be deleted automatically.
+<br>
+1) ls text*.txt
+<br>
+2) date
+<br>
+<br>
+<b>This task can be accomplished in many ways</b>
+<br>
+we can use ./ meaning that the file is located in the current directory
+<br>
+if we omit ./ the result is the same.
+<br>
+since we are planning to write text in the file, its creation can be done by vi itself,
+<br>
+so the creation of the file with touch can be skipped in this example
+<br>
+touch ./script.sh  # same result of file creation obtained with # touch script.sh
+<br>
+<br>
+vi ./script.sh  # since we are working in the current directory it's the same of # vi script.sh
+<br>
+# vi is set to command mode by default, if the file does not exist, a new file is ready for us for editing
+<br>
+# press i to activate insert mode
+<br>
+# digit the commands requested in the description and remember to put the shebang in the first line #!/bin/bash
+<br>
+<br>
+#!/bin/bash
+<br>
+ls text*.txt
+<br>
+date
+<br>
+<br>
+# press ESC to go back to command mode, then press :wq to save the file and quit the vi session
+<br>
+# Set executable permissions to the script
+<br>
+chmod +x script.sh 
+<br>
+# Run the script
+<br>
+./script.sh
+<br>
+# Delete the script
+<br>
+rm ./script.sh
+<br>
+<br>
+<br>
+<b>Same but doing one copy and paste</b>
+Copying and pasting the following lines will perform the script creation, execution and deletion withoout manually editing any file.
+<br>
+Please note that if the strings contain special chars like $ the escape character is required to avoid skipping
+<br>
+eg. for variables $SHELL we will write \$SHELL
+<br>
+We use the \ excape character to execute multiple commands as they would be run on the same line (one-liner style)
+<br>
+We will set executable permissions to the script, execute it, delete it all in one line.
+<br>
+Using the && operator, every step will be executed only if the previous one does not produce any error.
+<br>
+# code #
+<br>
+<br>
+cat << EOF > script.sh
+#!/bin/bash
+echo \$SHELL
+ls text*.txt
+date
+EOF
+chmod +x script.sh && \
+./script.sh && \
+rm ./script.sh
+<br>
+<br>
+Sample output of this bunch of lines copied and pasted in the terminal, the file script.sh is created, , make executable, executed, deleted.
+<br>
+/bin/bash
+<br>
+text1.txt  text2.txt  text3.txt
+<br>
+Tue Dec 13 10:47:23 AM CET 2022
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/12_hints.html">[12_hints]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/14_loops.html">[14_loops]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
