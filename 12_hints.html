@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 12_hints</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[12_hints]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="12_hints">12_hints</p></b>
+<b>Common mistakes and some hints</b>
+<br>
+Sometimes when a script is prepared, it may happen that some commmand initially useful and precious are kept in the lines, with further options and pipe redirections.
+<br>
+After that more options and pipes are added, confusion might arise from redundant steps that hinder the performance and clearness of the scripts.
+<br>
+We exaggerate this type of situation to make clear how important is to avoid "disorder".
+<br>
+Bad commands chains are found more often than what you may believe.
+<br>
+<br>
+<b>Funny examples</b>
+<br>
+<br>
+type 1,2,3 on display
+<br>
+echo "1,2,3" | cat | more | cat
+<br>
+1,2,3
+<br>
+# produces the same output of
+<br>
+echo "1,2,3" 
+1,2,3
+<br>
+<br>
+count lines of a file
+<br>
+cat text1.txt text2.txt | wc -l
+<br>
+10
+<br>
+<br>
+# a similar output can be obtained without using cat and pipe for output redirection
+<br>
+wc -l text{1..2}.txt
+<br>
+ 5 text1.txt
+<br>
+ 5 text2.txt
+<br>
+10 total
+<br>
+<br>
+count non empty lines in a file 
+<br>
+wc -l text1.txt 
+<br>
+5 text1.txt
+<br>
+<br>
+grep -c -v "^$" text1.txt
+<br>
+5
+<br>
+<br>
+awk NF text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+awk 'length' text1.txt  | wc -l
+<br>
+5
+<br>
+<br>
+awk '$0 !~ /^$/' text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+sed '/^$/D' text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+count non empty lines in a file  using perl + bash
+<br>
+perl -lne 'print if length($_) ' text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+perl -lne 'print if $_ ne ""' text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+perl -ne 'print unless /^$/' text1.txt | wc -l
+<br>
+5
+<br>
+<br>
+display matching pattern found in a text file
+<br>
+cat text1.txt | grep "line1" | cat
+<br>
+line1
+<br>
+<br>
+# same output of
+<br>
+grep "line1" text1.txt 
+<br>
+line1
+<br>
+<br>
+write multiple lines in a text file
+<br>
+echo -e "line11" >> text3.txt
+<br>
+echo -e "line12" >> text3.txt
+<br>
+echo -e "line13" >> text3.txt
+<br>
+echo -e "line14" >> text3.txt
+<br>
+echo -e "line15" >> text3.txt
+<br>
+<br>
+# read file contents
+cat text3.txt 
+<br>
+line11
+<br>
+line12
+<br>
+line13
+<br>
+line14
+<br>
+line15
+<br>
+<br>
+# same result using \n for newline in a single echo command
+<br>
+echo -e "line1\nline2\nline3\nline4\nline5" > text3.txt
+<br>
+<br>
+other examples of different commands and pipelines producing the same output,
+<br>
+using the previously created file text3.txt
+<br>
+tail -3 text1.txt | head -1 | cat | more
+<br>
+line3
+<br>
+<br>
+tail -n +3 text1.txt | head -1
+<br>
+line3
+<br>
+<br>
+tail -3 text1.txt | head -1 
+<br>
+line3
+<br>
+<br>
+head -n +3 text1.txt | tail -1
+<br>
+line3
+<br>
+<br>
+grep "line3" text1.txt 
+<br>
+line3
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/11_commands.html">[11_commands]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/13_samplecode.html">[13_samplecode]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
