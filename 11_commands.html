@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 11_commands</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[11_commands]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="09_basics">11_commands</p></b>
+<b>Common commands and best practice</b>
+<i>
+Warning: always use caution with potentially disruptive commands like rm, mv, etc...
+<br>
+In Linux once a file or directory is gone, is gone. Forever. There is no possibility of recover or restore of lost files and contents, a good system administrators checks before applying any change, and absolute paths are preferred instead of relative.
+<br>
+Absolute paths begin with / while relative paths begin with ./ or simpli with the file or directory name without prefix. 
+</i>
+<br>
+<br>
+<b>Echo</b>
+<br>
+The echo command works like a function that produces an output consisting of the arguments given, multiple arguments are accepted.
+<br>
+Echo provides options like -e (enable interpretation of backslash escapes) to let us write single lines.
+<br>
+The default input of echo is stdin (the arguments we type after the echo command).
+<br>
+The default output is stdout (the display if no redirection is set).
+<br>
+echo "hello" "hi"
+<br>
+hello hi
+<br>
+<br>
+We can redirect the output of echo to a file, the output can be redirected to one single file only per command since the stdout can not be splitted.
+<br>
+echo -e "line1\nline2\nline3\nline4\nline5" > text.txt
+<br>
+echo -e "line6\nline7\nline8\nline9\nline10" > text2.txt
+<br>
+<br>
+<b>Cat</b>
+The command cat executes concatenation of text, it's versatile and useful to merge contents together, this means that cat accepts multiple arguments.
+<br>
+Cat concatenates files and print on the standard output - With no FILE, or when FILE is -, read standard input (try typing cat and enter, stdin is displayed on stdout, ctrl+c to exit).
+<br>
+cat text.txt text2.txt 
+<br>
+line1
+<br>
+line2
+<br>
+line3
+<br>
+line4
+<br>
+line5
+<br>
+line6
+<br>
+line7
+<br>
+line8
+<br>
+line9
+<br>
+line10
+<br>
+<br>
+Other options are available for cat, like line numbers display.
+<br>
+cat -n text.txt text2.txt 
+<br>
+     1	line1
+<br>
+     2	line2
+<br>
+     3	line3
+<br>
+     4	line4
+<br>
+     5	line5
+<br>
+     6	line6
+<br>
+     7	line7
+<br>
+     8	line8
+<br>
+     9	line9
+<br>
+    10	line10
+<br>
+<br>
+<b>More</b>
+More is a command that displays the content of the files given as argument.
+<br>
+The contents of the files are shown one screen at a time for large files.
+<br>
+If the contents of the file fit a single screen, the output will be somewhat similar to the cat command output.
+<br>
+more text.txt text2.txt 
+<br>
+::::::::::::::
+<br>
+text.txt
+<br>
+::::::::::::::
+<br>
+line1
+<br>
+line2
+<br>
+line3
+<br>
+line4
+<br>
+line5
+<br>
+<br>
+<b>Less</b>
+<br>
+The less command is similar to the more command, it's named from the phrase "less is more", but provides extensive features.
+<br>
+Less allows backward and forward movement in the file, can be used after pipes, one argument is accepted.
+<br>
+cat text.txt text2.txt | less
+<br>
+line1
+<br>
+line2
+<br>
+line3
+<br>
+line4
+<br>
+line5
+<br>
+line6
+<br>
+line7
+<br>
+line8
+<br>
+line9
+<br>
+line10
+<br>
+<br>
+Less provides several options, as line numbers display.
+<br>
+less -N text.txt
+<br>
+      1 line1
+<br>
+      2 line2
+<br>
+      3 line3
+<br>
+      4 line4
+<br>
+      5 line5
+<br>
+<br>
+<b>Grep</b>
+<br>
+The grep command searches for lines matching a given pattern list, within given files, multiple files are accepted.
+<br>
+Grep searches for strings in text files and displays the matching lines found.
+<br>
+grep line1 text.txt 
+<br>
+line1
+<br>
+<br>
+Grep provides options that let us exclude matching patterns (-v), if more files are given their names will be displayed before the matching content found in the file.
+<br>
+Although the pattern is accepted without quotes, it is strongly suggested to use always double quotes for the string that will be matched by grep.
+<br>
+Grep is widely ussed in scripts because of its versatility, speed, and precision. See #grep --help
+<br>
+grep -v "line1\|line2" text.txt text2.txt 
+<br>
+text.txt:line3
+<br>
+text.txt:line4
+<br>
+text.txt:line5
+<br>
+text2.txt:line6
+<br>
+text2.txt:line7
+<br>
+text2.txt:line8
+<br>
+text2.txt:line9
+<br>
+<br>
+<b>Find</b>
+<br>
+The find command is aimed to search for files in a directory hierarchy.
+<br>
+It can find files and directories and perform operations on them (with -exec).
+<br>
+Find can search files and folders by name, creation date, modification date, owner, permissions.
+<br>
+Syntax # find [location] [optional expression] [-options] [optional what to find]
+<br>
+See #find --help
+<br>
+find .
+<br>
+# will display all the contents in the current directory without exclusion
+<br>
+<br>
+find . -type f
+# displays all the files
+<br>
+<br>
+find . -type d
+# displays all the directory
+<br>
+<br>
+find . -type f -name "text*"
+./text.txt
+./text2.txt
+<br>
+<br>
+find . -type f -iname "Text*"
+./text.txt
+./text2.txt
+<br>
+<br>
+find . -maxdepth 1 -type f -name "*.txt"
+<br>
+./ls_current_dir.txt
+<br>
+./text.txt
+<br>
+./text2.txt
+<br>
+<br>
+We can not cover all the commands provided by Linux and BASH, the reader is invited to feel free to explore and search for commands, using TAB to autocomplete. 
+<br>
+<br>
+eg. digit host and press TAB twice to see all the commands that begin with that pattern 
+<br>
+host [PRESS TAB TWICE]
+<br>
+host         hostid       hostname     hostnamectl
+<br>
+<br>
+A good system administrator looks for commands usage checking man and the option --help
+<br>
+<br>
+Be curious, it's the best way to learn Linux quickly and in depth.
+<br>
+<br>
+Some useful commands to explore the features of BASH:
+<br>
+pwd # try also # echo $HOME
+<br>
+env # try also # env | grep -i home
+<br>
+echo # try Epoch time format # echo "$(date +%s.%N)"
+<br>
+printf # provides useful functions eg. limit to two decimal digits # printf "%.2f" $(date +%s.%N)
+<br>
+ls
+<br>
+cd
+<br>
+mkdir
+<br>
+cp
+<br>
+mv
+<br>
+head
+<br>
+tail
+<br>
+tr
+<br>
+cut
+<br>
+diff
+<br>
+date
+<br>
+cal
+<br>
+wc
+<br>
+ip
+<br>
+ps
+<br>
+ss # or netstat (from net-tools on RPM)
+<br>
+dig # (from bind-utils on RPM)
+<br>
+free
+<br>
+df
+<br>
+du
+<br>
+chmod
+<br>
+chown
+<br>
+curl
+<br>
+wget
+<br>
+top (press h for help , press q to quit)
+<br>
+time # try # time free -h # time 
+<br>
+<br>
+<b>VI</b>
+<br>
+vi # or vim that stands for vi-improved (press ESC and type :q! to quit vi/vim without saving)
+<br>
+Vim is widely used to edit scripts and text files on Linux
+<br>
+Vim let us perform text editing quikly because our hands stay on the keyboard without moving to the mouse.
+<br>
+Vim includes commands that work as macros, to perform text editing with speed and precision.
+<br>
+Vim represents one of the most used text editor in the Linux command line, it must be mastered to become Linux experts.
+<br>
+Luckily the shell builtin command "vimtutor" provides a ... vim tutorial to learn it quickly!
+<br>
+<br>
+More commands:
+<br>
+sed
+<br>
+awk
+<br>
+sha256sum
+<br>
+openssl
+<br>
+ssh
+<br>
+hexdump
+<br>
+od
+<br>
+dd
+<br>
+<br>
+...for more commands type a couple of letters of a word you know in the shell and press TAB.
+<br>
+Always remember to check the manpages of commands before using them, to avoid disruptive changes.
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/10_streams.html">[10_streams]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/12_hints.html">[12_hints]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
