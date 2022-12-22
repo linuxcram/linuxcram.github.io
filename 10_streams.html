@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 10_streams</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[10_streams]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="09_basics">10_streams</p></b>
+<b>Standard IN Standard OUT Standard ERROR</b>
+<br>
+The stdin, stdout, and stderr are three data streams created when a Linux command is run.
+We can use them to know if scripts are being piped or redirected.
+<br>
+In Linux a unique number is allocated to each file associated to a process, this is the mechanism of the file descriptor that is used to identify files in order to perform operations on them.
+The values assigned to stdin, stdout, and stderr are:
+<br>
+0: stdin
+<br>
+1: stdout
+<br>
+2: stderr
+<br>
+<br>
+We can explicitly redirect stdout using the redirection:
+<br>
+1&gt;
+ls -l . 1&gt; ls_pwd.txt
+<br>
+<br>
+We can explicitly redirect stderr using the redirection:
+<br>
+2&gt;
+<br>
+ls -l /rooot 2&gt; error.log
+<br>
+# there is no output on display
+<br>
+# we can read the error output that has been written to the file
+<br>
+cat error.log 
+<br>
+ls: cannot access '/rooot': No such file or directory
+<br>
+<br>
+To redirect both stdout and stderr at the same time, we can direct stdout to a file and stderr to another file
+<br>
+ls -l . /rooot 1> ls_pwd.txt 2> error.log
+<br>
+<br>
+We can also redirect stdout and stderr to the same File
+<br>
+ls -l . /rooot > ls_pwd_rooot.txt 2>&1
+<br>
+<br>
+<b>Special devices in Linux</b>
+<br>
+Linux provides software devices (dummy devices)
+<br>
+<br>
+/dev/urandom /dev/zero /dev/null that are designed to generate or receive
+<br>
+/dev/zero generates an infinite output flow of "0" values, it can be used to create files with no data and of the required size.
+<br>
+<br>
+dd if=/dev/zero of=zero.txt bs=1024 count=1
+1+0 records in
+<br>
+1+0 records out
+<br>
+1024 bytes (1.0 kB, 1.0 KiB) copied, 0.000474644 s, 2.2 MB/s
+<br>
+# the file zero.txt is full of 0 and weighs 1024Bytes, the file does not have actually readable contents
+<br>
+<br>
+<b>Bash provides the $RANDOM variable</b>
+<br>
+echo $RANDOM
+<br>
+31488
+<br>
+<br>
+for i in {1..5}; do echo $RANDOM; done
+<br>
+19398
+<br>
+16387
+<br>
+5282
+<br>
+16829
+<br>
+4989
+<br>
+<br>
+The special devices /dev/random and /dev/urandom provide an interface to the kernel’s random number generator,
+it is suggested to use /dev/urandom because /dev/random blocks when it runs out of entropy causing
+halt of process execution, while /dev/urandom will never block.
+<br>
+dd if=/dev/urandom of=urandom.txt bs=1024 count=1
+<br>
+1+0 records in
+<br>
+1+0 records out
+<br>
+1024 bytes (1.0 kB, 1.0 KiB) copied, 0.000353456 s, 2.9 MB/s
+<br>
+# the file urandom.txt is full of binary charactes and weighs 1204Bytes, the file does not have actually readable contents unless we use commands like:
+<br>
+hexdump -C urandom.txt | less
+<br>
+#or
+<br>
+od -A x -t x1z -v urandom.txt | less
+<br>
+<br>
+/dev/null is a device that works like a black hole, it can be used to create files with zero size
+<br>
+dd if=/dev/null of=null.txt bs=1024 count=1
+<br>
+0+0 records in
+<br>
+0+0 records out
+<br>
+0 bytes copied, 0.000571733 s, 0.0 kB/s
+<br>
+<br>
+The file null.txt is full of nothing and weighs 0Bytes, the file does not have actually readable contents
+<br>
+We can use the /dev/null device to create files but it's more frequent its use for unwanted output redirection,
+since everything sent to /dev/null disappear into the void and it is not displayed.
+<br>
+ls -l . &gt; /dev/null
+<br>
+ls -l . &gt; /dev/null 2&gt;&amp;1
+<br>
+<br>
+<b>What is 2&gt;&amp;1</b>
+File descriptor 1 is the standard output (stdout)
+<br>
+File descriptor 2 is the standard error (stderr)
+<br>
+2&gt;&amp;1  redirect stderr to stdout, &amp; indicates that what follows and precedes is not a file, but it's a file descriptor, this because &gt;&amp; is interpreted as redirect merger operator.
+<br>
+cat text1.txt &gt; /dev/null 2&gt;&amp;1
+<br>
+# no output
+<br>
+date > /dev/null 2&gt;&amp;1
+<br>
+# no output
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/09_basics.html">[09_basics]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/11_commands.html">[11_commands]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
