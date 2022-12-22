@@ -6,7 +6,7 @@ header {
 }
 body {
   background: #333333;
-  color: #BBBBBB;
+  color: #cccccc;
   font-family: monospace;
   text-align: left;
   margin: 0;
@@ -171,6 +171,7 @@ Unless the script is very short, the best practice consists in grouping commands
 <br>
 Examples of syntax to use functions:
 <br>
+<br>
 function check_value(){
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;command1;
@@ -209,7 +210,9 @@ date
 Mon Dec 12 11:34:15 AM CET 2022
 <br>
 <br>
-If we want to get the current date, but extracting only the YEAR field, then compare it with values and display a text based on the result, we can use several commands combined together within "pipelines".
+We want to get the current date, to extract only the YEAR field, then compare it with values, and finally display a text based on the result.
+<br>
+We can use several commands combined together in "pipelines", commands separated by | where the output of a command is sent as input to the next command.
 <br>
 <br>
 # extract the year value from the current date
@@ -394,17 +397,14 @@ chmod u+x checkyearcase.sh
 Year is 2022
 <br>
 <br>
-<br>
-<br>
-<b>Best practice and recommendations</b>
-<br>
+<h3>Best practice and recommendations</h3>
 <br>
 <b>Use = instead of == for String Comparisons</b>
 <br>
 Note that == is a synonym for = it's preferred the use of a single = for string comparisons.
 <br>
 <br>
-eg. checkdistro.sh
+eg. script checkdistro.sh
 <br>
 #!/bin/bash
 <br>
@@ -457,7 +457,7 @@ Command substitution replaces a command with its output, it's recommended to use
 <br>
 <b>Use read-only to declare static variables</b>
 <br>
-A static variable keeps its value unaltered altered once defined in a script:
+A static variable keeps its value unaltered altered once defined in a script.
 <br>
 <br>
 readonly passwd_file=”/etc/passwd”
@@ -466,6 +466,7 @@ readonly group_file=”/etc/group”
 <br>
 <br>
 <b>Use Uppercase Names for ENVIRONMENT Variables and lowercase for custom variables</b>
+<br>
 All variables defined in the bash enviromnent are named with uppercase letters.
 <br>
 The best practice consists in using lowercase letters to name the custom variables in order to avoid variable name conflicts.
@@ -522,7 +523,9 @@ chmod u+x logdate.sh
 <br>
 ./logdate.sh 
 <br>
-First run result:./logdate.sh ; echo $?
+First run result:
+<br>
+./logdate.sh ; echo $?
 <br>
 Today's logfile has been created and successfully written.
 <br>
