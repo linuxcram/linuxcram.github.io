@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 02_security</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>linuxcram.github.io - 02_security</h2>
+</center>
+<br>
+<h3>Information Technology, Linux and more</h3>
+<br>
+<a href="https://linuxcram.github.io/">HOME</a>
+<br>
+<hr>
+<p>02_security</p>
+<b>Introduction to Security concepts and standards for Information Technology</b>
+<br>
+<b>CIA Triad</b>
+<br>
+The CIA triad (Information Security Triad) is a common model that forms the basis for the development of security systems that are used for finding vulnerabilities and methods for creating solutions.
+<br>
+The CIA triad represents the three pillars of information security: Confidentiality, Integrity, and Availability:
+<br>
+- Confidentiality - preserving authorized restrictions on information access and disclosure, including means for protecting personal privacy and proprietary information
+<br>
+- Integrity - guarding against improper information modification or destruction and ensuring information non-repudiation and authenticity
+<br>
+- Availability - ensuring timely and reliable access to and use of information
+<br>
+<br>
+<br>
+<br>
+<br>
+<b>NIST</b>
+https://www.nist.gov/
+<br>
+The National Institute of Standards and Technology (NIST) was founded in 1901 and is now part of the U.S. Department of Commerce. NIST is one of the nation's oldest physical science laboratories.
+https://www.nist.gov/cybersecurity
+<br>
+NIST develops cybersecurity standards, guidelines, best practices, and other resources to meet the needs of U.S. industry, federal agencies and the broader public.
+<br>
+NIST also advances understanding and improves the management of privacy risks, some of which relate directly to cybersecurity.
+<br>
+<br>
+<br>
+<br>
+<br>
+<b>MITRE - NCF</b>
+The National Cybersecurity Federally Funded Research and Development Center (NCF) fills a critical need. Operated by MITRE, the NCF is the country’s only FFRDC dedicated solely to cybersecurity.
+<br>
+The NCF is sponsored by the National Institute of Standards and Technology (NIST) the federal agency that develops cybersecurity standards, guidelines, and best practices.
+<br>
+NCF is operated by MITRE and focused on the serious and growing risk cyber attacks pose to economic prosperity, public safety, and national security.
+<br>
+The NCF brings multidisciplinary teams of cybersecurity architects, engineers, social scientists, and communications professionals together with NIST to design and build usable, real-world solutions. 
+<br>
+Sources:
+https://www.mitre.org/our-impact/rd-centers/national-cybersecurity-ffrdc
+<br>
+https://www.nist.gov/itl/publications-0/nist-special-publication-1800-series-general-information
+<br>
+https://www.nist.gov/publications/nist-definition-cloud-computing
+<br>
+https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
+<br>
+https://www.nccoe.nist.gov/sites/default/files/legacy-files/di-identity-protect-nist-sp1800-25a-draft.pdf
+<br>
+Encryption is a technology used for data, at rest (stored) and in transit (transmitted), to reduce its vulnerability to tampering and other methods that could result in unexpected data alteration.
+<br>
+<br>
+<br>
+<br>
+<br>
+<b>SHA256 Checksum</b>
+<br>
+Linux distributions are published together with "checksum" files, often signed to ensure that they have not been tampered, that contain te checksums values of the ISO files.
+<br>
+The SHA256 Checksum is usually provided in a text file or directly as a text file with the main file, in its download section.
+<br>
+This common mechanism is used to prove that the files downloaded are what they claim to be.
+<br>
+This is particularly useful for ISOs downloaded from a third-party mirror or elsewhere the main publisher website.
+<br>
+A hash algorithm that can be used to generate digests of files, digests are used to detect if files have been changed since the digests were generated.
+<br>
+NIST states that the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, SHA-512) may be used by Federal agencies for all applications using secure hash algorithms.
+<br>
+Source:
+<br>
+https://csrc.nist.gov/Projects/Hash-Functions/NIST-Policy-on-Hash-Functions
+<br>
+<br>
+- Notes -
+<br>
+MD5: The security of the MD5 hash function is severely compromised
+<br>
+Source: https://en.wikipedia.org/wiki/MD5#Collision_vulnerabilities
+<br>
+SHA-1: The algorithm has reached the end of its useful life, according to NIST that recommends professionals to migrate SHA-1 to SHA-2 or SHA-3 as soon as possible.
+<br>
+Source:
+<br>
+https://www.nist.gov/news-events/news/2022/12/nist-retires-sha-1-cryptographic-algorithm
+<br>
+A Checksum is a cryptographic signature of a file that consists in a string (hash) that uniquely represents the file, so that if a file is tampered with, altered or modified, its checksum value will change letting the user know that the file has been changed.
+<br>
+There are many mathematical algorithms for generating file Checksums, SHA256 (Secure Hash Algorithm 256) is developed by the NSA (United States National Security Agency).
+<br>
+The algorithm breaks down the data of the file into small-sized parts and creates and combines the hash values for each part to create the checksum value.
+<br>
+<br>
+Examples of commands to calculate files checksum (hash digest)
+<br>
+- MS Windows SHA256 checkum generation - CMD
+<br>
+C:\> certUtil -hashfile C:\file.iso SHA256
+<br>
+- Linux SHA256 checkum generation - Bash
+<br>
+sha256sum file.iso
+<br>
+<br>
+<br>
+<b>Download ISO files (Distro example AlmaLinux 9.1)</b>
+<br>
+Linux commands : 
+<br>
+wget is a command that let us download files naming them as they are named on the server
+<br>
+The -O option can be used by wget to manually set the destination file name
+<br>
+eg. # wget URL  #  wget URL -O FILENAME
+<br>
+curl can also download files, it requires the -o <filename> option to set the name output (downloaded) file
+eg. # curl URL -o FILENAME
+<br>
+Example of 
+1) Download of ISO file
+<br>
+wget https://almalinux.mirror.garr.it/9/isos/x86_64/AlmaLinux-9.1-x86_64-minimal.iso
+<br>
+2) download of the CHECKSUM file
+<br>
+wget https://almalinux.mirror.garr.it/9/isos/x86_64/CHECKSUM
+<br>
+3) verify if the checksum of the downloaded file matches the one declared by the publisher in the CHECKSUM file
+<br>
+# The command "sha256sum AlmaLinux-9.1-x86_64-minimal.iso" calculates the checksum of the file with SHA256 Algorithm, when a command is used within $() its output is encapsulated and can be prodided to another command
+<br>
+grep $(sha256sum AlmaLinux-9.1-x86_64-minimal.iso) CHECKSUM 
+<br>
+The output of the command confirms that the value is found in the CHECKSUM file*
+<br>
+CHECKSUM:SHA256 (AlmaLinux-9.1-x86_64-minimal.iso) = 3eebd50aabe93b9cbea3937dcf5e1d893e397a36de128ae60a8d46ff048fa0d6
+<br>
+If there are no results, it means that the calculated checksum value is not found in the CHECKSUM file, this can mean that the downloaded file is corrupted, incomplete or altered.
+<br>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/01_standards.html">[01_standards]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/03_distros.html">[03_distros]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
