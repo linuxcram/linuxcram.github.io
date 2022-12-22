@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 07_manpages</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[07_manpages]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="07_manpages">07_manpages</p></b>
+<b>Linux and Bash resources</b>
+<b>Manpages, help, suggestions, common terms, acronyms and more in Linux</b>
+<br>
+We can think that there's a way to learn to "listen" to Linux, as part of the open source and free software philosophy we embrace.
+<br>
+We can do that readiing what Linux says, since these words are the voice of developers sharing with us tons of information that help to understand and use the systems.
+<br>
+Often the output of the commands contain information about errors, sintax and suggestions. We must read them.
+<br>
+<br>
+<b>Some programs and commands often provide options that are easily recognizable</b>
+<br>
+This is not an universal rule, the aim is to provide a suggestion to create mental links to better memorize the options that better fit to reach our goals.
+<br>
+The following flags often mean something understandable in English language, but since there are differences between commands versions and shells, it is strongly suggested to check the command manpages and command options before executing commands.
+<br>
+a - all
+h - human readable
+c - count
+s - size, silent
+o,O - output file
+i - case insensitive
+<br>
+<br>
+<b>For a good system administrator the best practice consists in finding the best command with the best options to obtain the required result, using less commands/chains possible.</b>
+To master the Linux commmand line, we can not only rely on our memory, also because programs and options may vary depending on the systems, luckily Linux comes with an extended and nice builtin documentation.
+<br>
+<br>
+<b>Common manual and help commands</b>
+</i>Not all are available on every distro</i>
+<br>
+<br>
+man - display a program's manual page.
+<br>
+Man pages generally contain:
+<br>
+- title
+<br>
+- synopsis of the command's syntax
+<br>
+- description of the command's purpose
+<br>
+- listing and description of each of the command's options
+<br>
+eg. man ls
+<br>
+<br>
+whatis - display one-line manual page descriptions
+The whatis command displays the name and a one-line description of a man page matching the provided keyword
+eg. whatis ip
+<br>
+<br>
+apropos - display appropriate commands
+<br>
+The apropos command search the list of man pages for possible matches based on a search term.
+<br>
+eg. apropos ntp
+<br>
+<br>
+info - display a program's info entry
+<br>
+The GNU Project provides info as an alternative to man pages for their programs.
+<br>
+eg. info find
+<br>
+<br>
+which - locates an executable file matching the keyword, searching in the user shell search path.
+<br>
+eg. which ps
+<br>
+<br>
+<br>
+type - find out whether the keyword it is built-in or external binary file.
+<br>
+eg. type ps
+<br>
+<br>
+A great amount of commands support the --help option that is useful to display the syntax and common options of a command.
+<br>
+eg. ls --help  # cd --help # free --help ...
+<br>
+<br>
+To learn in the best and effective way how Linux works and to master the Bash commands quickly, it is strongly suggested to search the information provided by Linux for the commands hereby written.
+<br>
+This will help the reader to understand, and hopefully memorize, the commands syntax and discover what different combination of options can do.
+<br>
+eg.
+<br>
+man command
+<br>
+command --help
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/06_resources.html">[06_resources]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/08_programming.html">[08_programming]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
