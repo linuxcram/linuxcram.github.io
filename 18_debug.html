@@ -52,28 +52,30 @@ linuxcram.github.io
 Long scripts may be difficult to be analized to find errors, so it's important to know how to debug scripts.
 <br>
 <br>
-Verbose mode: Bash runs the script and displays all the lines as they are processed by the interpreter 
+<b>Verbose mode</b>
+<br>
+Bash runs the script and displays all the lines as they are processed by the interpreter
 <br>
 bash -v script.sh
 <br>
 <br>
-Syntax checking mode
+<b>Syntax checking mode</b>
 <br>
 Bash checks the syntax of the script with the -n (noexec) option, silently returning to the command prompt means that no syntax errors were encountered.
 <br>
 bash -n script.sh
 <br>
 <br>
-Verbose mode + syntax checking mode
+<b>Verbose mode + syntax checking mode</b>
 <br>
 The two methods are combined.
 <br>
 bash -vn script.sh
 <br>
 <br>
-Debug mode
+<b>Debug mode</b>
 <br>
-Known as debug mode, this method displays every command run by a script and their results.
+This method displays every command run by a script and its results.
 <br>
 bash -x script.sh
 <br>
