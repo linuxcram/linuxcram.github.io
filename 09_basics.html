@@ -108,8 +108,9 @@ Octal permissions are defined in 3 blocks:
 - all other users
 <br>
 <br>
-A file with 777 permissions will let all users read, write and execute it, 
-to check the permissions of files and directories, we can use ls -l of the desired path, to display the long listing format of the contents, including the owner and the group of the owner:
+A file with 777 permissions will let all users read, write and execute it, to check the permissions of files and directories,
+<br>
+we can use ls -l of the desired path, to display the long listing format of the contents, including the owner and the group of the owner:
 <br>
 [student@linux ~]$ ls -l
 <br>
@@ -162,25 +163,25 @@ If other users must be enabled to run the script, chmod o+x will be used to set 
 The absolute command for the same permissions is chmod 765 script.sh
 <br>
 <br>
-If the chmod command is used to add permissions with + operator, without specifying u,g or o the permission is assigned to all three octets (User,Group,Owner)
+If the chmod command is used to add permissions with + operator, without specifying u,g or o the permission is assigned to all three octets (User,Group,Owner).
 <br>
-chmod +x checkyearif.sh
+chmod +x script.sh
 <br>
--rwxrwxr-x. 1 student student   222 Dec 12 15:43 checkyearif.sh
-<br>
-<br>
-The inverted behavior is obtaine using the - sign, that removes permissions, if present for the contents
-<br>
-chmod -x checkyearif.sh
-<br>
--rw-rw-r--. 1 student student   222 Dec 12 15:43 checkyearif.sh
+-rwxrwxr-x. 1 student student   222 Dec 12 15:43 script.sh
 <br>
 <br>
-The same permissions of a file can be applied to another using the specific option provided by chmod
+The inverted behavior is obtaine using the - sign, that removes permissions, if present for the contents.
 <br>
-chmod --reference=checkyearcase.sh checkyearif.sh
+chmod -x script.sh
 <br>
-This will assign the same permissions of the reference file to the destination file
+-rw-rw-r--. 1 student student   222 Dec 12 15:43 script.sh
+<br>
+<br>
+The same permissions of a file can be applied to another using the specific option provided by chmod.
+<br>
+chmod --reference=checkyearcase.sh script.sh
+<br>
+This command will assign the same permissions of the reference file to the destination file.
 <br>
 <br>
 <br>
