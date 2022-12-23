@@ -103,6 +103,17 @@ Common Exit status / Description
 <br>
 128 	Invalid argument to exit command
 <br>
+130 	Script terminated by Control-C
+<br>
+255* 	Exit status out of range
+<br>
+<br>
+Exit codes 1-2, 126-165, and 255 have special meanings, and should be avoided for user-specified exit parameters to avoid confusion when doing troubleshooting.
+<br>
+The use of exit 1 is diffuesed, meant as a general error, but its usage is discrouraged because leads to many possible error causes when debugging.
+<br>
+*Error code 1 is used in the hereby examples to simplify explanation.
+<br>
 <br>
 eg.
 <br>
