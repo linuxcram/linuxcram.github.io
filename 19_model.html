@@ -49,6 +49,7 @@ linuxcram.github.io
 <b><p id="19_method">19_method</p></b>
 <b>Practice Bash Scripting conventions</b>
 <br>
+<br>
 <b>Shebang</b>
 <br>
 Often #!/usr/bin/env bash is preferred instead of #!/bin/bash
@@ -112,14 +113,13 @@ fi
 <br>
 <br>
 
-<b>INDENTATION</b>
+<b>Identation</b>
 <br>
 The indentation is a number of whitespace chars at the beginning of a line,
 <br>
 in bash one or more whitespace chars between elements produce the same result.
 <br>
 To indent a line can be used TAB or SPACE, one or more of them, usually coding tools set indentation to 4 or 8 space chars as convention.
-<br>
 <br>
 eg.
 <pre>
@@ -128,7 +128,6 @@ eg.
     this is 4 SPACE indented
 		this is 2 TAB indented
 </pre>
-<br>
 <br>
 Indentation makes code clearer in terms of readability and undestanding.
 <br>
@@ -290,6 +289,7 @@ exit 0
 </pre>
 <br>
 <br>
+<b><i>script execution</i></b>
 # assign executable permissions to script
 <br>
 chmod u+x pinger.sh
@@ -345,7 +345,9 @@ cat pinger.log
 Conclusion: the required script has been completed to satisfy the request specifications.
 <br>
 <br>
-Note that the "ip a" command shows all the network interface details, including the loopback lo 127.0.0.1, but the exercise request to get that address using commands, and not statically set (hardcoded).
+Note that the "ip a" command shows all the network interface details, including the loopback lo 127.0.0.1
+<br>
+but the exercise requested to get that address using commands, instead of setting it statically (hardcoded).
 <br>
 <br>
 <hr>
