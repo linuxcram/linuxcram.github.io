@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+header {
+    width: 960px;
+}
+body {
+  background: #333333;
+  color: #BBBBBB;
+  font-family: monospace;
+  text-align: left;
+  margin: 0;
+  border: 100px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+<head>
+<title>linuxcram.github.io - 19_method</title>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[19_method]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<b><p id="19_method">19_method</p></b>
+<b>Practice Bash Scripting conventions</b>
+<br>
+<b>Shebang</b>
+<br>
+Often #!/usr/bin/env bash is preferred instead of #!/bin/bash
+<br>
+since the first one searches the bash binary in the user path, while the second assumes that it's in the /bin directory.
+<br>
+The choice usually depends on the standards of a system, policies and common sense.
+<br>
+<br>
+<b>Functions</b>
+<br>
+Avoid the "function" keyword to keep better bash compatibility.
+<br>
+<br>
+OK:
+<br>
+task_name() {
+<br>
+}
+<br>
+<br>
+# eg.
+<br>
+print_hello() {
+<br>
+echo -e "hello"
+<br>
+}
+<br>
+<br>
+Not OK:
+<br>
+function task_name() {
+<br>
+}
+<br>
+<br>
+eg.
+<br>
+function print_hello() {
+<br>
+echo -e "hello"
+}
+<br>
+<br>
+<b>Parameters check</b>
+<br>
+Check if all the parametert required by a script are set.
+<br>
+if [ -n "$1" ]; then
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;# command that uses the first parameter
+<br>
+else
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;echo "Error: first parameter missing."
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return 10
+<br>
+fi
+<br>
+<br>
+
+<b>INDENTATION</b>
+<br>
+The indentation is a number of whitespace chars at the beginning of a line,
+<br>
+in bash one or more whitespace chars between elements produce the same result.
+<br>
+To indent a line can be used TAB or SPACE, one or more of them, usually coding tools set indentation to 4 or 8 space chars as convention.
+<br>
+<br>
+eg.
+<pre>
+ this is 1 SPACE indented
+  this is 2 SPACE indented
+    this is 4 SPACE indented
+		this is 2 TAB indented
+</pre>
+<br>
+<br>
+Indentation makes code clearer in terms of readability and undestanding.
+<br>
+Indentation is often used for loops, if statements, function definitions to easily distinguish conditions and statements.
+<br>
+To make scripts more readable, blank lines or symbols lines can be used separate blocks of code.
+<br>
+<i>
+The code lines in these pages is often not indented explanations to their point, from now on indentation will be more applied.
+</i>
+<br>
+<br>
+<b>User input</b>
+<br>
+The read command gets the user input and provides options like -p to prompt a string.
+<br>
+<br>
+eg. script name.sh
+<br>
+#!usr/bin/bash
+<br>
+read -p "Enter name : " name
+<br>
+echo "Hello $name"
+<br>
+Hello student
+<br>
+<br>
+One space character is the default delimiter in the read command, as defined by the IFS variable determines, this variable sshould not be changed in the user environments to avoid issues or unespected behavior of the CLI.
+<br>
+<br>
+eg. script name_state.sh
+<br>
+#!usr/bin/bash
+<br>
+IFS="," read -p "Enter name, state: " name city
+<br>
+echo "Name : $name"
+<br>
+echo "State : $state"
+<br>
+<br>
+<br>
+Name : student
+<br>
+State : USA
+<br>
+<br>
+<b>Method</b>
+A good start to build a scripting method consists in defining a standard set of lines that could fit in other scripts, making solutions reusable.
+<br>
+<br>
+Some lines of code could easily used to build a kind of <i>template</i> that could be easily modified, expanded or adapted depending on the needs, this is an example:
+<br>
+<br>
+1) First line the shebang
+<br>
+#!/bin/bash
+<br>
+<br>
+2) # exit on command fail
+<br>
+set -o errexit 
+<br>
+<br>
+3) # exit on use of any unset variable.
+<br>
+set -o nounset
+<br>
+<br>
+4) Last line the exit code of success
+<br>
+exit 0
+<br>
+<br>
+Define a set of rules to keep in mind will be part of our method, the best practice explained till now can be a starting point:
+<br>
+- use comments wisely, also to separate script sections for improved readability
+<br>
+- use less commands and shorter pipelines as possible
+<br>
+- prefer absolute paths
+<br>
+- apply dry principle, creating functions that could easily be adopted in other scripts, multiple lines sintax improves their readability
+<br>
+- prefer count-controlled loops (or definite iteration) over condition-controlled loops (or indefinite iteration)
+<br>
+- Use double quotes to reference variables
+<br>
+- use statements to check if expected values or objects exist with the correct format/sintax before using them in the scripts
+<br>
+- use echo -e to read sequences like \n \t \\ and always enclose echo arguments in ""
+<br>
+<br>
+<b>Practice make perfect</b>
+<br>
+<i>Let's write a script follwing an example of method.</i>
+<br>
+<br>
+Requirements:
+<br>
+the script must adds entries in a file named pinger.log in the current path.
+<br>
+the script must write the following information, using 4 spaces as fields separator, every time is executed, in one line, each line must be preceeded by 10 - characters:
+<br>
+ - Current date in format year month day + underscore + hour minute second (Ymd_HMS)
+<br>
+ - the loopback IP address of the system, obtained using commands (not hardcoded and only the IP address without / CIDR, subnet)
+<br>
+ - the string that show % of packet loss resulting from 1 ping of 1Byte of packet size, to the loopback IP address of the system
+<br>
+ - the script must not be run by root (UID 0) user, if this happens the script should display a relevant message, stop any action and exit with error code 10
+<br>
+<br>
+<i>
+Note: instructions, requests and specifications must be read entirely because their contents order could not respect the flow required by an efficient script. 
+</i>
+<br>
+<br>
+Example script pinger.sh
+<br>
+<pre>
+#!/bin/bash
+# exit on command fail
+set -o errexit 
+# exit on use of any unset variable.
+set -o nounset
+#
+### Functions section ###
+# Function to avoid use by root - UID 0
+disallow_uid0(){
+if [ "$(id -u)" = "0" ]
+then
+  echo "Error: root should not run this script." 1>&2
+  exit 10
+fi
+}
+#
+# Function to log % packet loss row result of loopback IP addreess ping 1time 1Byte
+ping_lo(){
+pinger_log="pinger.log"
+# Get date in format Ymd_HMS
+date_now=$(date +"%Y%m%d_%H%M%S")
+# Get loopback IP address without / CIDR subnet
+ip_lo=$(ip a | grep "host lo" | awk '{print $2}' | cut -d "/" -f1)
+# get % packet loss row from result of lo ping 
+ping_packets=$(ping -c1 -s1 $ip_lo | grep -e "loss")
+#
+# Write to log appending data every time the script is run
+echo -e "----------" >> $pinger_log
+echo -e "$date_now    $ip_lo    $ping_packets" >> $pinger_log
+}
+#
+### Main section ###
+#
+disallow_uid0
+ping_lo
+exit 0
+</pre>
+<br>
+<br>
+# assign executable permissions to script
+<br>
+chmod u+x pinger.sh
+<br>
+<br>
+# Check if the sintax of the script is correct
+<br>
+bash -n pinger.sh ; echo $?
+<br>
+0
+<br>
+<br>
+# execute script
+<br>
+./pinger.sh
+<br>
+<br>
+# see details of log file
+<br>
+ls -l pinger.log 
+<br>
+-rw-rw-r-- 1 student student 114 Dec 23 14:05 pinger.log
+<br>
+<br>
+# read log file contents and check if the contents matches the request
+<br>
+cat pinger.log
+<br>
+----------
+<br>
+20221223_140620    127.0.0.1    1 packets transmitted, 1 received, 0% packet loss, time 0ms
+<br>
+<br>
+# execute two more times the script and check the log
+<br>
+./pinger.sh
+<br>
+cat pinger.log
+<br>
+----------
+<br>
+20221223_140620    127.0.0.1    1 packets transmitted, 1 received, 0% packet loss, time 0ms
+<br>
+----------
+<br>
+20221223_140651    127.0.0.1    1 packets transmitted, 1 received, 0% packet loss, time 0ms
+<br>
+----------
+<br>
+20221223_140700    127.0.0.1    1 packets transmitted, 1 received, 0% packet loss, time 0ms
+<br>
+<br>
+Conclusion: the required script has been completed to satisfy the request specifications.
+<br>
+<br>
+Note that the "ip a" command shows all the network interface details, including the loopback lo 127.0.0.1, but the exercise request to get that address using commands, and not statically set (hardcoded).
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/18_debug.html">[18_debug]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/">[HOME]</a>
+</p>
+</center>
+<br>
+</body>
+</html>
