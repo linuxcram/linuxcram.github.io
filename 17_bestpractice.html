@@ -60,6 +60,7 @@ When scripting, sometimes can be necessary to execute single specific commands d
 <br>
 <br>
 <b>Comments</b>
+<br>
 Comments make scripts better and understandable.
 <br>
 The use of Comments is one of the most important best practice for Bash scripting, as well for other programming languages.
@@ -97,6 +98,41 @@ set - o nounset
 set -u
 <br>
 <br>
+<h3>Variables</h3>
+<br>
+<br>
+Variable names can contain ONLY alphanumeric chars (a-z, A-Z ,0-9) and underscore ( _ ).
+The variable names can begin with an alphabet char or underscore, since numbers are not allowed as first char.
+Variables can not be named using reserved words of statements, loops, functions (if, then, else, for, do, done...).
+Avoid to name custom variables with command names, system VARIABLES and words recognized by the operating system (like ls cd, vi, hostname, ping, ip, pwd, free, USER, SHELL, HOME...).
+<br>
+Use Uppercase Names for ENVIRONMENT Variables and lowercase for custom variables, since all variables defined in the bash enviromnent are named with uppercase letters.
+<br>
+The best practice suggested is to use lowercase letters to name the custom variables in order to avoid variable name conflicts. 
+<br>
+<br>
+eg.
+# variable names OK
+today
+date_now
+ip_loopback
+random_number1
+Logfile
+output_log
+_string1
+<br>
+<br>
+# variable names not OK
+<br>
+TODAY
+1date_now
+ip
+1RANDOMNUMBER
+/home/Logfile
+$log%
+HOSTNAME
+<br>
+<br>
 <b>Use Double Quotes to Reference Variables</b>
 <br>
 Using double quotes helps to prevent word splitting if there are whitespaces, and unnecessary globbing, providing wildcars recognizing and expanding.
@@ -121,7 +157,7 @@ names="Redhat CentOS Debian Ubuntu"
 <br>
 for name in $names; do
 <br>
-  echo $name
+echo $name
 <br>
 done
 <br>
@@ -129,7 +165,7 @@ echo "Distros names with double quotes:"
 <br>
 for name in "$names"; do
 <br>
-  echo "$name"
+echo "$name"
 <br>
 done
 <br>
