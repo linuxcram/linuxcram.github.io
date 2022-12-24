@@ -493,6 +493,44 @@ readonly passwd_file=”/etc/passwd”
 readonly group_file=”/etc/group”
 <br>
 <br>
+<b>Declare files and paths as variables to make clearer scripts and simplify their maintenance</b>
+<br>
+<br>
+eg. script info.sh
+<br>
+#!/bin/bash
+<br>
+set -o errexit 
+<br>
+set -o nounset
+<br>
+# define logfile named with the timestamp
+<br>
+logfile="./info_$(date +%Y-%m-%d_%H-%M-%S).log"
+<br>
+# write information in the logfile, sequentially appending the command outputs in the given order
+<br>
+echo -e "host:" $(hostname) >> $logfile
+<br>
+echo -e "user:" $(whoami) >> $logfile
+<br>
+echo -e "date:" $(date) >> $logfile
+<br>
+<br>
+chmod u+x info.sh
+<br>
+./info.sh 
+<br>
+<br>
+cat info_2022-12-13_15-00-54.log 
+<br>
+host: linux
+<br>
+user: student
+<br>
+date: Tue Dec 13 03:00:54 PM CET 2022
+<br>
+<br>
 <h3>Let's put together some of these rules in practice</h3>
 eg. script logdate.sh
 <br>
@@ -570,44 +608,6 @@ Next run result:
 Today's logfile already exists. Exiting.
 <br>
 1
-<br>
-<br>
-<b>Declare files and paths as variables to make clearer scripts and simplify their maintenance</b>
-<br>
-<br>
-eg. script info.sh
-<br>
-#!/bin/bash
-<br>
-set -o errexit 
-<br>
-set -o nounset
-<br>
-# define logfile named with the timestamp
-<br>
-logfile="./info_$(date +%Y-%m-%d_%H-%M-%S).log"
-<br>
-# write information in the logfile, sequentially appending the command outputs in the given order
-<br>
-echo -e "host:" $(hostname) >> $logfile
-<br>
-echo -e "user:" $(whoami) >> $logfile
-<br>
-echo -e "date:" $(date) >> $logfile
-<br>
-<br>
-chmod u+x info.sh
-<br>
-./info.sh 
-<br>
-<br>
-cat info_2022-12-13_15-00-54.log 
-<br>
-host: linux
-<br>
-user: student
-<br>
-date: Tue Dec 13 03:00:54 PM CET 2022
 <br>
 <br>
 <hr>
