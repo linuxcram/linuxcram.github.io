@@ -100,22 +100,18 @@ A non-zero (1-255) exit status means that the command had a failure.
 <br>
 <br>
 <h4>Common Exit status / Description</h4>
-1 	Catchall for general errors
-<br>
-2 	Misuse of shell builtins
 <pre>
+1       Catchall for general errors
+2       Misuse of shell builtins
 126 	Command invoked cannot execute
-<br>
 127 	Command not found
-<br>
 128 	Invalid argument to exit command
-<br>
 130 	Script terminated by Control-C
-<br>
 255* 	Exit status out of range
 </pre>
 <br>
 Exit codes 1-2, 126-165, and 255 have special meanings, and should be avoided for user-specified exit parameters to avoid confusion when doing troubleshooting.
+<br>
 <br>
 The use of exit 1 is diffuesed, meant as a general error, but its usage is discrouraged because leads to many possible error causes when debugging.
 <br>
@@ -127,9 +123,13 @@ eg.
 ls -l && free -h; echo $?
 <br>
 <br>
-"ls -l" is the command to view the long listing format of the current directory contents, the same will be produced by "ls -l ." because the default argument "." is implied by ls command itself, once run in a directory which is readable by our user, it will return an exit code 0 without errors.
+"ls -l" is the command to view the long listing format of the current directory contents, the same will be produced by "ls -l ."
+<br>
+The default argument of ls is "." so once run ls in a directory which is readable by our user it will return an exit code 0 without errors.
+<br>
 <br>
 If a command produces an exit code !=0 (not equal to 0) it means an error, and the next command will not be run because of the && separator conditional behavior.
+<br>
 <br>
 eg.
 <br>
