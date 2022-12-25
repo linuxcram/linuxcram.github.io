@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 16_operators</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +37,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 16_operators</title>
 </head>
 <body>
 <center>
@@ -46,28 +49,21 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="16_operators">16_operators</p></b>
-<b>Bash scripting operators</b>
-<br>
+<h3>Bash scripting operators</h3>
 Operators are used in Bash scripts to determine whether a condition is true or false.
 <br>
 Upon on their result different action can be executed.
 <br>
 <br>
-<b>Arithmetic Comparison Operators</b>
-<br>
--lt &nbsp;&nbsp;&nbsp;&nbsp; &lt;
-<br>
--gt &nbsp;&nbsp;&nbsp;&nbsp; &gt;
-<br>
--le &nbsp;&nbsp;&nbsp;&nbsp; &lt;=
-<br>
--ge &nbsp;&nbsp;&nbsp;&nbsp; &gt;=
-<br>
--eq &nbsp;&nbsp;&nbsp;&nbsp; ==
-<br>
--ne &nbsp;&nbsp;&nbsp;&nbsp; !=
-<br>
+<h4>Arithmetic Comparison Operators</b>
+<pre>
+-lt    &lt;
+-gt    &gt;
+-le    &lt;=
+-ge    &gt;=
+-eq    ==
+-ne    !=
+</pre>
 <br>
 eg. script compare.sh
 <br>
@@ -80,68 +76,55 @@ num1=10
 num2=20
 <br>
 # conditional statement
-<br>
+<pre>
 if [ $num1 -eq $num2 ]; then
-<br>
   echo "The two values are equal"
-<br>
 else 
-<br>
   echo "The two values are NOT equal"
-<br>
 fi
-<br>
+</pre>
 <br>
 # make executable
+<br>
 chmod u+x compare.sh
 <br>
+<br>
 # execute
+<br>
 ./compare.sh
 <br>
 <br>
-<b>String Comparison Operators</b>
-<br>
-= &nbsp;&nbsp;&nbsp;&nbsp; equal
-<br>
-!= &nbsp;&nbsp;&nbsp;&nbsp; not equal
-<br>
-&lt; &nbsp;&nbsp;&nbsp;&nbsp; less than
-<br>
-&gt; &nbsp;&nbsp;&nbsp;&nbsp; greater than
-<br>
--n s1 &nbsp;&nbsp;&nbsp;&nbsp; string s1 is not empty
-<br>
--z s1 &nbsp;&nbsp;&nbsp;&nbsp; string s1 is empty
-<br>
+<h4>String Comparison Operators</h4>
+<pre>
+=         equal
+!=        not equal
+&lt;      less than
+&gt;      greater than
+-n s1     string s1 is not empty
+-z s1     string s1 is empty
+</pre>
 <br>
 eg. script comparestrings.sh
-<br>
+<pre>
 #!/bin/bash
-<br>
 # define first string
-<br>
 string1="Hello"
-<br>
 # define second string
-<br>
 string2="World"
-<br>
 # perform conditional check and  print corresponding result
-<br>
 if [ $string1 = $string2 ]; then
-<br>
   echo "The two strings are equal"
-<br>
 else
-<br>
   echo "The two strings are NOT equal"
-<br>
 fi
-<br>
+</pre>
 <br>
 # make executable
+<br>
 chmod u+x comparestrings.sh
+<br>
 # execute
+<br>
 ./comparestrings.sh
 <br>
 <br>
@@ -150,45 +133,36 @@ chmod u+x comparestrings.sh
 The two strings are NOT equal
 <br>
 <br>
-<b>File Testing Operators</b>
 <br>
--e filename &nbsp;&nbsp;&nbsp;&nbsp; Check for file existence
-<br>
--f filename &nbsp;&nbsp;&nbsp;&nbsp; Check for regular file existence not a directory
-<br>
--r filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is a readable
-<br>
--s filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is nonzero size
-<br>
--w filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is writable
-<br>
--x filename &nbsp;&nbsp;&nbsp;&nbsp; Check if file is executable
+<h4>File Testing Operators</h4>
+<pre>
+-e filename    Check for file existence
+-f filename    Check for regular file existence not a directory
+-r filename    Check if file is a readable
+-s filename    Check if file is nonzero size
+-w filename    Check if file is writable
+-x filename    Check if file is executable
+</pre>
 <br>
 <br>
 eg. script checkfile.sh
-<br>
+<pre>
 #!/bin/bash
-<br>
 # define file using ./ to indicate that the file is located in the current directory where the script is run
-<br>
 file="./text1.txt"
-<br>
 # if condition that check if the file exist and it's not a directory, then display the corresponding result
-<br>
 if [ -e $file ]; then
-<br>
   echo "The file $file exists"
-<br>
 else 
-<br>
   echo "The file $file does not exists"
-<br>
 fi
+</pre>
 <br>
 <br>
 # make executable
 <br>
 chmod u+x checkfile.sh
+<br>
 <br>
 # execute
 <br>
@@ -202,21 +176,20 @@ The file ./text1.txt exists
 <br>
 The echo command accepts text strings between double quotes as argument, and can also read variables values.
 <br>
+<br>
 Variables are recognized by the $ char at the beginning of their name.
 <br>
 <br>
-<b>Boolean Operators</b>
-<br>
+<h4>Boolean Operators</h4>
 Boolean operators are used to test if two or more conditions are true or false.
 <br>
 <br>
 Operators / function
-<br>
-&amp;&amp; and
-<br>
-|| or
-<br>
-! not equal to
+<pre>
+&amp;&amp;   and
+||           or
+!            not equal to
+</pre>
 <br>
 <br>
 eg.
@@ -241,6 +214,7 @@ if [ 1 -eq 1 ] &amp;&amp; [ "a" = "a" ] &amp;&amp; [ "b" = "c" ]; then echo "yes
 <a href="https://linuxcram.github.io/17_bestpractice.html">[17_bestpractice]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
