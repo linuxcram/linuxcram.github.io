@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 11_commands</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -46,15 +51,15 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="11_commands">11_commands</p></b>
-<b>Common commands and best practice</b>
-<br>
+<h4>Common commands and best practice</h4>
 <i>
-Warning: always use caution with potentially disruptive commands like rm, mv, etc...
+Warning: ALWAYS use extra caution with potentially disruptive commands like rm, mv and with options that force (-f) or assumeyes (-y).
 <br>
-In Linux once a file or directory is gone, is gone. Forever. Without possibility of recover lost contents.
+In Linux everything is a file, and once a file is gone, is gone. Forever. Without possibility of recover.
+</i>
 <br>
-That's why good system administrators check before applying any change, and prefer using absolute paths instead of relative ones.
+<br>
+That's why good system administrators do double checks before applying changes, make backup copies, prefer absolute paths over relative.
 <br>
 <br>
 Absolute paths begin with / and are referred to contents starting from the / root directory, they are precisely referred to a unique path.
@@ -69,11 +74,10 @@ Absolute paths examples: /root /tmp/test /var /var/log/messages /home/user/Docum
 Relative paths with ./ prefix or no prefix point to contents in the current directory, with ../ prefix point to the parent directory. 
 <br>
 Relative paths examples: root ./Documents/ tmp/test var var/log/messages Documents/file.txt file.txt ../../../var/log ../home ../
-</i>
 <br>
 <br>
-<b>Echo</b>
 <br>
+<h4>Echo</h4>
 The echo command works like a function that produces an output consisting of the arguments given, multiple arguments are accepted.
 <br>
 Echo provides options like -e (enable interpretation of backslash escapes) to let us write single lines.
@@ -82,23 +86,29 @@ The default input of echo is stdin (the arguments we type after the echo command
 <br>
 The default output is stdout (the display if no redirection is set).
 <br>
-echo "hello" "hi"
 <br>
-hello hi
+echo "hello" "all"
+<br>
+hello all
 <br>
 <br>
 We can redirect the output of echo to a file, the output can be redirected to one single file only per command since the stdout can not be splitted.
+<br>
 <br>
 echo -e "line1\nline2\nline3\nline4\nline5" > text.txt
 <br>
 echo -e "line6\nline7\nline8\nline9\nline10" > text2.txt
 <br>
 <br>
-<b>Cat</b>
+<br>
+<h4>Cat</h4>
 <br>
 The command cat executes concatenation of text, it's versatile and useful to merge contents together, this means that cat accepts multiple arguments.
 <br>
-Cat concatenates files and print on the standard output - With no FILE, or when FILE is -, read standard input (try typing cat and enter, stdin is displayed on stdout, ctrl+c to exit).
+Cat concatenates files and print on the standard output, wiithout arguments cat reads from standard input.
+<br>
+(try typing cat and enter, stdin is displayed on stdout, ctrl+c to exit).
+<br>
 <br>
 cat text.txt text2.txt 
 <br>
@@ -125,6 +135,7 @@ line10
 <br>
 Other options are available for cat, like line numbers display.
 <br>
+<br>
 cat -n text.txt text2.txt 
 <br>
      1	line1
@@ -148,13 +159,14 @@ cat -n text.txt text2.txt
     10	line10
 <br>
 <br>
-<b>More</b>
 <br>
+<h4>More</h4>
 More is a command that displays the content of the files given as argument.
 <br>
 The contents of the files are shown one screen at a time for large files.
 <br>
 If the contents of the file fit a single screen, the output will be somewhat similar to the cat command output.
+<br>
 <br>
 more text.txt text2.txt 
 <br>
@@ -175,7 +187,8 @@ line4
 line5
 <br>
 <br>
-<b>Less</b>
+<br>
+<h4>Less</h4>
 <br>
 The less command is similar to the more command, it's named from the phrase "less is more", but provides extensive features.
 <br>
@@ -219,11 +232,16 @@ less -N text.txt
       5 line5
 <br>
 <br>
-<b>Grep</b>
+<br>
+<h4>Grep</h4>
+regular expression: a sequence of characters that specifies a search pattern in text
+<br>
+grep: GNU Regular Expression Parser
 <br>
 The grep command searches for lines matching a given pattern list, within given files, multiple files are accepted.
 <br>
 Grep searches for strings in text files and displays the matching lines found.
+<br>
 <br>
 grep line1 text.txt 
 <br>
@@ -232,9 +250,12 @@ line1
 <br>
 Grep provides options that let us exclude matching patterns (-v), if more files are given their names will be displayed before the matching content found in the file.
 <br>
+<br>
 Although the pattern is accepted without quotes, it is strongly suggested to use always double quotes for the string that will be matched by grep.
 <br>
-Grep is widely ussed in scripts because of its versatility, speed, and precision. See #grep --help
+<br>
+Grep is widely used in scripts because of its versatility, speed, and precision. See # grep --help # man grep
+<br>
 <br>
 grep -v "line1\|line2" text.txt text2.txt 
 <br>
@@ -253,7 +274,8 @@ text2.txt:line8
 text2.txt:line9
 <br>
 <br>
-<b>Find</b>
+<br>
+<h4>Find</h4>
 <br>
 The find command is aimed to search for files in a directory hierarchy.
 <br>
@@ -263,7 +285,8 @@ Find can search files and folders by name, creation date, modification date, own
 <br>
 Syntax # find [location] [optional expression] [-options] [optional what to find]
 <br>
-See #find --help
+See # find --help # man find
+<br>
 <br>
 find .
 <br>
@@ -271,11 +294,11 @@ find .
 <br>
 <br>
 find . -type f
-# displays all the files
+# displays all the files in the current path and subdirectories
 <br>
 <br>
 find . -type d
-# displays all the directory
+# displays all the directories in the current path and subdirectories
 <br>
 <br>
 find . -type f -name "text*"
@@ -297,7 +320,8 @@ find . -maxdepth 1 -type f -name "*.txt"
 ./text2.txt
 <br>
 <br>
-We can not cover all the commands provided by Linux and BASH, the reader is invited to feel free to explore and search for commands, using TAB to autocomplete. 
+<br>
+It's almost impossible to cover all the Linux commands, feel free to explore and search for commands, even using TAB to autocomplete. 
 <br>
 <br>
 eg. digit host and press TAB twice to see all the commands that begin with that pattern 
@@ -307,132 +331,113 @@ host [PRESS TAB TWICE]
 host         hostid       hostname     hostnamectl
 <br>
 <br>
-A good system administrator looks for commands usage checking man and the option --help
+<br>
+The continue search for better commands and options is one reason for the good system administrator to literally consume man and the --help option.
 <br>
 <br>
-Be curious, it's the best way to learn Linux quickly and in depth.
+<i>Being curious is the best way to learn Linux quickly and in depth.</i>
 <br>
 <br>
-Some useful commands to explore the features of BASH:
 <br>
+<h4>A list of commands to explore the features of Bash and Linux</h4>
 pwd # try also # echo $HOME
 <br>
 env # try also # env | grep -i home
 <br>
-echo # try Epoch time format # echo "$(date +%s.%N)"
-<br>
-printf # provides useful functions eg. limit to two decimal digits # printf "%.2f" $(date +%s.%N)
-<br>
-ls
-<br>
-cd
-<br>
-mkdir
-<br>
-cp
-<br>
-mv
-<br>
-head
-<br>
-tail
-<br>
-tr
-<br>
-cut
-<br>
-diff
-<br>
 date
 <br>
+echo "$(date +%s.%N)" #  Epoch time counts number of seconds that have elapsed since 00:00:00 UTC on 1 January 1970
+<br>
+printf # this one provides useful functions eg. limit to two decimal digits # printf "%.2f" $(date +%s.%N)
+<pre>
+ls
+cd
+mkdir
+cp
+mv
+head
+tail
+tr
+cut
+diff
 cal
-<br>
 wc
-<br>
 ip
-<br>
 ps
-<br>
 ss # or netstat (from net-tools on RPM)
-<br>
 dig # (from bind-utils on RPM)
-<br>
 free
-<br>
 df
-<br>
 du
-<br>
 chmod
-<br>
 chown
-<br>
 curl
-<br>
 wget
-<br>
 top (press h for help , press q to quit)
+time # try # time free -h # time find / -type d
+</pre>
 <br>
-time # try # time free -h # time 
+<br>
+<h4>VI</h4>
+vi (Visual Instrument) and vim (vi improved) are popular text editor programs available in many Linux distros.
+<br>
+<i>Note for learners: press ESC and type :q! to quit vi/vim without saving.</i>
 <br>
 <br>
-<b>VI</b>
+Vim is widely used by system administrators to edit scripts, configuration files and text files on Linux.
 <br>
-vi # or vim that stands for vi-improved (press ESC and type :q! to quit vi/vim without saving)
 <br>
-Vim is widely used to edit scripts and text files on Linux
+<i>With Vim text editing can be performed quikly because hands stay on the keyboard, without need of moving away to reach the mouse.</i>
 <br>
-Vim let us perform text editing quikly because our hands stay on the keyboard without moving to the mouse.
 <br>
-Vim includes commands that work as macros, to perform text editing with speed and precision.
+Vim includes commands to perform text editing with speed and precision.
+<br>
 <br>
 Vim represents one of the most used text editor in the Linux command line, it must be mastered to become Linux experts.
 <br>
-Luckily the shell builtin command "vimtutor" provides a ... vim tutorial to learn it quickly!
+<br>
+Luckily the builtin command "vimtutor" provides a ... vim tutorial to learn it quickly!
 <br>
 <br>
-Basic Vim Commands and Description
-<br>i --- insert mode
-<br>Esc --- command mode
-<br>x (or DEL) --- delete a character
-<br>X --- delete a character in backspace mode
-<br>u --- undo changes
-<br>CTRL + r --- redo changes
-<br>yy --- copy (yank) current line
-<br>dd --- delete current line
-<br>p --- paste the clipboard/buffer content (if the last action is copy line, the line will be pasted)
-<br>/ --- followed by a string search for the string, use n and N to cycle matches
-<br>[[ --- or gg move to the beginning of the current file
-<br>]] --- or G move to the end of the current file
-<br>:%s/old_string/new_string/gci --- search old_string and replace it with new_string for all matching occurences, require confirm
-<br>ESC + :w --- save file
-<br>ESC + :wq or ESC + ZZ --- save file and quit Vim
-<br>ESC + :wq! or ESC + :x --- force save and quit Vim
-<br>ESC + :q! force --- quit Vim discarding all changes
+<b>Basic Vim Commands and Description</b>
+<pre>
+i           insert mode
+Esc         command mode
+x (or DEL)  delete a character
+X           delete a character in backspace mode
+u           undo changes
+CTRL + r    redo changes
+yy          copy (yank) current line
+dd          delete current line
+p           paste the clipboard/buffer content (if the last action is copy line, the line will be pasted)
+/           followed by a string search for the string, use n and N to cycle matches
+[[          or gg move to the beginning of the current file
+]]          or G move to the end of the current file
+ESC + :w    save file
+:%s/old_string/new_string/gci     search old_string and replace it with new_string for all matching occurences, require confirm
+ESC + :wq or ESC + ZZ             save file and quit Vim
+ESC + :wq! or ESC + :x            force save and quit Vim
+ESC + :q! force                   quit Vim discarding all changes
+</pre>
 <br>
 <br>
 More commands:
-<br>
+<pre>
 sed
-<br>
 awk
-<br>
 sha256sum
-<br>
 openssl
-<br>
 ssh
-<br>
 hexdump
-<br>
 od
-<br>
 dd
+stat
+type
+</pre>
 <br>
+...for more commands type a couple of letters of a word in the shell and press TAB.
 <br>
-...for more commands type a couple of letters of a word you know in the shell and press TAB.
-<br>
-Always remember to check the manpages of commands before using them, to avoid disruptive changes.
+Remember always to check the manpages and commands help before using them, to avoid unwanted changes or damages.
 <br>
 <br>
 <hr>
@@ -443,6 +448,7 @@ Always remember to check the manpages of commands before using them, to avoid di
 <a href="https://linuxcram.github.io/12_hints.html">[12_hints]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
