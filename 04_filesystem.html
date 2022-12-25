@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 04_filesystem</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +37,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 04_filesystem</title>
 </head>
 <body>
 <center>
@@ -46,25 +49,29 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="04_filesystem">04_filesystem</p></b>
-<b>Linux Files System - FHS</b>
-<br>
+<h3>Linux Files System - FHS</h3>
 The Filesystem Hierarchy Standard (FHS): a reference describing the conventions used for the layout of a UNIX system became popular by its use in Linux distributions, but it is used by other *nix operating systems. It is maintained by the Linux Foundation.
 <br>
-Directory structure: in the FHS, all files and directories appear under the root directory /, 
-even if they are stored on different physical or virtual devices.
+<br>
+<br>
+<h4>Directory structure</h4>
+In the FHS, all files and directories appear under the root directory /  even if they are stored on different physical or virtual devices.
+<br>
 <br>
 Some of these directories only exist on a particular system if certain subsystems, such as the X Window System, are installed.
 <br>
-Most of these directories exist in all Unix-like operating systems and are generally used in much the same way;
-however, the descriptions here are those used specifically for the FHS and are not considered authoritative for platforms other than Linux. 
+Most of these directories exist in all Unix-like operating systems and are generally used in much the same way.
+<br>
+However, the descriptions here are those used specifically for the FHS and are not considered authoritative for platforms other than Linux. 
+<br>
 <br>
 Source:
 https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
 <br>
 <br>
-<b>Directory - Description</b>
-<br>/    Primary hierarchy root and root directory of the entire file system hierarchy.
+<br>
+<h4>Directory - Description</h4>
+/    Primary hierarchy root and root directory of the entire file system hierarchy.
 <br>/bin    Essential command binaries that need to be available in single-user mode, including to bring up the system or repair it, for all users (e.g., cat, ls, cp).
 <br>/boot    Boot loader files (e.g., kernels, initrd).
 <br>/dev    Device files (e.g., /dev/null, /dev/disk0, /dev/sda1, /dev/tty, /dev/random).
@@ -103,7 +110,9 @@ https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard
 <br>/var/run    Run-time variable data. This directory contains system information data describing the system since it was booted.
 <br>
 <br>
+<br>
 In FHS 3.0, /var/run is replaced by /run; a system should either continue to provide a /var/run directory
+<br>
 or provide a symbolic link from /var/run to /run for backwards compatibility.
 <br>
 <br>/var/spool    Spool for tasks waiting to be processed (e.g., print queues and outgoing mail queue).    
@@ -119,6 +128,7 @@ or provide a symbolic link from /var/run to /run for backwards compatibility.
 <a href="https://linuxcram.github.io/05_specialchars.html">[05_specialchars]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
