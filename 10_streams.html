@@ -85,14 +85,12 @@ ls -l /rooot 2&gt; error.log
 <br>
 There will be no output on display because the error output that has been written to the file error.log.
 <br>
-<br>
 cat error.log 
 <br>
 ls: cannot access '/rooot': No such file or directory
 <br>
 <br>
 To redirect both stdout and stderr at the same time, we can direct stdout to a file and stderr to another file
-<br>
 <br>
 ls -l . /rooot 1> ls-l_pwd.txt 2> error.log
 <br>
@@ -125,6 +123,7 @@ dd if=/dev/zero of=zero.txt bs=1024 count=1
 <br>
 <br>
 The file zero.txt is full of 0 and weighs 1024Bytes, the file does not have actually readable contents
+<br>
 <br>
 <br>
 <b>Bash provides the $RANDOM variable</b>
@@ -173,6 +172,8 @@ hexdump -C urandom.txt | less
 <br>
 od -A x -t x1z -v urandom.txt | less
 <br>
+<br>
+<b>Blackholes</b>
 <br>
 /dev/null is a device that could be imagined like a black hole, it can be used to create files with zero size.
 <br>
