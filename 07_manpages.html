@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 07_manpages</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +37,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 07_manpages</title>
 </head>
 <body>
 <center>
@@ -46,22 +49,25 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="07_manpages">07_manpages</p></b>
-<b>Linux and Bash resources</b>
+<h4>Linux and Bash resources</4>
 <b>Manpages, help, suggestions, common terms, acronyms and more in Linux</b>
 <br>
-We can think that there's a way to learn to "listen" to Linux, as part of the open source and free software philosophy we embrace.
+The reader is invited to imagine that we can ...kind of "listen" to Linux, as part of the open source and free software philosophy we embrace.
 <br>
-We can do that readiing what Linux says, since these words are the voice of developers sharing with us tons of information that help to understand and use the systems.
+We simply have to read what Linux says in the shell, wise words of developers are spread as a precious source to understand systems.
 <br>
-Often the output of the commands contain information about errors, sintax and suggestions. We must read them.
+Often the output of the commands itself contain details about errors, sintax explaination and suggestions.
 <br>
 <br>
-<b>Some programs and commands often provide options that are easily recognizable</b>
+Read. Everything.
 <br>
-This is not an universal rule, the aim is to provide a suggestion to create mental links to better memorize the options that better fit to reach our goals.
+<br>
+<h4>Some programs and commands often provide options that are easily recognizable</h4>
+<br>
+Far from an universal rule, this intuition may help to create mental links about options, to help us keep in mind the ones we need often.
 <br>
 The following flags often mean something understandable in English language, but since there are differences between commands versions and shells, it is strongly suggested to check the command manpages and command options before executing commands.
+<br>
 <br>
 a - all
 h - human readable
@@ -71,76 +77,78 @@ o,O - output file
 i - case insensitive
 <br>
 <br>
-<b>Options and chains - best practice</b>
 <br>
-A good system administrator is able to find the best command with the best options to obtain the required result, using the shorter commands/chains possible.
+<h4>Options and chains - best practice</h4>
 <br>
-To master the Linux commmand line, we can not only rely on our memory, also because programs and options may vary depending on the systems.
-<br>
-Luckily Linux comes with an extended and nice builtin documentation that help us reaching our goals.
+A good system administrator is able to find the best command with the best options to obtain the required result, with commands/chains as short as possible.
 <br>
 <br>
-<b>Common manual and help commands</b>
-</i>Not all are available on every distro</i>
+To master the Linux commmand line, we can not rely only on our memory, since programs and options may vary depending on the systems.
 <br>
 <br>
-man - display a program's manual page.
+Luckily Linux comes with an extended and nice builtin documentation including the manual pages.
+<br>
+<br>
+<br>
+<h4>Common manual and help commands</h4>
+</i>May vary between distros</i>
+<br>
+<br>
+<b>man</b> - display a program's manual page (generally the preferred solution to read manual pages)
 <br>
 Man pages generally contain:
 <br>
 - title
 <br>
-- synopsis of the command's syntax
+- synopsis of the command's syntax;
 <br>
-- description of the command's purpose
+- description of the command's purpose;
 <br>
-- listing and description of each of the command's options
+- listing and description of each of the command's options;
 <br>
-eg. man ls
-<br>
-<br>
-whatis - display one-line manual page descriptions
-The whatis command displays the name and a one-line description of a man page matching the provided keyword
-eg. whatis ip
+# man ls
 <br>
 <br>
-apropos - display appropriate commands
+whatis - display one-line manual page descriptions.
+<br>
+The whatis command displays the name and a one-line description of a man page matching the provided keyword.
+<br>
+# whatis ip
+<br>
+<br>
+apropos - display appropriate commands.
 <br>
 The apropos command search the list of man pages for possible matches based on a search term.
 <br>
-eg. apropos ntp
+# apropos ntp
 <br>
 <br>
-info - display a program's info entry
+info - display a program's info entry.
 <br>
 The GNU Project provides info as an alternative to man pages for their programs.
 <br>
-eg. info find
+# info find
 <br>
 <br>
 which - locates an executable file matching the keyword, searching in the user shell search path.
 <br>
-eg. which ps
+# which ps
 <br>
 <br>
 <br>
 type - find out whether the keyword it is built-in or external binary file.
 <br>
-eg. type ps
+# type ps
 <br>
 <br>
 A great amount of commands support the --help option that is useful to display the syntax and common options of a command.
 <br>
-eg. ls --help  # cd --help # free --help ...
+# ls --help  # cd --help # free --help ...
 <br>
 <br>
-To learn in the best and effective way how Linux works and to master the Bash commands quickly
+To learn quickly and effectively how Linux works and to master the Bash commands, it's strongly suggested to consult the Linux manpages and to search information about commands.
 <br>
-it is strongly suggested to search the information provided by Linux for the commands shown in these pages.
-<br>
-This will help the reader to understand, and hopefully memorize, the commands syntax and discover what different combination of options can do.
-<br>
-eg.
+With two basic commands we can understand the commands syntax, and discover what different combination of options can do.
 <br>
 man command
 <br>
@@ -155,6 +163,7 @@ command --help
 <a href="https://linuxcram.github.io/08_programming.html">[08_programming]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
