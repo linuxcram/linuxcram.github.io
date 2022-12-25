@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 05_specialchars</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +37,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 05_specialchars</title>
 </head>
 <body>
 <center>
@@ -46,8 +49,7 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="05_specialchars">05_specialchars</p></b>
-<b>Special Characters</b>
+<h4>Special Characters</4>
 <br>
 Suggested reading, credits to the Author Victor Gedris:
 <br>
@@ -56,66 +58,57 @@ https://www2.karlin.mff.cuni.cz/~hron/NMNV532/ShellIntro.pdf
 <br>
 There are many symbols and characters that the shell interprets in special ways.
 <br>
-Certain typed characters
 <br>
-- cannot be used in certain situations
+Certain characters:
 <br>
-- may be used to perform special operations
+- cannot be used in some cases;
 <br>
-- must be “escaped” if you want to use them in a normal way.
+- may be used to perform special operations;
+<br>
+- must be "escaped" to be interpreted as standard characters.
 <br>
 <br>
-<b>Character Description</b>
-<br>\ Escape character.  If you want to reference a special character, you must “escape” it with a backslash first.
-<br>Example: touch /tmp/filename\* 
+<br>
+<h4>Character Description</h4>
+\ Escape character.  Special characters require to be "escaped" with a backslash to be referenced. Eg. # touch test\* # will create a file named test* 
 <br>/ Directory separator, used to separate a string of directory names.Example: /usr/src/linux
-<br>. Current directory.  Can also “hide” files when it is the first character in a filename.
+<br>. Current directory.  Can also "hide" files when it is the first character in a filename
 <br>.. Parent directory
 <br>&tilde; User's home directory
-<br>* Represents 0 or more characters in a filename, or by itself, all files in a directory. Example: pic*2002 can represent the files pic2002, picJanuary2002, picFeb292002, etc.
-<br>? Represents a single character in a filename. Example: hello?.txt can represent hello1.txt, helloz.txt, but not hello22.txt 
-<br>[ ] Can be used to represent a range of values, e.g. [0-9], [A-Z], etc. Example: hello[0-2].txt represents the names hello0.txt, hello1.txt, and hello2.txt 
-<br>| “Pipe”.  Redirect the output of one command into another command. Example: ls | more 
-<br>&gt; Redirect output of a command into a new file.  If the file already exists, over-write it. Example: ls &gt; myfiles.txt 
-<br>&gt;&gt; Redirect the output of a command onto the end of an existing file. Example: echo “Mary 555-1234” &gt;&gt; phonenumbers.txt 
-<br>&lt; Redirect a file as input to a program. Example: more &lt; phonenumbers.txt 
-<br>; Command separator.  Allows you to execute multiple commands on a single line. Example: cd /var/log ; less messages
-<br>&amp;&amp; Command separator as above, but only runs the second command if the first one finished without errors. Example: cd /var/logs && less messages 
-<br>&amp; Execute a command in the background, and immediately get your shell back.
-Example: find / -name core > /tmp/corefiles.txt &
-<br>" " Whitespace - a tab, newline, vertical tab, form feed, carriage return, or space. 
-Bash uses whitespace to determine where words begin and end, a default separator.
-<br>$ Expansion - parameter expansion (e.g. $var or ${var}), command substitution (e.g. $(command)),
-or arithmetic expansion (e.g. $((expression))).
-<br>'' Single quotes - protect the text inside them so that it has a literal meaning.
-Special characters are passed over and multiple words are prevented from being split.
-<br>"" Double quotes - protect the text inside them from being split into multiple words or arguments, 
-allow substitutions to occur, usually avoid interpretation of other special characters.
-<br># Comment - at the begin of a line begins a comment that extends to the end of that line. 
-Comments are notes used to make scripts understandable and maintanable, comments are not processed as commands.
-<br>= Assignment - assign a value to a variable (e.g. logdir=/var/log/myprog). 
-Whitespace is not allowed on either side of the = character.
-<br>[[ ]] Test - an evaluation of a conditional expression to determine whether it is "true" or "false". 
-Tests are used in Bash to compare strings, check the existence of a file, etc.
-<br>! Negate - used to negate or reverse a test or exit status. For example: ! grep text file; exit $?.
-<br>{ } Inline group - commands inside the curly braces are treated as if they were one command.
-It is convenient to use these when Bash syntax requires only one command without using a function.
-<br>( ) Subshell group - similar to the above but where commands within are executed in a subshell (a new process). Used much like a sandbox, if a command causes side effects (like changing variables), no effect on the current shell.
-<br>(( )) Arithmetic expression - with an arithmetic expression, characters such as +, -, *, and / are mathematic operators. They can be used for variable assignments like (( a = 1 + 4 )) as well as tests like if (( a < b )).
-<br>$(( )) Arithmetic expansion - the expression is replaced with the result of arithmetic evaluation.
-Example: echo "The average is $(( (a+b)/2 ))".
+<br>* Represents 0 or more characters in a filename, or by itself, all files in a directory, eg. file*2022 can represent file2022, file01-2022, logfile_01_01_2022
+<br>? Represents a single character in a filename, eg. file?.txt can represent file1.txt, filez.txt, but not file22.txt
+<br>[ ] Can be used to represent a range of values, e.g. [0-9], [A-Z], etc. Example: file[0-2].txt represents the names file0.txt, file1.txt, and file2.txt
+<br>| "Pipe".  Redirect the output of one command into another command, eg. # ls | more 
+<br>&gt; Redirect output of a command into a new file, if the file already exists, over-write it, eg. # ls &gt; files_list.txt 
+<br>&gt;&gt; Redirect the output of a command onto the end of an existing file, eg. # echo "Italy Rome" &gt;&gt; cities.txt 
+<br>&lt; Redirect a file as input to a program, eg. # more &lt; files_list.txt 
+<br>; Command separator.  Allows you to execute multiple commands on a single line, eg. # cd /var/log ; less messages
+<br>&amp;&amp; Command separator as above, but only runs the second command if the first one finished without errors, eg # cd /var/logs && less messages 
+<br>&amp; Execute a command in the background, and immediately get your shell back, eg. find / -name "*.rpm" > /tmp/rpm_files_list.txt &amp;
+<br>" " Whitespace - a tab, newline, vertical tab, form feed, carriage return, or space, Bash uses whitespace to determine where words begin and end, a default separator
+<br>$ Expansion - parameter expansion (e.g. $var or ${var}), command substitution (e.g. $(command)), or arithmetic expansion (e.g. $((expression)))
+<br>'' Single quotes - protect the text inside them so that it has a literal meaning, special characters are passed over and multiple words are prevented from being split
+<br>"" Double quotes - protect the text inside them from being split into multiple words or arguments, allow substitutions to occur, usually avoid interpretation of other special characters
+<br># Comment - at the begin of a line begins a comment that extends to the end of that line, comments are notes used to make scripts understandable and maintanable, comments are not processed as commands
+<br>= Assignment - assign a value to a variable (e.g. logdir=/var/log/myprog), whitespace is not allowed on either side of the = character
+<br>[[ ]] Test - an evaluation of a conditional expression to determine whether it is "true" or "false", tests are used in Bash to compare strings, check the existence of a file, etc
+<br>! Negate - used to negate or reverse a test or exit status, eg. # ! grep text file; exit $?
+<br>{ } Inline group - commands inside the curly braces are treated as if they were one command, it's convenient to use these when Bash syntax requires only one command without using a function
+<br>( ) Subshell group - similar to the above but where commands within are executed in a subshell (a new process). Used much like a sandbox, if a command causes side effects (like changing variables), no effect on the current shell
+<br>(( )) Arithmetic expression - with an arithmetic expression, characters such as +, -, *, and / are mathematic operators. They can be used for variable assignments like (( a = 1 + 4 )) as well as tests like if (( a < b ))
+<br>$(( )) Arithmetic expansion - the expression is replaced with the result of arithmetic evaluation, eg. echo "Average: $(( (a+b)/2 ))"
 <br>
 <br>
-
-Deprecated special characters:
+<br>
+<h4>Deprecated special characters</h4>
 Command substitution - it is suggested to use $( ) instead.
 <br>[ ] Test - old test command alias, commonly used in POSIX shell scripts, lacks many features of [[ ]].
 <br>$[ ] Arithmetic expression - it is suggested to use $(( )) instead. 
 <br>
 <br>
-<b>"Deprecated" meaning</b>
 <br>
-The term deprecated means that something is available or allowed but it is not recommended because its limits, security issues, unwanted behaviors, failings are recognized.
+<h4>Deprecated</h4>
+The term "deprecated" means that something is available or allowed but it is not recommended because its limits, security issues, unwanted behaviors, failings are recognized.
 <br>
 Some commands are still used daily worldwide, although their adoption is discouraged because of deprecation.
 <br>
@@ -147,6 +140,7 @@ In RPM distros the deprecated commands are found thanks to the command yum provi
 <a href="https://linuxcram.github.io/06_resources.html">[06_resources]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
