@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 02_security</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +36,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 02_security</title>
 </head>
 <body>
 <center>
@@ -46,11 +48,9 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p>02_security</p></b>
-<b>Introduction to Security concepts and standards for Information Technology</b>
+<h3>Introduction to Security concepts and standards for Information Technology</h3>
 <br>
-<b>CIA Triad</b>
-<br>
+<h4>CIA Triad</h4>
 The CIA triad (Information Security Triad) is a common model that forms the basis for the development of security systems that are used for finding vulnerabilities and methods for creating solutions.
 <br>
 The CIA triad represents the three pillars of information security: Confidentiality, Integrity, and Availability:
@@ -62,18 +62,20 @@ The CIA triad represents the three pillars of information security: Confidential
 - Availability - ensuring timely and reliable access to and use of information
 <br>
 <br>
-<b>NIST</b>
-https://www.nist.gov/
 <br>
+<h4>NIST - MITRE - NCF</h4>
 The National Institute of Standards and Technology (NIST) was founded in 1901 and is now part of the U.S. Department of Commerce. NIST is one of the nation's oldest physical science laboratories.
-https://www.nist.gov/cybersecurity
 <br>
 NIST develops cybersecurity standards, guidelines, best practices, and other resources to meet the needs of U.S. industry, federal agencies and the broader public.
 <br>
 NIST also advances understanding and improves the management of privacy risks, some of which relate directly to cybersecurity.
 <br>
 <br>
-<b>MITRE - NCF</b>
+https://www.nist.gov/
+<br>
+https://www.nist.gov/cybersecurity
+<br>
+<br>
 The National Cybersecurity Federally Funded Research and Development Center (NCF) fills a critical need. Operated by MITRE, the NCF is the country’s only FFRDC dedicated solely to cybersecurity.
 <br>
 The NCF is sponsored by the National Institute of Standards and Technology (NIST) the federal agency that develops cybersecurity standards, guidelines, and best practices.
@@ -82,7 +84,7 @@ NCF is operated by MITRE and focused on the serious and growing risk cyber attac
 <br>
 The NCF brings multidisciplinary teams of cybersecurity architects, engineers, social scientists, and communications professionals together with NIST to design and build usable, real-world solutions. 
 <br>
-Sources:
+<br>
 https://www.mitre.org/our-impact/rd-centers/national-cybersecurity-ffrdc
 <br>
 https://www.nist.gov/itl/publications-0/nist-special-publication-1800-series-general-information
@@ -94,29 +96,27 @@ https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf
 https://www.nccoe.nist.gov/sites/default/files/legacy-files/di-identity-protect-nist-sp1800-25a-draft.pdf
 <br>
 <br>
+<br>
+<h4>SHA256 Checksum</h4>
+<br>
 Encryption is a technology used for data, at rest (stored) and in transit (transmitted), to reduce its vulnerability to tampering and other methods that could result in unexpected data alteration.
 <br>
+Linux distributions are often published and distributed together with "checksum" files, often signed to ensure that they have not been tampered
 <br>
-<b>SHA256 Checksum</b>
-<br>
-Linux distributions are published together with "checksum" files, often signed to ensure that they have not been tampered, that contain te checksums values of the ISO files.
-<br>
-The SHA256 Checksum is usually provided in a text file or directly as a text file with the main file, in its download section.
+The checksum text file usually contain the checksums values of the ISO files in SHA256 format.
 <br>
 This common mechanism is used to prove that the files downloaded are what they claim to be.
 <br>
 This is particularly useful for ISOs downloaded from a third-party mirror or elsewhere the main publisher website.
 <br>
-A hash algorithm that can be used to generate digests of files, digests are used to detect if files have been changed since the digests were generated.
+A hash algorithm can be used to calculate digest messages of files, digests are used to detect if files have been changed since their digests were generated.
 <br>
 NIST states that the SHA-2 family of hash functions (SHA-224, SHA-256, SHA-384, SHA-512) may be used by Federal agencies for all applications using secure hash algorithms.
 <br>
-Source:
-<br>
-https://csrc.nist.gov/Projects/Hash-Functions/NIST-Policy-on-Hash-Functions
+Source: https://csrc.nist.gov/Projects/Hash-Functions/NIST-Policy-on-Hash-Functions
 <br>
 <br>
-Notes about hash functions, collision and deprecated algorithms
+<i>About hash functions, collision and deprecated algorithms</i>
 <br>
 MD5: The security of the MD5 hash function is severely compromised
 <br>
@@ -124,9 +124,7 @@ Source: https://en.wikipedia.org/wiki/MD5#Collision_vulnerabilities
 <br>
 SHA-1: The algorithm has reached the end of its useful life, according to NIST that recommends professionals to migrate SHA-1 to SHA-2 or SHA-3 as soon as possible.
 <br>
-Source:
-<br>
-https://www.nist.gov/news-events/news/2022/12/nist-retires-sha-1-cryptographic-algorithm
+Source: https://www.nist.gov/news-events/news/2022/12/nist-retires-sha-1-cryptographic-algorithm
 <br>
 <br>
 A Checksum is a cryptographic signature of a file that consists in a string (hash) that uniquely represents the file, so that if a file is tampered with, altered or modified, its checksum value will change letting the user know that the file has been changed.
@@ -136,8 +134,8 @@ There are many mathematical algorithms for generating file Checksums, SHA256 (Se
 The algorithm breaks down the data of the file into small-sized parts and creates and combines the hash values for each part to create the checksum value.
 <br>
 <br>
-<b>Examples of commands to calculate files checksum (hash digest)</b>
-<br><br>
+<br>
+<h4>Examples of commands to calculate files checksum (hash digest)</h4>
 - MS Windows SHA256 checkum generation - CMD
 <br>
 C:\> certUtil -hashfile C:\file.iso SHA256
@@ -147,8 +145,8 @@ C:\> certUtil -hashfile C:\file.iso SHA256
 sha256sum file.iso
 <br>
 <br>
-<b>Download ISO files (Distro example AlmaLinux 9.1)</b>
 <br>
+<h4>Download ISO files (Distro example AlmaLinux 9.1)</h4>
 Linux commands : 
 <br>
 <br>
@@ -163,9 +161,9 @@ curl can also download files, it requires the -o <filename> option to set the na
 eg. # curl URL -o FILENAME
 <br>
 <br>
-<b>Example</b>
 <br>
-1) Download ISO file (e.g. Almalinux 9.1 minimal)
+<h4>Practical Example using Linux commands</h4>
+1) Download an ISO file (e.g. Almalinux 9.1 minimal)
 <br>
 wget https://almalinux.mirror.garr.it/9/isos/x86_64/AlmaLinux-9.1-x86_64-minimal.iso
 <br>
@@ -177,9 +175,12 @@ wget https://almalinux.mirror.garr.it/9/isos/x86_64/CHECKSUM
 <br>
 3) verify if the checksum of the downloaded file matches the one declared by the publisher in the CHECKSUM file
 <br>
-# The command "sha256sum AlmaLinux-9.1-x86_64-minimal.iso" calculates the checksum of the file with SHA256 Algorithm, when a command is used within $() its output is encapsulated and can be prodided to another command
+# The command "sha256sum AlmaLinux-9.1-x86_64-minimal.iso" calculates the checksum value of the file with SHA256 Algorithm,
 <br>
-# The command grep is used then to search the matching pattern using regex, that is the calculated checksum value, within the CHECKSUM text file
+because when a command is used within $() its output/value is encapsulated and usable by the next command in the pipeline (using pipe | ).
+<br>
+<br>
+# The command grep is then used to search the checksum value within the CHECKSUM text file. 
 <br>
 grep $(sha256sum AlmaLinux-9.1-x86_64-minimal.iso) CHECKSUM 
 <br>
@@ -189,7 +190,9 @@ The output of the command confirms that the value is found in the CHECKSUM file:
 CHECKSUM:SHA256 (AlmaLinux-9.1-x86_64-minimal.iso) = 3eebd50aabe93b9cbea3937dcf5e1d893e397a36de128ae60a8d46ff048fa0d6
 <br>
 <br>
-If there is no output, it means that the calculated checksum value is not found in the CHECKSUM file, this can mean that the downloaded file is corrupted, incomplete or altered, or there's something wrong in the command.
+If there is no output, the calculated checksum value is not found in the CHECKSUM file, this can mean that the downloaded file is corrupted, incomplete or altered.
+<br>
+...or that there's something wrong in the command/parameters used.
 <br>
 <br>
 <hr>
@@ -200,6 +203,7 @@ If there is no output, it means that the calculated checksum value is not found 
 <a href="https://linuxcram.github.io/03_distros.html">[03_distros]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
