@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 10_streams</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -46,13 +51,16 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="09_basics">10_streams</p></b>
-<b>Standard IN Standard OUT Standard ERROR</b>
-<br>
+<h4>Standard IN Standard OUT Standard ERROR</4>
 The stdin, stdout, and stderr are three data streams created when a Linux command is run.
+<br>
 We can use them to know if scripts are being piped or redirected.
 <br>
-In Linux a unique number is allocated to each file associated to a process, this is the mechanism of the file descriptor that is used to identify files in order to perform operations on them.
+In Linux a unique number is allocated to each file associated to a process.
+<br>
+This is the mechanism of the file descriptor that is used to identify files in order to perform operations on them.
+<br>
+<br>
 The values assigned to stdin, stdout, and stderr are:
 <br>
 0: stdin
@@ -65,7 +73,7 @@ The values assigned to stdin, stdout, and stderr are:
 We can explicitly redirect stdout using the redirection:
 <br>
 1&gt;
-ls -l . 1&gt; ls_pwd.txt
+ls -l . 1&gt; ls-l_pwd.txt
 <br>
 <br>
 We can explicitly redirect stderr using the redirection:
@@ -74,9 +82,9 @@ We can explicitly redirect stderr using the redirection:
 <br>
 ls -l /rooot 2&gt; error.log
 <br>
-# there is no output on display
 <br>
-# we can read the error output that has been written to the file
+There will be no output on display because the error output that has been written to the file error.log.
+<br>
 <br>
 cat error.log 
 <br>
@@ -85,22 +93,27 @@ ls: cannot access '/rooot': No such file or directory
 <br>
 To redirect both stdout and stderr at the same time, we can direct stdout to a file and stderr to another file
 <br>
-ls -l . /rooot 1> ls_pwd.txt 2> error.log
+<br>
+ls -l . /rooot 1> ls-l_pwd.txt 2> error.log
 <br>
 <br>
 We can also redirect stdout and stderr to the same File
 <br>
-ls -l . /rooot > ls_pwd_rooot.txt 2>&1
+ls -l . /rooot > ls-l_pwd_rooot.txt 2>&1
 <br>
 <br>
-<b>Special devices in Linux</b>
 <br>
+<h4>Special devices in Linux</h4>
 Linux provides software devices (dummy devices)
 <br>
 <br>
 /dev/urandom /dev/zero /dev/null that are designed to generate or receive
 <br>
+<br>
 /dev/zero generates an infinite output flow of "0" values, it can be used to create files with no data and of the required size.
+<br>
+<br>
+Examples:
 <br>
 <br>
 dd if=/dev/zero of=zero.txt bs=1024 count=1
@@ -110,10 +123,12 @@ dd if=/dev/zero of=zero.txt bs=1024 count=1
 <br>
 1024 bytes (1.0 kB, 1.0 KiB) copied, 0.000474644 s, 2.2 MB/s
 <br>
-# the file zero.txt is full of 0 and weighs 1024Bytes, the file does not have actually readable contents
+<br>
+The file zero.txt is full of 0 and weighs 1024Bytes, the file does not have actually readable contents
 <br>
 <br>
 <b>Bash provides the $RANDOM variable</b>
+<br>
 <br>
 echo $RANDOM
 <br>
@@ -134,8 +149,11 @@ for i in {1..5}; do echo $RANDOM; done
 <br>
 <br>
 The special devices /dev/random and /dev/urandom provide an interface to the kernel’s random number generator,
-it is suggested to use /dev/urandom because /dev/random blocks when it runs out of entropy causing
+<br>
+it is suggested the use of /dev/urandom because /dev/random blocks when it runs out of entropy causing
+<br>
 halt of process execution, while /dev/urandom will never block.
+<br>
 <br>
 dd if=/dev/urandom of=urandom.txt bs=1024 count=1
 <br>
@@ -145,7 +163,9 @@ dd if=/dev/urandom of=urandom.txt bs=1024 count=1
 <br>
 1024 bytes (1.0 kB, 1.0 KiB) copied, 0.000353456 s, 2.9 MB/s
 <br>
-# the file urandom.txt is full of binary charactes and weighs 1204Bytes, the file does not have actually readable contents unless we use commands like:
+<br>
+The file urandom.txt is full of binary charactes and weighs 1204Bytes, the file does not have actually readable contents unless we use commands like:
+<br>
 <br>
 hexdump -C urandom.txt | less
 <br>
@@ -154,7 +174,8 @@ hexdump -C urandom.txt | less
 od -A x -t x1z -v urandom.txt | less
 <br>
 <br>
-/dev/null is a device that works like a black hole, it can be used to create files with zero size
+/dev/null is a device that could be imagined like a black hole, it can be used to create files with zero size.
+<br>
 <br>
 dd if=/dev/null of=null.txt bs=1024 count=1
 <br>
@@ -169,7 +190,9 @@ The file null.txt is full of nothing and weighs 0Bytes, the file does not have a
 <br>
 <br>
 We can use the /dev/null device to create files but it's more frequent its use for unwanted output redirection,
+<br>
 since everything sent to /dev/null disappear into the void and it is not displayed.
+<br>
 <br>
 ls -l . &gt; /dev/null
 <br>
@@ -189,6 +212,7 @@ cat text1.txt &gt; /dev/null 2&gt;&amp;1
 <br>
 # no output
 <br>
+<br>
 date > /dev/null 2&gt;&amp;1
 <br>
 # no output
@@ -202,6 +226,7 @@ date > /dev/null 2&gt;&amp;1
 <a href="https://linuxcram.github.io/11_commands.html">[11_commands]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
