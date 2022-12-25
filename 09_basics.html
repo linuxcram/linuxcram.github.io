@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 09_basics</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -46,47 +51,61 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="09_basics">09_basics</p></b>
-<b>BASH Scripting basics</b>
-<br>
-<br>
-<b>Shebang</b>
-<br>
+<h3>BASH Scripting basics</h3>
+<h4>Shebang</h4>
 The shebang is the character sequence #! at the beginning of a script, aka sharp-exclamation, sha-bang, hashbang, pound-bang, hash-pling.
+<br>
 <br>
 syntax #!interpreter [optional-arg]
 <br>
 <br>
 The shebang is required to be placed in the first line of a bash script, it's meant to specify the interpreter to be used for the script.
-In Linux we will find and use the shebang that execute the file using the Bash shell intepreter 
+<br>
+In Linux we will find and use the shebang that execute the file using the Bash shell intepreter.
 <br>
 #!/bin/bash
 <br>
 <br>
-#!/usr/bin/env bash  is an alternative shebang that finds and use the bash executable path from the user environment variable, in this case it is the same of #!/bin/bash but on some systems it may be different
+#!/usr/bin/env bash  is an alternative shebang that finds and use the bash executable path from the user environment variable,
+<br>
+in this case it is the same of #!/bin/bash but on some systems it may be different
+<br>
 <br>
 [student@linux ~]$ env | grep SHELL
+<br>
 SHELL=/bin/bash
 <br>
 <br>
-No extension is required for Bash Script File when you specify Hash Bang #!/bin/bash as the first line of code, but it's best practice to provide the extension to script files so that they are easily recognizaable.
 <br>
-eg. script.sh  script.bash
+No extension is required for Bash Script File when you specify Hash Bang #!/bin/bash as the first line of code,
 <br>
-There is no functional difference between these extension because the interpreter is defined by the shebang in the first line of each script that will be   #!/bin/bash
+but it's best practice to provide the extension to script files so that they are easily recognizaable.
+<br>
+The extension to choose usually depends on the standard in use on a system/environment/framework.
+<br>
+# script.sh
+<br>
+# script.bash
 <br>
 <br>
-<b>Assign executable permission to the script</b>
+There is no functional difference between these extension because the interpreter is defined by the shebang
 <br>
+in the first line of each script that will be the same #!/bin/bash
+<br>
+<br>
+<br>
+<h4>Assign executable permission to the script</h4>
 Linux recognize the file types reading their header's code, relying on the file content
+<br>
 <br>
 Applications can detect and use specific files extensions (.list, .repo, .gz, .tar), humans too use extensions to recognize the file types with ease.
 <br>
+<br>
 It's common use to name text files .txt , scripts .sh or .bash , logfiles .log and so on.
 <br>
-Script files require executable permissions to be run, the command to obtain this is chmod.
 <br>
-eg.
+Script files require executable permissions to be run and the command to obtain this feature is called chmod.
+<br>
 <br>
 chmod u+x script.sh  script.bash
 <br>
@@ -95,82 +114,87 @@ chmod 755 script.sh
 chmod 775 script.bash
 <br>
 <br>
-<b>Notes about Linux permissions</b>
 <br>
+<h4>Notes about Linux permissions</h4>
 Linux adopts the octal permission system to set permissions of files and directories, based on binary values from 000 (---) to 777 (rwx):
+<br>
 <br>
 Octal permissions are defined in 3 blocks:
 <br>
-- the user that is owner of the file/directory
+- the <b>user</b> that is owner of the file/directory
 <br>
-- the group that is owner of the file/directory
+- the <b>group</b> that is owner of the file/directory
 <br>
-- all other users
+- all <b>other</b> users
 <br>
 <br>
-A file with 777 permissions will let all users read, write and execute it, to check the permissions of files and directories,
 <br>
-we can use ls -l of the desired path, to display the long listing format of the contents, including the owner and the group of the owner:
+A file with 777 permissions will let all users read, write and execute it.
+<br>
+To check the permissions of files and directories, we can use ls -l (option to use a long listing format, see man ls) of the desired path,
+<br>
+the owner and the group of the owner will be shown together with permissions, type, size, modification/creation date and time:
 <br>
 [student@linux ~]$ ls -l
 <br>
--rw-rw-r--. 1 student student 28445 Dec  6 10:29 centos
+-rw-rw-r--. 1 student student 28445 Dec  6 10:29 test.txt
 <br>
 -rwxrw-r--. 1 student student    99 Dec 12 12:58 script.sh
 <br>
 <br>
-The three octets are:
+The three octets that compose the permissions set are:
 <br>
 User - UserGroup - Other users
 <br>
 rwx &nbsp;&nbsp; - &nbsp;&nbsp; rwx - &nbsp;&nbsp; rwx
 <br>
 <br>
-Octal permissions representation in binary, base10 and text:
+Octal permissions representation in base2 (binary), base10 (decimal) and text:
+<pre>
+base-2  base-10  text
+111     7       rwx
+110     6       rw-
+101     5       r-x
+100     4       r--
+011     3       -rx
+010     2       -w-
+001     1       --x
+000     0       ---
+</pre>
 <br>
-binary  base10  text
+To be executable a file must have permissions "x" for the user or group that run it.
 <br>
-111&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;&nbsp;rwx
-<br>
-110&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;&nbsp;rw-
-<br>
-101&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;r-x
-<br>
-100&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;r--
-<br>
-011&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;rx
-<br>
-010&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;-w-
-<br>
-001&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;--x
-<br>
-000&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;---
+If it's planned to run a file with the current user, it's enough to apply the relative permission since the user is owner of the file.
 <br>
 <br>
-A file to be executable must have permissions "x" for the user or group that will require to run it.
-If I am planning to run a file with my user, it's enough to apply the relative permission
-chmod u+x since my user is owner of this file.
+chmod u+x script.sh
 <br>
 -rwxrw-r--. 1 student student    99 Dec 12 12:58 script.sh
 <br>
-The absolute command for the same permissions is chmod 764 script.sh
+<br>
+The absolute command option for the same permissions is chmod 764 script.sh
 <br>
 <br>
-If other users must be enabled to run the script, chmod o+x will be used to set executable permissions to all users
+If other users must be enabled to run the script, chmod o+x could be used to set executable permissions to all users.
+<br>
+chmod u+x script.sh
 <br>
 -rwxrw-r-x. 1 student student    99 Dec 12 12:58 script.sh
 <br>
-The absolute command for the same permissions is chmod 765 script.sh
+<br>
+The absolute command option for the same permissions is chmod 765 script.sh
 <br>
 <br>
 If the chmod command is used to add permissions with + operator, without specifying u,g or o the permission is assigned to all three octets (User,Group,Owner).
+<br>
 <br>
 chmod +x script.sh
 <br>
 -rwxrwxr-x. 1 student student   222 Dec 12 15:43 script.sh
 <br>
 <br>
-The inverted behavior is obtaine using the - sign, that removes permissions, if present for the contents.
+The inverted behavior is obtained using the - sign, that removes permissions, if present for the contents, otherwise they will remain unchanged.
+<br>
 <br>
 chmod -x script.sh
 <br>
@@ -179,10 +203,10 @@ chmod -x script.sh
 <br>
 The same permissions of a file can be applied to another using the specific option provided by chmod.
 <br>
+<br>
 chmod --reference=checkyearcase.sh script.sh
 <br>
 This command will assign the same permissions of the reference file to the destination file.
-<br>
 <br>
 <br>
 <hr>
@@ -193,6 +217,7 @@ This command will assign the same permissions of the reference file to the desti
 <a href="https://linuxcram.github.io/10_streams.html">[10_streams]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
