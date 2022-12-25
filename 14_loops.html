@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - 14_loops</title>
 <style type="text/css">
 header {
-    width: 960px;
+    width: 100%;
 }
 body {
   background: #333333;
-  color: #cccccc;
+  color: #f2f2f2;
+  font-size: 14px;
   font-family: monospace;
   text-align: left;
+  line-height: 1.3;
   margin: 0;
-  border: 100px solid transparent;
+  border: 20px solid transparent;
 }
 a:link {
   color: #ff6000;
@@ -32,8 +37,6 @@ hr {
   border: none;
 }
 </style>
-<head>
-<title>linuxcram.github.io - 14_loops</title>
 </head>
 <body>
 <center>
@@ -46,9 +49,7 @@ linuxcram.github.io
 </center>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <hr>
-<b><p id="14_loops">14_loops</p></b>
-<b>Common loops in programming languages</b>
-<br>
+<h4>Common loops in programming languages</h4>
 The loop constructs are common programming building blocks that allow us to repeat the execution of a section of code through an iteration.
 <br>
 <br>
@@ -64,11 +65,10 @@ The condition-controlled loop repeats the execution of a section of code until a
 The infinite loop repeats the execution of a section of code forever or until an exception arises. This loop often uses a while true loop construct and is sometimes called an endless loop or a forever loop.
 <br>
 <br>
-<b>BASH LOOPS</b>
 <br>
+<h3>BASH LOOPS</h3>
 <br>
-<b>For Loop</b>
-<br>
+<h4>For Loop</h4>
 for i in {1..3}; do echo $i; done
 <br>
 # or
@@ -92,8 +92,7 @@ the range is represented numerically starting from 0, using the incremental func
 x&lt;5 represents the limit condition that will interrupt the for cycle, until this condition is true the incremental function will be applied, and echo will get the value of x as argument, when the condition x=5 is reached the cycle is terminated
 <br>
 <br>
-<b>While Loop</b>
-<br>
+<h4>While Loop</h4>
 x=1; while (( x &lt;= 5 )); do echo $((x++)); done
 <br>
 <br>
@@ -101,12 +100,12 @@ x is the arbitrary name of the variable
 the incremental funtion will be applied until the condition is reached, that means that x is incremented by 1 unit while its value satisfy the condition x &lt;= 5, and its value is printed on screen by echo, when the limit value is reached with x=6 the cycle is terminated
 <br>
 <br>
-<b>Until Loop</b>
-<br>
+<h4>Until Loop</h4>
 x=3; until (( x &lt;= 0 )); do echo $((x--)); done
 <br>
 <br>
 x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x<=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
+<br>
 <br>
 <br>
 <b>Warning</b>
@@ -126,11 +125,10 @@ Endless loops examples - commented out because not meant to be never used!
 # until false; do echo "infinite loop"; done
 <br>
 <br>
-<b>Conditional Statements</b>
 <br>
+<h3>Conditional Statements</h3>
 <br>
-<b>If</b>
-<br>
+<h4>If</h4>
 The if statement is a conditional expression, that evaluates the result of the command based on the exit status.
 <br>
 <br>
@@ -202,6 +200,7 @@ else
 fi
 <br>
 <br>
+<br>
 Nested if statements perform a first if check of a condition that if satisfied passes to a the next check.
 <br>
 if [ <condition> ]
@@ -219,8 +218,7 @@ then
 fi
 <br>
 <br>
-<b>Case</b>
-<br>
+<h4>Case</h4>
 The bash case statement can simplify complex conditionals when we have multiple different choices.
 <br>
 The case statement can be used to replace nested if statements to produce bash scripts more readable and easier to maintain.
@@ -258,41 +256,23 @@ esac
 <br>
 <br>
 <br>
-<b><i>Example</i></b>
+<h4><i>Example</i></h4>
+script checkday.sh
 <br>
-checkday.sh
-<br>
-<br>
+<pre>
 #!/bin/bash
-<br>
 # define current weekday
-<br>
 day=$(date +"%a")
-<br>
 # case statement to check if today is a weekday or a weekend day and print the corresponding result
-<br>
 case $day in 
-<br>
   Mon | Tue | Wed | Thu | Fri)
-<br>
-    echo "Today is a weekday"
-<br>
-    ;;
-<br>
+    echo "Today is a weekday";;
   Sat | Sun) 
-<br>
-    echo "Today is weekend"
-<br>
-    ;;
-<br>
+    echo "Today is weekend";;
   *)
-<br>
-    echo "Error: current day is not defined"
-<br>
-    ;; 
-<br>
+    echo "Error: current day is not defined";;
 esac
-<br>
+</pre>
 <br>
 # set executable permissions for the current user
 <br>
@@ -317,6 +297,7 @@ Today is a weekday
 <a href="https://linuxcram.github.io/15_scripts.html">[15_scripts]</a>
 </p>
 </center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
 </html>
