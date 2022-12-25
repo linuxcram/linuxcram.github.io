@@ -80,14 +80,17 @@ This program is represented by a single command with an explicit terminator
 Hello world
 <br>
 <br>
-<b>Commands separators and Exit codes</b>
-<br>
-The ; Command separator allows to execute multiple commands sequentially on a single line, each command is executed regardless of the outcome of the previous command.
+<h4>Commands separators and Exit codes</h4>
+; is a command separator that allows to execute multiple commands sequentially on a single line, each command is executed regardless of the outcome of the previous command.
 <br>
 eg. ls -l; free -h; ls -l /rooot; date
 <br>
 <br>
-The &amp;&amp; command separator that will let the second command run, only if the first one runs without errors.
+&amp;&amp; is a command separator that will let the second command run, only if the first one runs without errors.
+<br>
+eg. ls -l; free -h; ls -l /rooot; date
+<br>
+# the last command run will be free -h because the /rooot path does not exist and ls will produce an exit code of error that breaks the chain.
 <br>
 <br>
 The exit code value of 0 means without errors, and it can be checked executing "echo $?" after a command to display its exit code.
