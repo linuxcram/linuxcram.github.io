@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - exercise_02</title>
+<style type="text/css">
+header {
+    width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[exercise_02]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<h3>Exercise_02</h3>
+Create a script named webcheck.bash that logs the required information in a logfile named webcheck_DATE.log,
+<br>
+BUT instead of the word DATE there will be the date of execution in format YYYYmmdd_HHMMSS.
+<br>
+<br>
+The scripts must use the curl command to check the following URLs on the default HTTP port (TCP port 80):
+<br>
+garr.it
+<br>
+google.com
+<br>
+<br>
+<br>
+All the curl commands must follow the redirects if present, use silent mode, and get only the header, not the content of the URLs.
+<br>
+<br>
+The script will contains empty lines when required, to improve its readability.
+<br>
+<br>
+The script must wait 1 second between any curl command.
+<br>
+<br>
+All output should be redirected to the logfile, none to the display, use 2>&1
+<br>
+<br>
+<br>
+The script must execute the following tasks, all the entries must be appended/added to the logfile following the given order:
+<br>
+- define the start of the run time
+<br>
+- display on screen "Script running, please wait..." while the script is running
+<br>
+- write "--------------------------" as the first line of the log
+<br>
+- write in the logfile "START: " followed by the time of start in format YYYY-mm-dd_HH-MM-SS
+<br>
+<br>
+- for each URL the script must:
+<br>
+&nbsp;&nbsp;write an empty line in the logfile
+&nbsp;&nbsp;write to logfile "URL: host:port" containing host and port of the URL
+&nbsp;&nbsp;get the last HTTP reply code received and write it in the logfile, eg. HTTP/1.1 200 OK
+&nbsp;&nbsp;write an empty line in the logfile
+<br>
+- write in the logfile "END: " followed by the end of run time in format YYYY-mm-dd_HH-MM-SS
+<br>
+- write "--------------------------" as the last line of the log
+<br>
+<br>
+After that all the tasks have been completed, the script must display on screen:
+<pre>
+"Script executed successfully. Logfile is: "
+</pre>
+<br>
+followed by the file name of the logfile, and finally the script must exit with exit code 0.
+<br>
+<br>
+<i>
+Suggestion: try to run the script using bash -n, bash -v, bash -x to check syntax and perform debug operations.
+</i>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/">HOME</a>
+</p>
+</center>
+<br>
+</body>
+</html>
