@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - exercise_01</title>
+<style type="text/css">
+header {
+    width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[exercises]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<h3>Exercise_01</h3>
+In the current user home directory (short name homedir), create a bash script called sysinfo.sh.
+<br>
+<br>
+The main part of the script will be placed within a conditional cycle that will check if the script is run inside the homedir.
+<br>
+If the script is run outside of the homedir, without further actions the script must display the words
+<br>
+"Error: this script should be run only in the current user home directory. Exiting."
+<br>
+and then the script must exit with error code 1.
+<br>
+<br>
+<h4></i>
+Only if the script is executed inside the homedir, it will perform the following tasks.
+</i></h4>
+<h4>Tasks</h4>
+- define the output file name, that is our logfile, naming it sysinfo_DATE.log
+<br>
+BUT, instead of the word DATE, the filename should contain the current date in format YYYYmmdd_HHMMSS
+<br>
+<br>
+(This kind of output filename contains the timestamp up to the seconds, making the file existence check skippable because if is not expected to run the script more than once within the same second).
+<br>
+<br>
+- The script must create 5 empty files named testfile followed by their ID (eg. testfile1, testfile2, ...) in the homedir, after that the script is executed these 5 files must be deleted. 
+<br>
+<br>
+- The script must create the following directory structure (still working in the current user home directory) where subdirectories are represented with indented lines
+<pre>
+systems
+  test
+    sys
+      01
+      02
+      03
+    srv
+      04
+      05
+      06
+  dev
+    sys
+      01
+      02
+      03
+    srv
+      04
+      05
+      06
+    app
+      10
+      12
+      15
+  prod
+    sys
+      01
+      02
+      03
+    srv
+      04
+      05
+      06
+    app
+      10
+      12
+      15
+</pre>
+- The script must place, within the newly created directory structure, a copy of testfile1 in all 01 directories , of testfile2 in all 02 directories, same for 3,4,5.
+The script must create a file named id.txt containing the string "id: " , followed by "10" in the directory 10, same for all directories named 12 and 15.
+<br>
+<br>
+- The script must add the following information and data to the logfile previously set, appending the required lines and respecting this exact order:
+<br>
+- 5 times the char # at the beginning of the file
+<br>
+- the current date with the format YYYY-mm-dd_HH:MM:SS
+<br>
+- the text "Hostname:" followed by the current system hostname
+<br>
+- the text "Operating System:" followed by the operating system name and version 
+<br>
+- the text "IP address:" followed exactly by the IP address of the main NIC, without any other information (excluding subnets, CIDR, eg. excluded /24 and NIC names... only the IP)
+<br>
+- the text "Free Memory:" followed by only the amount of free RAM memory on the system shown in "Gi" (human readable) format
+<br>
+- the words "Run time:" followd by the time of execution of the script (the duration between start and end of the script execution
+<br>
+- 5 times the char # at the end of the file
+<br>
+<br>
+Once that all the tasks have been completed, the script must display on screen "Script executed successfully. Logfile is: " , followed by the file name of the logfile, and finally it must exit with exit code 0.
+<br>
+<br>
+<br>
+The script must be executable and located in the homedir, to check if the conditional statement interrupts the script when run outside of the homedir, it can be copied and executed for test from another location on the file systems, eg. /tmp.
+<br>
+<br>
+<br>
+<i>
+Suggestion: try to run the script using bash -n, bash -v, bash -x to check syntax and perform debug operations.
+</i>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/">HOME</a>
+</p>
+</center>
+<br>
+</body>
+</html>
