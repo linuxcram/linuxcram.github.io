@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - exercise_03</title>
+<style type="text/css">
+header {
+    width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[exercise_03]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<h3>Exercise_03</h3>
+Create a script named ports.sh that performs the following tasks:
+<br>
+<br>
+- download, naming the output file name portslist.txt, the content of the web page at the URL: https://www.meridianoutpost.com/resources/articles/well-known-tcpip-ports.php
+<br>
+<br>
+- generate a new file names portstable.txt, that will contain only the code of the html table showing the ports and their information, from 0 to 995
+<br>
+<pre>
+Hint: this file must contain from the first line <td>0</td>
+to the first encountered line containing </tr> that is placed after the line <td>995</td>
+</pre>
+<br>
+- generate a file named ports.csv that contains only the lines containing ports and related information, corresponding to the following fields of the file portstable.txt separated only by #:
+<br>
+Port number#Protocol type(s)#Description#Official/Unofficial/-#
+<br>
+<br>
+eg.
+<br>
+53#TCP, UDP#DNS (Domain Name System)#Official#
+<br>
+80#TCP#HTTP (HyperText Transfer Protocol) - used for transferring web pages#Official#
+<br>
+411#TCP#Direct Connect Hub port#Unofficial#
+<br>
+513#UDP#Who#-#
+<br>
+<br>
+<i>
+BONUS: When done, transfer a copy of the file ports.csv to the local pc and open the file with a worksheet application, choosing the char # as field separator.
+</i>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/">HOME</a>
+</p>
+</center>
+<br>
+</body>
+</html>
