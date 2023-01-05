@@ -88,13 +88,13 @@ The script must execute the following tasks, all the entries must be appended/ad
 <br>
 <br>
 - for each URL the script must:
-<br>
-&nbsp;&nbsp;write an empty line in the logfile
-&nbsp;&nbsp;write to logfile "URL: host:port" containing host and port of the URL
-&nbsp;&nbsp;get the last HTTP reply code received and write it in the logfile, eg. HTTP/1.1 200 OK
-&nbsp;&nbsp;write an empty line in the logfile
-<br>
-- write in the logfile "END: " followed by the end of run time in format YYYY-mm-dd_HH-MM-SS
+<pre>
+    write an empty line in the logfile
+    write to logfile "URL: host:port" containing host and port of the URL
+    get the last HTTP reply code received and write it in the logfile, eg. HTTP/1.1 200 OK
+    write an empty line in the logfile
+</pre>
+- then the script must write in the logfile "END: " followed by the end of run time in format YYYY-mm-dd_HH-MM-SS
 <br>
 - write "--------------------------" as the last line of the log
 <br>
