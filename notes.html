@@ -51,6 +51,16 @@ linuxcram.github.io
 <hr>
 <h3>Virtual Machine notes and hints</h3>
 <br>
+</h4>This is not a tutorial</h4>
+<br>
+It's recommended to refer always to the official documentation of systems before doing any task.
+<br>
+<br>
+The following list of commands and istructions is provided "as is" without any kind of warranty.
+<br>
+Do not use any of them if unsure to avoid damage and breaking systems!
+<br>
+<br>
 <h4>AlmaLinux 9.1</h4>
 <i>Post-install common tasks for academic purpose</i>
 <br>
@@ -58,6 +68,7 @@ hostname: linuxbox
 <br>
 user: root
 <br>
+If a student user has not been created during the installation, or if the user lacks sudo privileges, some steps may be required.
 <pre>
 # Disable firewalld service
 systemctl disable firewalld
@@ -68,15 +79,12 @@ SELINUX=enforcing
 #with
 SELINUX=disabled
 
-# If a student user has not been created during the installation or
-# if the user lacks sudo privileges some steps may be required
-
 # add student user if not existing
 useradd -m -s /bin/bash student
 
 # set password for student
 passwd student
-# enter password and repeat to confirmm
+# enter password and repeat it to confirmm
 
 # provide sudo privileges to the user if not already assigned
 # create (with vi) a file (eg. sudo) to grant sudo privileges to student user
