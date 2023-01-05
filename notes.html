@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - notes</title>
+<style type="text/css">
+header {
+    width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[notes]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<h3>Virtual Machine notes and hints</h3>
+<br>
+<h4>AlmaLinux 9.1</h4>
+<i>Post-install common tasks for academic purpose</i>
+<br>
+hostname: linuxbox
+<br>
+user: root
+<br>
+<pre>
+# Disable firewalld service
+systemctl disable firewalld
+
+# Edit /etc/selinux/config
+#change
+SELINUX=enforcing
+#with
+SELINUX=disabled
+
+# If a student user has not been created during the installation or
+# if the user lacks sudo privileges some steps may be required
+
+# add student user if not existing
+useradd -m -s /bin/bash student
+
+# set password for student
+passwd student
+# enter password and repeat to confirmm
+
+# provide sudo privileges to the user if not already assigned
+# create (with vi) a file (eg. sudo) to grant sudo privileges to student user
+vi /etc/sudoers.d/sudo
+student	ALL=(ALL)	NOPASSWD: ALL
+
+# Check that all the network interfaces are active
+ip a
+# same as
+ip address
+
+# take note of the IP to get connected from the host, usually begins with 192.168
+# for NAT networks the standard name of the connection is enp0s8
+# for BRIDGED networks the standard name of the connection is enp0s3
+
+# Enable sshd service
+systemctl enable sshd
+
+# reboot
+
+################
+Login as student
+
+# Pakage manager - DNF
+# yum was deprecated and replaced by dnf with Fedora22, RHEL8, CentOS8 (Almalinux9.1 uses dnf too)
+
+# Perform an initial update of all packages
+sudo dnf update -y
+# or call dnf using the yum legacy command (same as using dnf)
+sudo yum update -y
+
+# Check that the package manager works
+sudo dnf search vim
+
+# Install required packages for bash scripting tutorials and exercise
+sudo dnf install -y vim wget
+
+
+# COMMAND to turn off the vm #
+sudo shutdown -h now
+</pre>
+<br>
+<br>
+<h4>Ubuntu 22.04</h4>
+<i>Post-install common tasks for academic purpose</i>
+<br>
+hostname: linuxbox2
+<br>
+user: student
+<br>
+<pre>
+# Disable cloud-init (avoid its related messages)
+sudo touch /etc/cloud/cloud-init.disabled
+
+# Disable firewalld service
+sudo systemctl disable ufw
+
+# Disable apparmor service
+sudo systemctl disable apparmor
+
+# sudo reboot
+
+################
+Login as student
+
+# Pakage manager - APT
+# apt provides fewer options than apt-get and it's aimed by Debian to be "pleasant for end users" for pakages management
+
+# Perform an initial update of all packages
+sudo apt update -y
+# or with apt-get
+sudo apt-get update -y
+
+# Check that the package manager works
+sudo apt search vim
+
+# Set vim as default text editor
+sudo update-alternatives --config editor
+# enter the number (default is 3) corresponding to /usr/bin/vim.basic
+3
+
+# Check that all the network interfaces are active
+ip a
+# same as
+ip address
+
+# take note of the IP to get connected from the host, usually begins with 192.168
+# for NAT networks the standard name of the connection is enp0s8
+# for BRIDGED networks the standard name of the connection is enp0s3
+
+# Enable sshd service
+sudo systemctl enable sshd
+
+
+# COMMAND to turn off the vm #
+sudo shutdown -h now
+</pre>
+<br>
+<br>
+</h4>### SSH CONNECTION TO THE VM ###</h4>
+SSH (Secure Shell) is a network protocol that provides access to remote computers in a secure way.
+<br>
+<br>
+Guest Virtual Machine example data 
+<br>
+hostname: linuxbox
+<br>
+user: student
+<br>
+IP: 192.168.56.5
+<br>
+<br>
+<b>--- SSH connection from Linux host ---</b>
+<pre>
+- Open terminal
+- Type
+  ssh student@192.168.56.5
+- when requested, type the password for student
+
+# The prompt will change to
+[student@linuxbox &tilde;]$
+</pre>
+<br>
+<br>
+<b>--- SSH connection from Windows host ---
+<br>
+An SSH Client software is suggested, a popular free SSH client is <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PUTTY</a>.
+</b>
+<br>
+Available for Windows 64bit as msi package, the first entry after #MSI ('Windows Installer') 64-bit x86 #
+<br>
+<br>
+Example for SSH connection with Putty:
+<pre>
+- Open the SSH client software (Putty)
+- Type the IP address 192.168.56.5 in the field "Host name or IP address"
+- at the Login type student
+- when requested, type the password for student
+
+# The prompt will be similar to
+[student@linuxbox &tilde;]$
+<pre>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/">HOME</a>
+</p>
+</center>
+<br>
+</body>
+</html>
