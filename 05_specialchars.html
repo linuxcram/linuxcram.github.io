@@ -70,10 +70,10 @@ Certain characters:
 <br>
 <br>
 <h4>Special Characters and Description</h4>
-\ Escape character.  Special characters require to be "escaped" with a backslash to be referenced. Eg. # touch test\* # will create a file named test* 
+\ Escape character.  Special characters require to be "escaped" with a backslash to be referenced, eg. # touch test\* # will create a file named test* 
 <br>
 <br>
-/ Directory separator, used to separate a string of directory names.Example: /usr/src/linux
+/ Directory separator, used to separate a string of directory names, eg. /usr/local/bin
 <br>
 <br>
 . Current directory.  Can also "hide" files when it is the first character in a filename
@@ -85,31 +85,31 @@ Certain characters:
 &tilde; User's home directory
 <br>
 <br>
-* Represents 0 or more characters in a filename, or by itself, all files in a directory, eg. file*2022 can represent file2022, file01-2022, logfile_01_01_2022
+* Represents 0 or more characters in a filename, or by itself, all files in a directory, eg. file*2022 can represent file2022, file01-2022, file_01_01_2022
 <br>
 <br>
 ? Represents a single character in a filename, eg. file?.txt can represent file1.txt, filez.txt, but not file22.txt
 <br>
 <br>
-[ ] Can be used to represent a range of values, e.g. [0-9], [A-Z], etc. Example: file[0-2].txt represents the names file0.txt, file1.txt, and file2.txt
+[ ] Can be used to represent a range of values, eg. [0-9], [A-Z], etc. eg. file[0-2].txt represents the names file0.txt, file1.txt, and file2.txt
 <br>
 <br>
-| "Pipe".  Redirect the output of one command into another command, eg. # ls | more 
+| "Pipe".  Redirect the output of one command into another command, eg. ls | more 
 <br>
 <br>
-&gt; Redirect output of a command into a new file, if the file already exists, over-write it, eg. # ls &gt; files_list.txt 
+&gt; Redirect output of a command into a new file, if the file already exists, over-write it, eg. ls &gt; files_list.txt 
 <br>
 <br>
-&gt;&gt; Redirect the output of a command onto the end of an existing file, eg. # echo "Italy Rome" &gt;&gt; cities.txt 
+&gt;&gt; Redirect the output of a command onto the end of an existing file, eg. echo "Italy Rome" &gt;&gt; cities.txt 
 <br>
 <br>
-&lt; Redirect a file as input to a program, eg. # more &lt; files_list.txt 
+&lt; Redirect a file as input to a program, eg. more &lt; files_list.txt 
 <br>
 <br>
-; Command separator.  Allows you to execute multiple commands on a single line, eg. # cd /var/log ; less messages
+; Command separator.  Allows you to execute multiple commands on a single line, eg. cd /var/log ; less messages
 <br>
 <br>
-&amp;&amp; Command separator as above, but only runs the second command if the first one finished without errors, eg # cd /var/logs && less messages 
+&amp;&amp; Command separator as above, but only runs the second command if the first one finished without errors, eg. cd /var/logs && less messages 
 <br>
 <br>
 &amp; Execute a command in the background, and immediately get your shell back, eg. find / -name "*.rpm" > /tmp/rpm_files_list.txt &amp;
@@ -130,13 +130,13 @@ $ Expansion - parameter expansion (e.g. $var or ${var}), command substitution (e
 # Comment - at the begin of a line begins a comment that extends to the end of that line, comments are notes used to make scripts understandable and maintanable, comments are not processed as commands
 <br>
 <br>
-= Assignment - assign a value to a variable (e.g. logdir=/var/log/myprog), whitespace is not allowed on either side of the = character
+= Assignment - assign a value to a variable (eg. logdir=/var/log/myprog), whitespace is not allowed on either side of the = character
 <br>
 <br>
 [[ ]] Test - an evaluation of a conditional expression to determine whether it is "true" or "false", tests are used in Bash to compare strings, check the existence of a file, etc
 <br>
 <br>
-! Negate - used to negate or reverse a test or exit status, eg. # ! grep text file; exit $?
+! Negate - used to negate or reverse a test or exit status, eg. ! grep text file; exit $?
 <br>
 <br>
 { } Inline group - commands inside the curly braces are treated as if they were one command, it's convenient to use these when Bash syntax requires only one command without using a function
