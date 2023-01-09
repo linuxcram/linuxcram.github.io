@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - exercise_05</title>
+<style type="text/css">
+header {
+  width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<center>
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[exercise_04]
+</h2>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<hr>
+<h3>Exercise_05</h3>
+Create a Bash script named pkglog_backup.sh, using functions that perform the following backup tasks.
+<br>
+<br>
+<b>NOTES</b>
+All the new files are created in the current directory where the script is executed.
+ALL the original/source files (dnf and apt logfiles) are KEPT without removing or renaming them.
+<br>
+<br>
+Tasks:
+<br>
+- clear the screen
+<br>
+<br>
+- detect the type of package manager log, so that the script can run on AlmaLinux9 or Ubuntu22
+<br>
+<br>
+AlmaLinux9 default package manager (DNF) activity log file:
+<br>
+/var/log/dnf.log
+<br>
+<br>
+Ubuntu22 default package manager (APT) activity log file:
+<br>
+/var/log/apt/term.log
+<br>
+<br>
+- if the systems uses another kind of package manager log, the script must type "Error: OS not supported. Backup failed." and exit with exit code 12
+<br>
+<br>
+- create a tar archive compressed with gzip (MAXIMUM compression level) named with the logfile name followed by the DATE in format _YYYYmmdd_HHMMSS, and with extension tar.gz (the original file is kept as is!)
+<br>
+<br>
+- create a gzip compressed archive (DEFAULT compression level), named with the logfile name followed by the DATE in format _YYYY-mm-dd_HH-MM-SS, and with extension .gz (the original file is kept as is!)
+<br>
+<br>
+- no output expected to be displayed (no error nor messages)
+<br>
+<br>
+- Once that the two archive files have been created successfully, the script must type "Backup files created: " followed by lines showing the name of the archive files just created
+<br>
+<br>
+- finally, if the backup files have been created, the script exits with exit code 0.
+<br>
+<br>
+<h4>
+Always handle with care disruptive commands (eg. rm, mv).
+</h4>
+<br>
+<br>
+<hr>
+<center>
+<p>
+<a href="https://linuxcram.github.io/exercise_04.html">[exercise_04]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/exercises.html">[exercises]</a>
+</p>
+</center>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<br>
+</body>
+</html>
