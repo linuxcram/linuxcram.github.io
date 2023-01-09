@@ -70,6 +70,7 @@ Certain characters:
 <br>
 <br>
 <h4>Character Description</h4>
+<p>
 \ Escape character.  Special characters require to be "escaped" with a backslash to be referenced. Eg. # touch test\* # will create a file named test* 
 <br>/ Directory separator, used to separate a string of directory names.Example: /usr/src/linux
 <br>. Current directory.  Can also "hide" files when it is the first character in a filename
@@ -97,6 +98,7 @@ Certain characters:
 <br>( ) Subshell group - similar to the above but where commands within are executed in a subshell (a new process). Used much like a sandbox, if a command causes side effects (like changing variables), no effect on the current shell
 <br>(( )) Arithmetic expression - with an arithmetic expression, characters such as +, -, *, and / are mathematic operators. They can be used for variable assignments like (( a = 1 + 4 )) as well as tests like if (( a < b ))
 <br>$(( )) Arithmetic expansion - the expression is replaced with the result of arithmetic evaluation, eg. echo "Average: $(( (a+b)/2 ))"
+</p>
 <br>
 <br>
 <br>
