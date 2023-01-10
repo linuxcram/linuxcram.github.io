@@ -152,7 +152,7 @@ $ Expansion - parameter expansion (e.g. $var or ${var}), command substitution (e
 ( ) Subshell group - similar to the above but where commands within are executed in a subshell (a new process). Used much like a sandbox, if a command causes side effects (like changing variables), no effect on the current shell
 <br>
 <br>
-(( )) Arithmetic expression - with an arithmetic expression, characters such as +, -, *, and / are mathematic operators. They can be used for variable assignments like (( a = 1 + 4 )) as well as tests like if (( a < b ))
+(( )) Arithmetic expression - with an arithmetic expression, characters such as +, -, *, and / are mathematic operators. They can be used for variable assignments like (( a = 1 + 4 )) as well as tests like if (( a &lt; b ))
 <br>
 <br>
 $(( )) Arithmetic expansion - the expression is replaced with the result of arithmetic evaluation, eg. echo "Average: $(( (a+b)/2 ))"
