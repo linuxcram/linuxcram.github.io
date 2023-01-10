@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>linuxcram.github.io - 13_samplecode</title>
-<style type="text/css">
+<style>
 header {
   width: 100%;
 }
@@ -39,44 +39,57 @@ hr {
 </style>
 </head>
 <body>
-<center>
+<div style="text-align: center;">
 <img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
 <h2>
 linuxcram.github.io
 <br>
 [13_samplecode]
 </h2>
-</center>
+</div>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<div style="text-align: center;">
+<p>
+<a href="https://linuxcram.github.io/12_hints.html">[12_hints]</a>
+ &lt; &gt; 
+<a href="https://linuxcram.github.io/14_loops.html">[14_loops]</a>
+</p>
+</div>
 <hr>
-<h4>Script creation without manually editing text files</h4>
-Creation of a script, first manually and then with one text block "copy and paste".
+<h3>Scripts creation</h3>
+The creation of a script is a task that consist in creating a text file.
 <br>
-We want to create a script file "script.sh" (more information about scripts in the next sections).
-<br>
-The script should run the two commands that are required in the script, then the script will be deleted automatically.
-<br>
-1) ls text*.txt
-<br>
-2) date
+Sometimes, high levels of confidence bring people to create (short) scripts using one text block "copy and paste".
 <br>
 <br>
-<b>This task can be accomplished in many ways</b>
+In this example we want to create a script file "script.sh" (more information about scripts in the next sections).
 <br>
-we can use ./ meaning that the file is located in the current directory
+</b>The script should run the commands [ text*.txt ; date ] in a directory that contains some files named text1.txt text2.txt text3.txt,
 <br>
-if we omit ./ the result is the same.
+once done the script should be deleted automatically.</b>
 <br>
-since we are planning to write text in the file, its creation can be done by vi itself,
+eg. to quickly create some files in the current path # touch text{1..3}.txt
 <br>
-so the creation of the file with touch can be skipped in this example
 <br>
-touch ./script.sh  # same result of file creation obtained with # touch script.sh
+<b>As usual, this task can be accomplished in many ways</b>
 <br>
+The chars ./ before a path or filename mean that the file is located in the current directory
+<br>
+omitting ./ the result is the same for most commands.
+<br>
+<br>
+Since we are planning to write text in the file, its creation can be done by vi itself, once given the file name as argument to vi,
+<br>
+so the creation of the file with touch can be skipped this is not necessary # touch ./script.sh  # same result of file creation obtained with # touch script.sh
+<br>
+<br>
+Creation of the script:
 <br>
 vi ./script.sh  # since we are working in the current directory it's the same of # vi script.sh
 <br>
-# vi is set to command mode by default, if the file does not exist, a new file is ready for us for editing
+<br>
+# vi is set to command mode by default, if the file does not exist, a new file is created and ready for editing
+<br>
 <br>
 # press i to activate insert mode
 <br>
@@ -107,10 +120,14 @@ rm ./script.sh
 <br>
 <br>
 <br>
-<h4>Same but doing one copy and paste</h4>
-Copying and pasting the following lines will perform the script creation, execution and deletion withoout manually editing any file.
+<h4>Same ...but doing one copy and paste</h4>
+Copying and pasting a block of lines will perform the quick script creation, execution and deletion without manually editing of any file.
 <br>
-Please note that if the strings contain special chars like $ the escape character is required to avoid skipping
+<br>
+<b>This is not the preferred way since the risk of performing unwanted task is high for many reasons.</b>
+<br>
+<br>
+Remember that if the strings contain special chars like $ the escape character is required to avoid skipping
 <br>
 eg. for variables $SHELL we will write \$SHELL
 <br>
@@ -152,13 +169,13 @@ Tue Dec 13 10:47:23 AM CET 2022
 <br>
 <br>
 <hr>
-<center>
+<div style="text-align: center;">
 <p>
 <a href="https://linuxcram.github.io/12_hints.html">[12_hints]</a>
  &lt; &gt; 
 <a href="https://linuxcram.github.io/14_loops.html">[14_loops]</a>
 </p>
-</center>
+</div>
 <h3><a href="https://linuxcram.github.io/">HOME</a></h3>
 <br>
 </body>
