@@ -104,19 +104,14 @@ echo -e "hello"
 <b>Parameters check</b>
 <br>
 Check if all the parametert required by a script are set.
-<br>
+<pre>
 if [ -n "$1" ]; then
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;# command that uses the first parameter
-<br>
+  # command that uses the first parameter
 else
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;echo "Error: first parameter missing."
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;return 10
-<br>
+  echo "Error: first parameter missing."
+  return 10
 fi
-<br>
+</pre>
 <br>
 <b>Identation</b>
 <br>
