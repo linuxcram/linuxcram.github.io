@@ -110,7 +110,7 @@ the incremental funtion will be applied until the condition is reached, that mea
 x=3; until (( x &lt;= 0 )); do echo $((x--)); done
 <br>
 <br>
-x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x<=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
+x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x&lt;=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
 <br>
 <br>
 <br>
@@ -148,11 +148,11 @@ If the statement produces an error, the condition is false and the exit status i
 <br>
 The single bracket represent a test command following the standard POSIX utility available for all shells.
 <br>
-if [ <condition> ]
+if [ CONDITION ]
 <br>
 then
 <br>
-  <commands>
+  COMMANDS
 <br>
 fi
 <br>
@@ -161,47 +161,47 @@ The double-bracket syntax in bash scripts is the best option if portability is n
 <br>
 double-brackets are superior to single-brackets and include adcanced options.
 <br>
-if [[ <condition> ]]
+if [[ CONDITION ]]
 <br>
 then
 <br>
-  <commands>
+  COMMANDS
 <br>
 fi
 <br>
 <br>
 The if else statement includes the definition of different actions based on the output of the condition. 
 <br>
-if [ <condition> ]
+if [ CONDITION ]
 <br>
 then
 <br>
-  <commands>
+  COMMANDS
 <br>
 else
 <br>
-  <commands>
+  COMMANDS
 <br>
 fi
 <br>
 <br>
 The elif clause combined with the if else statement performs multiple conditional checks with different results.
 <br>
-if [ <condition> ]
+if [ CONDITION ]
 <br>
 then
 <br>
-  <commands>
+  COMMANDS
 <br>
-elif [ <condition> ]
+elif [ CONDITION ]
 <br>
 then
 <br>
-  <commands>
+  COMMANDS
 <br>
 else
 <br>
-  <commands>
+  COMMANDS
 <br>
 fi
 <br>
@@ -209,15 +209,15 @@ fi
 <br>
 Nested if statements perform a first if check of a condition that if satisfied passes to a the next check.
 <br>
-if [ <condition> ]
+if [ CONDITION ]
 <br>
 then
 <br>
-    if [ <condition> ]
+    if [ CONDITION ]
 <br>
     then
 <br>
-        <commands>
+        COMMANDS
 <br>
     fi
 <br>
