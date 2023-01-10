@@ -118,7 +118,6 @@ else
 fi
 <br>
 <br>
-
 <b>Identation</b>
 <br>
 The indentation is a number of whitespace chars at the beginning of a line,
@@ -163,6 +162,9 @@ Hello student
 <br>
 <br>
 One space character is the default delimiter in the read command, as defined by the IFS variable determines, this variable sshould not be changed in the user environments to avoid issues or unespected behavior of the CLI.
+<br>
+<br>
+IFS stands for Internal Field Separator or Input Field Separator, and supports custom values for interpreting field termination.
 <br>
 <br>
 eg. script name_state.sh
@@ -214,10 +216,9 @@ The solution proposed is better than
 <br>
 because this last one defects in interpreting leading whitespace, backslashes and last lines.
 <br>
-IFS stands for Internal Field Separator or Input Field Separator, and supports custom values for interpreting field termination.
 <br>
 <br>
-<b>Method</b>
+<h4>Method</h4>
 A good start to build a scripting method consists in defining a standard set of lines that could fit in other scripts, making solutions reusable.
 <br>
 <br>
