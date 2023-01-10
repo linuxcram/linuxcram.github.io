@@ -65,8 +65,7 @@ since the first one searches the bash binary in the user path, while the second 
 The choice usually depends on the standards of a system, policies and common sense.
 <br>
 <br>
-<b>Functions</b>
-<br>
+<h4>Functions</h4>
 Avoid the "function" keyword to keep better bash compatibility.
 <br>
 <br>
@@ -77,7 +76,7 @@ task_name() {
 }
 <br>
 <br>
-# eg.
+# eg. OK
 <br>
 print_hello() {
 <br>
@@ -93,7 +92,7 @@ function task_name() {
 }
 <br>
 <br>
-eg.
+eg. not OK
 <br>
 function print_hello() {
 <br>
@@ -101,8 +100,7 @@ echo -e "hello"
 }
 <br>
 <br>
-<b>Parameters check</b>
-<br>
+<h4>Parameters check</h4>
 Check if all the parametert required by a script are set.
 <pre>
 if [ -n "$1" ]; then
@@ -113,8 +111,7 @@ else
 fi
 </pre>
 <br>
-<b>Identation</b>
-<br>
+<h4>Identation</h4>
 The indentation is a number of whitespace chars at the beginning of a line,
 <br>
 in bash one or more whitespace chars between elements produce the same result.
@@ -141,8 +138,7 @@ The code lines in these pages is often not indented explanations to their point,
 </i>
 <br>
 <br>
-<b>User input</b>
-<br>
+<h4>User input</h4>
 The read command gets the user input and provides options like -p to prompt a string.
 <br>
 <br>
@@ -180,8 +176,7 @@ Name : student
 State : USA
 <br>
 <br>
-<b>Input from file</b>
-<br>
+<h4>Input from file</h4>
 Bash is also able to read contents from files, using loops it's possible to iterate through the lines of a file.
 <br>
 Sometimes this feature is pretty useful to run the same command on multiple arguments picking them from a list.
@@ -214,8 +209,13 @@ because this last one defects in interpreting leading whitespace, backslashes an
 <br>
 <br>
 <br>
-<h4>Method</h4>
+<h3>METHOD</h3>
 A good start to build a scripting method consists in defining a standard set of lines that could fit in other scripts, making solutions reusable.
+<br>
+<br>
+Everybody can try to build their own method following the best practice,
+<br>
+doing research and experimenting with labs to improve the quality of their scripts.
 <br>
 <br>
 Some lines of code could easily used to build a kind of <i>template</i> that could be easily modified, expanded or adapted depending on the needs, this is an example:
@@ -260,9 +260,9 @@ Define a set of rules to keep in mind will be part of our method, the best pract
 - use echo -e to read sequences like \n \t \\ and always enclose echo arguments in ""
 <br>
 <br>
-<b>Practice make perfect</b>
 <br>
-<i>Let's write a script follwing an example of method.</i>
+<h4>Practice make perfect</h4>
+<i>Let's write a script with a method of example. Don't try, do it!</i>
 <br>
 <br>
 Requirements:
