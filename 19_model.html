@@ -202,7 +202,7 @@ echo -e "line1\nline2\nline3" >> list.txt
 <br>
 <br>
 # give echo arguments cycling through the lines of the file
-while IFS="" read -r p || [ -n "$p" ]; do printf '%s\n' "$p"; done < list.txt
+while IFS="" read -r p || [ -n "$p" ]; do printf '%s\n' "$p"; done &lt; list.txt
 <br>
 <br>
 # output
