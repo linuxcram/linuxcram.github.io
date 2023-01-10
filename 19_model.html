@@ -182,6 +182,41 @@ Name : student
 State : USA
 <br>
 <br>
+<b>Input from file</b>
+<br>
+Bash is also able to read contents from files, using loops it's possible to iterate through the lines of a file.
+<br>
+Sometimes this feature is pretty useful to run the same command on multiple arguments picking them from a list.
+<br>
+<br>
+In the example we use a simple echo command, but imagine to have a looong command line with hundreds of arguments to be used on...
+<br>
+...wouldn't be better to automate this process?
+<br>
+<br>
+# create a list file
+<br>
+echo -e "line1\nline2\nline3" >> list.txt
+<br>
+<br>
+# give echo arguments cycling through the lines of the file
+while IFS="" read -r p || [ -n "$p" ]; do printf '%s\n' "$p"; done < list.txt
+<br>
+<br>
+# output
+line1
+line2
+line3
+<br>
+<br>
+The solution proposed is better than
+# while read p; do  echo "$p"; done &lt; list.txt
+<br>
+because this last one defects in interpreting leading whitespace, backslashes and last lines.
+<br>
+IFS stands for Internal Field Separator or Input Field Separator, and supports custom values for interpreting field termination.
+<br>
+<br>
 <b>Method</b>
 A good start to build a scripting method consists in defining a standard set of lines that could fit in other scripts, making solutions reusable.
 <br>
