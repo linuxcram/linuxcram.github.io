@@ -262,7 +262,7 @@ esac
 <br>
 <br>
 <br>
-<h4><i>Example</i></h4>
+<h4><i>Case example</i></h4>
 script checkday.sh
 <br>
 <pre>
@@ -293,6 +293,75 @@ chmod u+x checkday.sh
 # the output of the script, run on a weekday, is:
 <br>
 Today is a weekday
+<br>
+<br>
+<br>
+<h4><i>About if conditions and operators</i></h4>
+The following conditions will return a true value if the corresponding element type exists:
+<pre>
+-f    common regular file
+-d    directory
+-e    any type of file
+-r    readable file
+-w    writable file
+-x    executable file
+-s    file exists and its size is not zero
+-L    symbolic link
+</pre>
+<br>
+Often the best practice is to define the first condition that, if false, would cause failure of next tasks.
+<br>
+<br>
+If the unmet condition compromises the main task, the script often may exit with a custom exit code and a messsage.
+The usage of exit codes add efficiency to scripts (0 for "no errors" , other custom values for "errors").
+<br>
+<br>
+This way, if a required condition for the script is not met, less commands will be executed, saving time and resources.
+<br>
+<br>
+The ! negation is useful to check if a condition is unmet.
+<br>
+<br>
+Examples
+<pre>
+# if element met the condition, execute the operation
+if [ -e test.txt ]
+then
+  cat test.txt
+fi
+
+# if element met all the conditions, execute the operation
+if [ -e test.txt && -r test.txt && -s test.txt ]
+then
+  cat test.txt
+fi
+
+# if element met at least one conditions, execute the operation
+if [ -e test.txt || -e testfile_20.txt || -e test_abc.txt ]
+then
+  ls -lh test*
+fi
+
+# if element does not met the condition, exit, otherwise (condition met) execute the operation
+if ! [ -e test.txt ]
+then
+  echo "Error: missing file"
+  exit 11
+else
+  cat test.txt
+  exit 0
+fi
+
+# if element does not met the condition, exit, otherwise (condition met) execute the operation
+if ! [ 1 -lt 2 ]
+then
+  echo "Error: 1 is not &lt; 2"
+  exit 11
+else
+  echo "OK 1 is &lt; 2"
+  exit 0
+fi
+<pre>
 <br>
 <br>
 <hr>
