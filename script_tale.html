@@ -55,15 +55,16 @@ linuxcram.github.io
 </div>
 <hr>
 <h3>Brief tale about a Bash script</h3>
+<br>
 <h4>I - BIRTH # url_checker.sh</h4>
 Once upon a time there was a Sysadmin that used a bash one-liner to display the first line matching the word &lt;title&gt; in a the html code of the URL debian.org:
 <br>
 curl -kLs debian.org | grep -e "&lt;title&gt;" | head -1
 <br>
-<br>
+<pre>
 The command output was:
   &lt;title&gt;Debian -- The Universal Operating System &lt;/title&gt;
-<br>
+</pre>
 <br>
 Since the users kept asking the command syntax distracting the Sysadmin from other activities,
 <br>
