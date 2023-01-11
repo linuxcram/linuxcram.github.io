@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>linuxcram.github.io - script_tale</title>
+<style>
+header {
+  width: 100%;
+}
+body {
+  background: #333333;
+  color: #f2f2f2;
+  font-size: 14px;
+  font-family: monospace;
+  text-align: left;
+  line-height: 1.3;
+  margin: 0;
+  border: 20px solid transparent;
+}
+a:link {
+  color: #ff6000;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: #00bbbb;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:active {
+  color: #00bb00;
+  background-color: transparent;
+}
+hr {
+  height: 3px;
+  background-color: #00ee00;
+  border: none;
+}
+</style>
+</head>
+<body>
+<div style="text-align: center;">
+<img src="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/tux01.png" alt="Tux" width="33" height="33">
+<h2>
+linuxcram.github.io
+<br>
+[script_tale]
+</h2>
+</div>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<div style="text-align: center;">
+<p>
+<a href="https://linuxcram.github.io/exercises.html">[exercises]</a>
+</p>
+</div>
+<hr>
+<h3>Brief tale about a Bash script</h3>
+<h4>I - BIRTH # url_checker.sh</h4>
+Once upon a time there was a Sysadmin that used a bash one-liner to display the first line matching the word &lt;title&gt; in a the html code of the URL debian.org:
+<br>
+curl -kLs debian.org | grep -e "&lt;title&gt;" | head -1
+<br>
+<br>
+The command output was:
+  &lt;title&gt;Debian -- The Universal Operating System &lt;/title&gt;
+<br>
+<br>
+Since the users kept asking the command syntax distracting the Sysadmin from other activities,
+<br>
+the Sysadmin put the command inside a script to simplify the commands execution, making it available for all users:
+<pre>
+url_checker.sh
+#!/bin/bash
+curl -kLs debian.org | grep -e "&lt;title&gt;" | head -1
+
+chmod +x url_checker.sh
+
+Execution went fine and users could run the script:
+./url_checker.sh 
+  &lt;title&gt;Debian -- The Universal Operating System &lt;/title&gt;
+</pre>
+<br>
+<br>
+<h4>II - FIRST CHANGE # url_checker2.sh </h4>
+Later on, an user wanted to remove the html tags from the output, add wanted the URL printed first.
+<br>
+<br>
+So the user decided to update the script, luckily leaving the original file untouched, making a copy named url_checker.sh.
+<br>
+mv url_checker.sh url_checker2.sh.
+<br>
+<br>
+The user found on the Internet website "slackoverslow" the echo command that would print text on display, so the user decided to copy and paste the command to the script, simply changing the text between quotes.
+<br>
+echo “Hello”
+<br>
+<pre>
+The new version was:
+url_checker2.sh
+#!/bin/bash
+echo “debian.org”
+curl -kLs debian.org | grep -e "&lt;title&gt;" | head -1 | sed 's/&lt;title&gt;//g' | sed 's/<\/title>//g'
+
+The output was ...so and so... wait, didn't they said that echo prints what it's inside quotes, excluded the quotes?
+./url_checker2.sh 
+“debian.org”
+  Debian -- The Universal Operating System 
+</pre>
+<br>
+<br>
+<i>In fact code copied and pasted from the Internet could contain dirty or unexpected chars, spot the differences:</i>
+<br>
+echo “debian.org”
+<br>
+echo "debian.org"
+<br>
+<br>
+<br>
+<h4>
+Lesson learned : DETAILS ARE IMPORTANT!
+<br>
+General rule: DO NOT BLINDLY RUN SHELL COMMANDS OR SCRIPTS FOUND ON THE INTERNET!
+</h4>
+No matter how trusted is the source, we must always read and understand before run anything.
+<br>
+The Linux shell is so powerful that a wrong command can cause data damage and permanently break systems.
+<br>
+<pre>
+The new version, became:
+url_checker2.sh
+#!/bin/bash
+echo "debian.org"
+curl -kLs debian.org | grep -e "&lt;title&gt;" | head -1 | sed 's/&lt;title&gt;//g' | sed 's/<\/title>//g'
+
+
+Execution was ok:
+./url_checker2.sh 
+debian.org
+  Debian -- The Universal Operating System
+</pre>
+<br>
+<br>
+<h4>III - MORE URLS # url_checker3.sh</h4>
+The Sysadmin was required to update the script to check a list of URLs listed in a text file
+<br>
+<pre>
+cat url_checker_listurls.txt 
+almalinux.com
+centos.org
+debian.org
+ubuntu.com
+</pre>
+<br>
+Furthermore the Sysadmin had to update the script to make it compliant to the new standards model defined by the organization.
+<br>
+<br>
+The script should provide a single string for every URL checked, include variables, error/variables checks, comments, exit codes.
+<pre>
+The new version was:
+url_checker3.sh
+#!/bin/bash
+# exit on error or undefined variable
+set -o errexit
+set -o nounset
+#
+# Variables
+urls_list="url_checker_list.txt"
+#
+# Conditional cycle to exit on missing input file, or perform operations reading URLs from list file
+if ! [ -s $urls_list ]
+then
+  echo -e "Error: pages list file not found or file is empty."
+  exit 11
+else
+  for url in $(cat url_checker_list.txt | tr '\n' ' ')
+  do
+    curl_result=$(curl -kLs "$url" | grep -e "&lt;title&gt;" | head -1 | sed 's/&lt;title&gt;//g' | sed 's/<\/title>//g')
+    echo -e "$url $curl_result"
+  done
+  exit 0
+fi
+
+
+
+...for curiosity try to change the order of the three last lines and see what happens this way:
+  exit 0
+  done
+fi
+</pre>
+<br>
+....after that restore the correct order o keep it working!
+<br>
+<br>
+<br>
+<h4>IV - NEW STANDARD MODEL # url_checker4.sh </h4>
+The Sysadmin found that the new standard model of scripts expected the use of functions, so the script should be updated to comply, this became an occasion to make order and cleanliness.
+<br>
+<pre>
+The new version was:
+url_checker4.sh
+#!/bin/bash
+# exit on error or undefined variable
+set -o errexit
+set -o nounset
+#
+# Variables
+urls_list="url_checker_list.txt"
+#
+# Function that prints URL and first line of html code without tags, reading URLs from list file url_checker_list.txt
+pages_list_check(){
+  for url in $(cat url_checker_list.txt | tr '\n' ' ')
+  do
+    curl_result=$(curl -kLs "$url" | grep -e "&lt;title&gt;" | head -1 | sed 's/&lt;title&gt;//g' | sed 's/<\/title>//g')
+    echo -e "$url $curl_result"
+  done
+}
+# Conditional cycle to exit on missing input file url_checker_list.txt or perform operations
+if ! [ -s $urls_list ]
+then
+  echo -e "Error: pages list file not found or file is empty."
+  exit 11
+else
+  pages_list_check
+  exit 0
+fi
+</pre>
+<br>
+<br>
+<h4>V - MORE URLS, SAME SCRIPT!</h4>
+<br>
+The URLs check department found that they required the title of more sites, so Sysadmin was required to add the new URLs to the check.
+<br>
+He updated the list file adding the URLs without touching the script and checked that the file was as expected since double checks are important.
+<pre>
+echo -e "redhat.com\nlinuxmint.com\nopenbsd.org\nalpinelinux.org" >> url_checker_list.txt
+
+cat url_checker_list.txt
+almalinux.com
+centos.org
+ubuntu.com
+debian.org
+redhat.com
+linuxmint.com
+openbsd.org
+alpinelinux.org
+
+
+The script worked smoothly:
+./url_checker4.sh 
+almalinux.com     AlmaLinux OS - Forever-Free Enterprise-Grade Operating System
+centos.org     The CentOS Project
+ubuntu.com   Enterprise Open Source and Linux | Ubuntu
+debian.org   Debian -- The Universal Operating System 
+redhat.com     Red Hat - We make open source technologies for the enterprise
+linuxmint.com 	Home - Linux Mint
+openbsd.org 	OpenBSD
+alpinelinux.org         index | Alpine Linux
+</pre>
+<br>
+<i>
+...And they all lived happily ever after.
+</i>
+<br>
+<br>
+<hr>
+<div style="text-align: center;">
+<p>
+<a href="https://linuxcram.github.io/exercises.html">[exercises]</a>
+</p>
+</div>
+<h3><a href="https://linuxcram.github.io/">HOME</a></h3>
+<br>
+</body>
+</html>
