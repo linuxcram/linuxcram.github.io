@@ -330,7 +330,7 @@ then
   cat test.txt
 fi
 
-# if element met multiple conditions (double brackets or escape depending on the shell), execute the operation
+# if element met multiple conditions (double brackets required by bash), execute the operation
 if [[ -e test.txt && -r test.txt && -s test.txt ]]
 then
   cat test.txt
