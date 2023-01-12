@@ -109,6 +109,10 @@ the incremental funtion will be applied until the condition is reached, that mea
 <h4>Until Loop</h4>
 x=3; until (( x &lt;= 0 )); do echo $((x--)); done
 <br>
+#same of
+<br>
+x=3; until (( x <= 0 )); do echo $(( --x )); done
+<br>
 <br>
 x is the arbitrary name of the variable that will have an initial value of 3 and that will be decremented of 1 unit until x&lt;=0, echo receives every value of x as argument, once x reaches the value of -1 the cycle is terminated
 <br>
