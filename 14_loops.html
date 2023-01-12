@@ -330,14 +330,14 @@ then
   cat test.txt
 fi
 
-# if element met all the conditions, execute the operation
-if [ -e test.txt && -r test.txt && -s test.txt ]
+# if element met multiple conditions (double brackets or escape depending on the shell), execute the operation
+if [[ -e test.txt && -r test.txt && -s test.txt ]]
 then
   cat test.txt
 fi
 
-# if element met at least one conditions, execute the operation
-if [ -e test.txt || -e testfile_20.txt || -e test_abc.txt ]
+# if element met at least one of the conditions, execute the operation
+if [[ -e test.txt || -e testfile_20.txt || -e test_abc.txt ]]
 then
   ls -lh test*
 fi
