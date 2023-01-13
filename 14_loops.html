@@ -371,12 +371,16 @@ The following conditions will return a true value if the corresponding element t
 </pre>
 Often the best practice is to define the first condition that, if false, would cause failure of next tasks.
 <br>
+<br>
 If the unmet condition compromises the main task, the script often may exit with a custom exit code and a messsage.
 The usage of exit codes add efficiency to scripts (0 for "no errors" , other custom values for "errors").
 <br>
+<br>
 This way, if a required condition for the script is not met, less commands will be executed, saving time and resources.
 <br>
+<br>
 The ! negation is useful to check if a condition is unmet.
+<br>
 <br>
 Examples
 <pre>
@@ -387,7 +391,7 @@ then
 fi
 
 # if element met multiple conditions (double brackets required by bash), execute the operation
-if [[ -e test.txt && -r test.txt && -s test.txt ]]
+if [[ -e test.txt &amp;&amp; -r test.txt &amp;&amp; -s test.txt ]]
 then
   cat test.txt
 fi
