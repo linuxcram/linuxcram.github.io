@@ -195,10 +195,10 @@ but when x reaches the value of -1 the condition become true, and the cycle is t
 Same result with different sintax
 <br>
 <br>
-x=3; until (( x <= 0 )); do echo $(( --x )); done
+x=3; until (( x &lt;= 0 )); do echo $(( --x )); done
 <br>
 <br>
-x=3; until (( x <= 0 )); do echo $x; (( --x )); done
+x=3; until (( x &lt;= 0 )); do echo $x; (( --x )); done
 <br>
 <br>
 The concept behind the UNTIL cycle may also be imagined as ...a self-driving car that moves on a road:
