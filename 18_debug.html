@@ -94,6 +94,33 @@ This method displays every command run by a script and its results.
 bash -x script.sh
 <br>
 <br>
+The "-x" debug option can also be set inside a script, the lines affected are placed between set -x (enable debug) and set +x (disable debug).
+<br>
+<b>Remeber always to "close" the debug option with set +x otherwise the option stays active in the shell, after that the script is executed!</b>
+<pre>
+eg. script hello.sh
+#!/bin/bash
+echo "Hello"
+set -x
+echo "World"
+set +x
+
+
+
+Exercise: try to debug, and correct this script: badscript.sh
+...find all the errors not only limiting to sintax.
+#!/bin/bash
+# Variables
+MYVAR="Linux"
+$user=USERNAME
+# Commands
+cd /home/$USER_Documents && date
+echo “Hello $VAR” 
+echo Number is $1
+# Exit
+exit 1
+</pre>
+<br>
 <hr>
 <div style="text-align: center;">
 <p>
