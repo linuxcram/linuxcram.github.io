@@ -135,6 +135,21 @@ the incremental function will be applied and echo will get the value of x as arg
 when the condition x&lt;5 is no more true, the cycle is terminated.
 <br>
 <br>
+<pre>
+eg. script countdown_for.sh 
+#!/bin/bash
+countdown () {
+  echo -e "Countdown: $counter"
+  (( --counter ))
+  sleep 1
+}
+for counter in {3,2,1}
+do
+  countdown
+done
+echo "Gooo!"
+exit 0
+</pre>
 <br>
 <h4>While Loop</h4>
 Hint: the construct string "VARIABLE=VALUE ; while CONDITION ; do OPERATION ; done" may be remembered as:
@@ -173,6 +188,22 @@ The concept behind the WHILE cycle may also be imagined as a self-driving car th
 WHILE there is road the car moves, when there is no more road the car stops.
 <br>
 <br>
+<pre>
+eg. script countdown_while.sh
+#!/bin/bash
+counter="3"
+countdown () {
+  echo -e "Countdown: $counter"
+  (( --counter ))
+  sleep 1
+}
+while (( $counter > 0 ))
+do
+  countdown
+done
+echo "Gooo!"
+exit 0
+</pre>
 <br>
 <h4>Until Loop</h4>
 Hint: the construct string "VARIABLE=VALUE; until CONDITION; do OPERATION; done" may be remembered as:
@@ -207,6 +238,23 @@ UNTIL the road ends, the car moves.
 <br>
 The car moves on the road, when the road ends the car stops.
 <br>
+<br>
+<pre>
+eg. script countdown_until.sh
+#!/bin/bash
+counter="3"
+countdown () {
+  echo -e "Countdown: $counter"
+  (( --counter ))
+  sleep 1
+}
+until (( $counter <= 0 ))
+do
+  countdown
+done
+echo "Gooo!"
+exit 0
+</pre>
 <br>
 <br>
 <b>Warning
