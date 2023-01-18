@@ -1,0 +1,334 @@
+
+
+Linux Shell
+Basic Commands
+
+
+Note about variables:
+variables are recognized with parameter expansion $
+eg. $var
+# the $ char is also valid for command substitution 
+eg. $(command)
+
+# env - displays the user enviroment variables
+env
+# echo - print input to standard output (more about echo later in this page)
+echo
+echo Hello
+
+
+# using variables in commands
+echo $USER
+echo $HOME
+echo $HOSTNAME
+
+# using command substitution
+echo $(whoami)
+echo $(pwd)
+echo $(hostname)
+
+
+
+### cd - Navigate the filesystem
+# using absolute paths
+cd  # easy way to navigate into the homedir
+cd /home
+cd ~
+cd /tmp
+cd /var
+cd /var/log
+
+# using relative paths and environment variables
+cd
+cd .
+cd ../
+cd $USER
+cd $HOME
+cd /var # an absolute path to move in the next relative path
+cd log
+
+
+
+### ls - List what the content of the current directory
+# -l use a long listing format
+# -h human-readable
+# -a show also entries starting with .
+
+# List all non hidden contents (files and directories)
+ls -lh
+
+# show hidden contents
+ls -a
+
+# List only files ending in .txt # to create one touch test.txt
+ls *.txt
+
+# List contents of /var/log
+ls -lh /var/log
+
+# List only files ending with .log in /var/log
+ls -lh /var/log/*.log
+
+
+
+### mkdir - Create a directory
+# Go to homedir using # cd
+mkdir dir01
+
+# -p, --parents no error if existing, make parent directories as needed - BETTER USE THIS OPTION
+
+mkdir -p dir01
+# this command find that the dir already exists, without errors
+
+mkdir -p dir01/subdir01
+# this command create the directory tree, skipping the creation of existing directories, without errors
+
+
+# Move to the new path and more
+# use pwd to check the current path
+cd
+cd dir01/subdir01
+# move back to homedir
+cd ../../
+cd ~
+cd dir01
+cd subdir01
+cd ..
+cd
+cd $HOME/dir01/subdir01
+
+
+
+### touch - Create an empty file
+cd
+touch file1
+
+
+
+### mv - Rename or move
+
+# rename file1 to file2
+mv file1 file2
+
+# move file2 to dir01
+mv file2 dir01/
+
+# move file2 back to home
+mv dir01/file2 .
+# same as # 
+mv dir01/file2 ~
+mv ~/dir01/file2 ~
+mv dir01/file2 $HOME
+mv $HOME/dir01/file2 $HOME
+
+
+
+### cp - Copy contents
+# make a copy of file2 called file2.old
+cp file2 file2.old
+
+# make a copy of file2.old called file1
+cp file2.old file1
+
+# copy file2 into /tmp
+cp file2 /tmp/
+
+
+
+### rmdir - Remove empty directories PERMANENTLY
+mkdir testdir
+rmdir testdir
+
+
+
+### rm - Remove contents PERMANENTLY
+touch file3
+rm file3
+
+# remove files without prompt
+touch file3
+rm -f file3
+
+# Remove directory
+mkdir testdir1
+rmdir testdir1
+
+# Remove non-empty directories and their contents PERMANENTLY without prompt
+mkdir testdir1
+touch testdir1/testfile1
+rm -rf testdir1/testfile1
+# USE EXTREME CAUTION WITH rm -rf 
+# There is no way to recover contents once removed!
+
+
+
+### echo - print input to standard output
+# -n     do not output the trailing newline
+# -e     enable interpretation of backslash escapes ( \n is newline, \t is tab)
+echo Hello
+echo "Hello"
+echo "Hello World"
+echo "Hello $USER"
+echo ""
+echo "Hello\tWorld"
+echo "Hello\t\t\t\tWorld"
+echo -e "Hello \n $USER"
+echo -e "$USER Home directory is: $HOME"
+
+
+# print input to redirected output (file
+# > create the file, if file exists ovewrite file
+echo Hello > hello.txt
+
+# >> create the file, if file exists ovewrite file append at the end of the file
+# add line(s) to file hello.txt
+echo World >> hello.txt
+echo "." >> hello.txt
+
+# create new file
+echo "hello world" >> helloworld.txt
+
+# Preferred: write the argument between "" to recognize variables
+
+
+
+### cat - Print the content of a text file on display
+cat file1
+
+
+
+### more - Print the content of a text file on display scrollable
+more file1
+
+
+
+### less - Print the content of a text file on display, scrollable
+less file1
+# press q to quit less
+# w=pageup, f or spacebar=pagedown
+# /=search string top to bottom, ?= search string bottom to top
+
+
+
+### hostname - Display hostname
+hostname
+echo $HOSTNAME
+
+
+
+### hostnamectl - Display host details
+# (OS, Kernel, Architecture, Hardware/Virtualization)
+hostnamectl
+
+
+
+### top -  Check running processes 
+top
+# q to exit top
+# c to show program name
+# P order by CPU usage
+# M order by Memory usage
+
+
+
+### history - Show last commands
+history
+# CTRL+r reverse search history
+# eg. type echo Hello and then CTRL+r and type ec the last command matching will be shown
+(reverse-i-search)`echo': echo Hello
+# press again CTRL+r to reverse search in history older commands
+# CTRL+c to quit the search
+
+
+
+### man - Manual pages  (press q to quit)
+man ls
+man cp
+man mv
+...
+# Use man as much as possible to learn commands sintax and options.
+# Some commands support the help that show common options eg. command --help
+
+
+
+### Redirection
+Redirect the output of a command to another command
+ls | cat
+
+Redirect the output of a command to a file
+ls > files.txt
+ls >> files2.txt
+
+
+
+### find - Find contents (file and directories) in the file sytems
+cd
+touch file4
+touch file5.txt
+
+find .
+find 
+# find has may options, read the man find
+
+find . -type f -name "file4"
+find . -type f -name "file?"
+find . -type f -name "fil*"
+
+find . -type f -iname "File4"
+#i - Like -name, but the match is case insensitive
+
+find /home -type d -name "$USER"
+
+cd
+mkdir -p dir2/files/
+touch dir2/files/file6.txt
+find . -type f -name "*txt"
+find . -maxdepth 1 -type f -name "*txt"
+
+
+
+### grep - search matching patterns in text (from output redirection or text file)
+echo "01 test string line number one" > file6
+echo "02 line number two" >> file6
+
+echo >> file6
+echo "" >> file6
+# both the last commands add an empty line
+
+
+# lookup file6 in output of ls command
+ls | grep file6
+
+# show poattern matching lines in text file
+grep test file6
+
+grep "test" file6
+grep "line" file6
+
+# grep -v exclude matching pattern
+grep -v "test" file6
+
+# multiple matching patterns
+grep "test\|line" file6
+
+# lines beginning with string 01
+grep "^01" file6
+
+# lines ending with string one
+grep "one$" file6
+
+# empty lines
+grep "^$" file6
+
+# non empty lines
+grep -v "^$" file6
+
+.
+
+
+
+
+
+
+
+
