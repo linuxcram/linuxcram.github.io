@@ -203,6 +203,20 @@ do
 done
 echo "Gooo!"
 exit 0
+
+
+# Example: input redirection to print lines of file with while iteration 
+# Useful to perform same task on multiple entries
+#file creation
+echo -e "one\ntwo\nthree" >> numlist.txt
+# while cycle
+while read num; do echo $num; done < numlist.txt
+
+# Output:
+one
+two
+three
+
 </pre>
 <br>
 <h4>Until Loop</h4>
