@@ -254,6 +254,10 @@ date
 Mon Dec 12 11:34:15 AM CET 2022
 <br>
 <br>
+<b>Note that the output of "date" could differ, so the YEAR field could be the 6th instead of the 7th used in the example:
+#eg. Mon Dec 12 11:34:15 CET 2022 </b>
+<br>
+<br>
 We want to get the current date, to extract only the YEAR field, then compare it with values, and finally display a text based on the result.
 <br>
 We can use several commands combined together in "pipelines", commands separated by | where the output of a command is sent as input to the next command.
@@ -268,6 +272,8 @@ date | cut -c 28-31
 <br>
 2022
 <br>
+<br>
+# Assuming a 7 field "date" ouput (if your output has 6 fields, simply change the -f7 to -f6 )
 <br>
 date | cut -d " " -f7
 <br>
@@ -351,7 +357,12 @@ print(d1.strftime('%Y'));";
 Let's get back to the mentioned example goal, we want to extract only the YEAR field from the current date, compare it with values and display a text based on the result.
 <br>
 <br>
-We can use several commands, let's assume we use date and cut to get the year from the current date:
+<br>
+We can use several commands, let's assume we use date and cut to get the year from the current date
+<br>
+# Valid for format with 7 fields - adjust the cut command if necessary (Mon Dec 12 11:34:15 AM CET 2022  has 7 fields separed by space)
+<br>
+<br>
 date | cut -d " " -f7
 <br>
 2022
