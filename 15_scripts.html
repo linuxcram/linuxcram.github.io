@@ -88,7 +88,7 @@ eg. ls -l; free -h; ls -l /rooot; date
 <br>
 &amp;&amp; is a command separator that will let the second command run, only if the first one runs without errors.
 <br>
-eg. ls -l; free -h; ls -l /rooot; date
+eg. ls -l &amp;&amp; free -h &amp;&amp; ls -l /rooot &amp;&amp; date
 <br>
 # the last command run will be free -h because the /rooot path does not exist and ls will produce an exit code of error that breaks the chain.
 <br>
