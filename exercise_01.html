@@ -165,6 +165,74 @@ Suggestion: try to run the script using bash -n, bash -v, bash -x to check synta
 </i>
 <br>
 <br>
+<h4>Link to sample script:</h4>
+<br>
+<br>
+<a href="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/sysinfo.sh" target="_blank">sysinfo.sh</a>
+<br>
+<br>
+<b>REMEMBER: DO NOT BLINDLY RUN SHELL COMMANDS OR SCRIPTS FOUND ON THE INTERNET.</b>
+<br>
+<br>
+Scripts must be read carefully! Check that every command is present on the system.
+<br>
+Commands not found cause errors like:
+<br>
+./sysinfo.sh 
+<br>
+./sysinfo.sh: line 60: bc: command not found
+<br>
+<br>
+<br>
+On RPM systems (RHEL/CentOS/AlmaLinux) the package that a command belongs to can be found with yum or better dnf:
+<br>
+sudo dnf provides bc
+<br>
+Then the package bc that provides the command bc (the pkg name may differ) can be installed:
+<br>
+sudo dnf install bc
+<br>
+<br>
+On DEB systems (Debian/Ubuntu) a useful set of commands is:
+<br>
+sudo apt search bc
+<br>
+(bc is present by default on Ubuntu22, this should not be required)
+<br>
+sudo apt install bc
+<br>
+<br>
+<br>
+Expected result (sample):
+<br>
+./sysinfo.sh 
+<br>
+Script executed successfully. Logfile is: sysinfo_20230125_200105.log
+<br>
+<br>
+<br>
+<h4>Inspect the result</h4>
+Check the logfile (read it using cat, more, less)
+<br>
+<br>
+Check the directory tree created and its contents to verify that the request is satisfied by the script.
+<br>
+<br>
+<i>Some useful commands:</i>
+<br>
+find systems/ -type f -name "testfile*"
+<br>
+find systems/ -type f -name "testfile*" -exec ls {} \; | wc -l
+<br>
+find systems/ -type f -name "testfile*" -exec ls -lh {} \;
+<br>
+find systems/ -type f -name "id*"
+<br>
+find systems/ -type f -name "id*" -exec ls {} \; | wc -l
+<br>
+find systems/ -type f -name "id*" -exec cat {} \;
+<br>
+<br>
 <hr>
 <div style="text-align: center;">
 <p>
