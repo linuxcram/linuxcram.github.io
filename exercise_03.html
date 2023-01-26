@@ -59,10 +59,7 @@ linuxcram.github.io
 </p>
 </div>
 <hr>
-<h3>[exercise_03]
-<br>
-<br>
-Exercise_03</h3>
+<h3>[exercise_03]</h3>
 Create a script named ports.sh that performs the following tasks:
 <br>
 <br>
@@ -97,6 +94,32 @@ eg.
 <i>
 BONUS: When done, transfer a copy of the file ports.csv to the local pc and open the file with a worksheet application, choosing the char # as field separator.
 </i>
+<br>
+<br>
+<br>
+<br>
+<h4>Link to sample script:</h4>
+<a href="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/ports.sh" target="_blank">ports.sh</a>
+<br>
+<br>
+<br>
+<h4>Inspect the result</h4>
+Check the output files (using cat, more, less)
+<br>
+<br>
+Command to copy on the local system the file ports.csv (replace LINUXBOX-IP with the IP of the virtual machine <br>
+eg. starting with 129.168... check it on the vm with the command ip -a) :
+<br>
+scp student@LINUXBOX-IP:/home/student/ports.csv .
+<br>
+# the copy of the file will be put in the local current directory (. means the current dir)
+<br>
+<br>
+To copy the ports.csv from a Windows host, open CMD and run the similar pscp command (pscp is provided by PuTTY):
+<br>
+pscp student@LINUXBOX-IP:/home/student/ports.csv .
+<br>
+# the copy of the file will be put in the local current directory (. means the current dir)
 <br>
 <br>
 <hr>
