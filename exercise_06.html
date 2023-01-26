@@ -59,10 +59,7 @@ linuxcram.github.io
 </p>
 </div>
 <hr>
-<h3>[exercise_06]
-<br>
-<br>
-Exercise_06</h3>
+<h3>[exercise_06]</h3>
 Create a Bash script named fibonacci.sh that prints the Fibonacci sequence of numbers.
 <br>
 <br>
@@ -89,6 +86,48 @@ Source: <a href="https://en.wikipedia.org/wiki/Fibonacci_number" target="_blank"
 <h4>
 BONUS: make the script runnable by all users, simply typing fibonacci in the shell of any user.
 </h4>
+<br>
+<br>
+<br>
+<br>
+<h4>Link to sample script:</h4>
+<a href="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/fibonacci.sh" target="_blank">fibonacci.sh</a>
+<br>
+<br>
+<br>
+<h4>Inspect the result</h4>
+Make sure that the script run fine with and without the numeric argument that determines the length of the sequence, eg.
+<br>
+./fibonacci.sh
+<br>
+./fibonacci.sh 3
+<br>
+./fibonacci.sh 20
+<br>
+<br>
+<br>
+<b>Spoiler alert about the BONUS</b>
+<br>
+Check the user path:
+echo $PATH
+<br>
+<br>
+/usr/local/bin is a location intended for binaries that are available for all users (such as third-party apps or custom commands).
+<br>
+<br>
+To make the script available for all users as requested, with the name "fibonacci":
+<br>
+sudo cp fibonacci.sh /usr/local/bin/fibonacci
+<br>
+<br>
+Check:
+<br>
+which fibonacci
+<br>
+<br>
+Try executing simply (without ./ and .sh):
+<br>
+fibonacci
 <br>
 <br>
 <hr>
