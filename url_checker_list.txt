@@ -1,0 +1,8 @@
+almalinux.com
+centos.org
+ubuntu.com
+debian.org
+redhat.com
+linuxmint.com
+openbsd.org
+alpinelinux.org
