@@ -59,10 +59,7 @@ linuxcram.github.io
 </p>
 </div>
 <hr>
-<h3>[exercise_05]
-<br>
-<br>
-Exercise_05</h3>
+<h3>[exercise_05]</h3>
 Create a Bash script named pkglog_backup.sh, using functions that perform the following backup tasks.
 <br>
 <br>
@@ -91,7 +88,7 @@ Ubuntu22 default package manager (APT) history log file:
 /var/log/apt/history.log
 <br>
 <br>
-- if the systems uses another kind of package manager log, the script must type "Error: OS not supported. Backup failed." and exit with exit code 12
+- if the systems uses another kind of package manager log, the script must type "Error: OS not supported. Backup failed." and exit with status code 11
 <br>
 <br>
 - create a tar archive compressed with gzip (MAXIMUM compression level) named with the logfile name followed by the DATE in format _YYYYmmdd_HHMMSS, and with extension tar.gz (the original file is kept as is!)
@@ -112,6 +109,25 @@ Ubuntu22 default package manager (APT) history log file:
 <h4>
 Always handle with care disruptive commands (eg. rm, mv).
 </h4>
+<br>
+<br>
+<br>
+<br>
+<h4>Link to sample script:</h4>
+<a href="https://raw.githubusercontent.com/linuxcram/linuxcram.github.io/main/pkglog_backup.sh" target="_blank">pkglog_backup.sh</a>
+<br>
+<br>
+<br>
+<h4>Inspect the result</h4>
+Check the files generated uncompressing them with commands, consult man tar, man gzip, man gunzip.
+<br>
+Eg.
+<br>
+tar xzvf file.tar.gz
+<br>
+#same of # tar -xzvf file.tar.gz
+<br>
+gunzip file.gz
 <br>
 <br>
 <hr>
