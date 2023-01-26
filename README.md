@@ -1,4 +1,4 @@
-# linuxcram.github.io
+# [a link][linuxcram.github.io](https://linuxcram.github.io/)
 
 Disclaimer and purpose of the pages published on https://linuxcram.github.io/
 
