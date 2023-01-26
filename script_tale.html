@@ -93,12 +93,24 @@ Execution went fine and users could run the script:
 Later on, an user wanted to remove the html tags from the output, add wanted the URL printed first.
 <br>
 <br>
-So the user decided to update the script, luckily leaving the original file untouched, making a copy named url_checker.sh.
+So the user decided to update the script, leaving the original file untouched, making a <b>copy</b> named url_checker.sh.
 <br>
-mv url_checker.sh url_checker2.sh.
+<b>mv</b> url_checker.sh url_checker2.sh
 <br>
 <br>
-The user found on the Internet website "slackoverslow" the echo command that would print text on display, so the user decided to copy and paste the command to the script, simply changing the text between quotes.
+<i>Ouch!</i>
+<br>
+The user noted that "ls" shown only a file named: url_checker2.sh  (of course, the mv command RENAMED NOT COPIED!)
+<br>
+Luckily a "cp" command restored a copy of the original script:
+<br>
+cp url_checker2.sh url_checker.sh
+<br>
+<br>
+<br>
+The user did a search and found, on the Internet website "slackoverslow", that the echo command that would print text on display,
+<br>
+so the user decided to copy and paste the command to the script, simply changing the text between quotes.
 <br>
 echo “Hello”
 <br>
