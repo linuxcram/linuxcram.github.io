@@ -1,6 +1,9 @@
 #!/bin/bash
+#
+# Welcome script that uses happy colorful text/background
+#
 # exit on command fail
-set -o errexit
+set -e
 string="\n >\n ->\n -->\n\n\tWelcome to Linux.\n\n\tLet's learn Bash scripting.\n\n -->\n ->\n >"
 clear
 echo -en "\e[5m\e[34m\e[42m>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\e[0m"
